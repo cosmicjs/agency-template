@@ -2,6 +2,8 @@
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import { Section } from '@/components/page-section';
+import { Testimonials } from '@/components/testimonials';
+import { FAQs } from '@/components/faqs';
 import { cosmic } from '@/lib/cosmic';
 
 export default async function HomePage() {
@@ -66,6 +68,15 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <section className='md:container mt-12 pb-8 m-auto'>
+        <div className='relative m-auto flex max-w-[950px] flex-col items-start gap-2'>
+          <h3 className='m-auto mb-4 text-2xl md:text-4xl font-display text-zinc-900 dark:text-zinc-100 tracking-tighter'>Hear from our customers</h3>
+          <Testimonials />
+        </div>
+      </section>
+
+      <section className='md:container mt-12 pb-8 m-auto'>{page.metadata.faqs && <FAQs faqs={page.metadata.faqs} />}</section>
     </main>
   );
 }

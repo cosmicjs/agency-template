@@ -52,7 +52,7 @@ export default async function SingleBlogPage({ params }: { params: { slug: strin
               })}
             </div>
           </div>
-          <Markdown className='text-zinc-700 dark:text-zinc-300'>{blog.metadata.content}</Markdown>
+          <Markdown className='text-zinc-700 dark:text-zinc-300 space-y-4'>{blog.metadata.content}</Markdown>
           <Comments resourceId={blog.id} />
           <div className='my-10'>
             <Link href='/blog' className='flex text-blue-800'>

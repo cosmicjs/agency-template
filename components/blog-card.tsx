@@ -31,7 +31,7 @@ export function BlogCard({ post }: { post: PostType }) {
         href={`/blog/${post.slug}`}
       >
         <div className='relative h-full'>
-          <img alt='' className='object-cover' src={`${post.metadata.image.imgix_url}?w=1200&auto=format,compression`} />
+          <img alt={post.title} className='object-cover h-80 w-full' src={`${post.metadata.image.imgix_url}?w=1200&auto=format,compression`} />
         </div>
         <div
           className='flex h-full flex-col justify-between rounded-b-lg border-x border-b 
