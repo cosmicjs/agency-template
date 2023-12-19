@@ -8,9 +8,9 @@ const buttonVariants = cva('inline-flex items-center justify-center whitespace-n
   variants: {
     variant: {
       default: 'bg-gradient-to-br from-red-400 to-orange-600 text-white hover:bg-primary/90 shadow-inner shadow-white/30 ring-1 ring-orange-600 hover:opacity-90',
+      secondary: 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-800/80 hover:bg-zinc-100/80 ring-1 ring-zinc-200 dark:ring-zinc-700',
       destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
       outline: 'border border-zinc-200 dark:border-zinc-700 bg-transparent hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300',
-      secondary: 'bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-800/80 hover:bg-zinc-100/80',
       ghost: 'hover:bg-accent hover:text-accent-foreground',
       link: 'text-primary underline-offset-4 hover:underline',
     },

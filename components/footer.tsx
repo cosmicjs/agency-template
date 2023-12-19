@@ -1,6 +1,6 @@
 // components/footer.tsx
 import { cosmic } from '@/lib/cosmic';
-import { NavMenu } from '@/components/nav-menu';
+import { FooterNavMenu } from '@/components/nav-menu';
 
 export default async function Footer() {
   // Footer data
@@ -31,7 +31,7 @@ export default async function Footer() {
   return (
     <div className='my-10 mx-auto justify-center w-full'>
       <div className='my-8'>
-        <NavMenu items={footer.metadata.items} />
+        <FooterNavMenu items={footer.metadata.items} />
       </div>
       <div className='mb-8 flex gap-x-8 justify-center'>
         {settings.metadata.links.map((link: Link) => {
