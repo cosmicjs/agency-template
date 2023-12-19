@@ -1,23 +1,23 @@
 // components/footer.tsx
-import { cosmic } from '@/lib/cosmic';
-import { FooterNavMenu } from '@/components/nav-menu';
+import { cosmic } from "@/lib/cosmic";
+import { FooterNavMenu } from "@/components/nav-menu";
 
 export default async function Footer() {
   // Footer data
   const { object: footer } = await cosmic.objects
     .findOne({
-      type: 'navigation-menus',
-      slug: 'footer',
+      type: "navigation-menus",
+      slug: "footer",
     })
-    .props('metadata')
+    .props("metadata")
     .depth(1);
 
   const { object: settings } = await cosmic.objects
     .findOne({
-      type: 'global-settings',
-      slug: 'settings',
+      type: "global-settings",
+      slug: "settings",
     })
-    .props('metadata')
+    .props("metadata")
     .depth(1);
 
   type Link = {
@@ -29,20 +29,24 @@ export default async function Footer() {
   };
 
   return (
-    <div className='my-10 mx-auto justify-center w-full'>
-      <div className='my-8'>
+    <div className="my-10 mx-auto justify-center w-full">
+      <div className="my-8">
         <FooterNavMenu items={footer.metadata.items} />
       </div>
-      <div className='mb-8 flex gap-x-8 justify-center'>
+      <div className="mb-8 flex gap-x-8 justify-center">
         {settings.metadata.links.map((link: Link) => {
           return (
-            <a href={link.url} key={link.url} target='_blank' rel='noreferrer'>
-              <img className='h-[26px]' src={`${link.icon.imgix_url}?w=500&auto=format,compression`} alt={link.company} />
+            <a href={link.url} key={link.url} target="_blank" rel="noreferrer">
+              <img
+                className="h-[26px]"
+                src={`${link.icon.imgix_url}?w=500&auto=format,compression`}
+                alt={link.company}
+              />
             </a>
           );
         })}
       </div>
-      <div className='flex gap-x-8 justify-center text-zinc-700 dark:text-zinc-300'>
+      <div className="flex gap-x-8 justify-center text-zinc-700 dark:text-zinc-300">
         <div>
           <a href={`mailto:${settings.metadata.email}`}>Email us</a>
         </div>
