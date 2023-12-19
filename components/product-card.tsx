@@ -16,7 +16,7 @@ export type ProductType = {
 
 export function ProductCard({ product }: { product: ProductType }) {
   return (
-    <Link href={`/shop/${product.slug}`} className='group relative w-full md:w-56'>
+    <Link href={`/services/${product.slug}`} className='group relative w-full md:w-56'>
       <div className='w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 h-52'>
         <img src={`${product.metadata.image.imgix_url}?w=1200&auto=format,compression`} alt={product.title} className='h-full w-full object-cover object-center lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800' />
       </div>

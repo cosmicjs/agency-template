@@ -34,7 +34,7 @@ export default async function SingleProductPage({ params }: { params: { slug: st
             <ImageGallery items={product.metadata.gallery} />
           </div>
           <div>
-            <h1 className='mt-6 mb-2 md:mt-0 md:mb-4 text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl'>{product.title}</h1>
+            <h1 className='mt-6 mb-2 md:mt-0 md:mb-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl text-zinc-900 dark:text-zinc-50'>{product.title}</h1>
             <p className='text-3xl tracking-tight text-gray-900 dark:text-white mb-6'>${product.metadata.price.toLocaleString('en-US')}</p>
             <div className='mb-8'>
               <Button type='submit'>Add to cart</Button>
