@@ -22,8 +22,8 @@ export function ImageGallery({ items }: { items: GalleryItemType[] }) {
       <div className='flex gap-x-2'>
         {items.map((item: any) => {
           return (
-            <div onClick={() => setMainItem(item)} key={item.image.imgix_url} className={cn(`rounded-xl overflow-hidden border-2`, item.image.imgix_url === mainItem.image.imgix_url ? 'border-gray-600' : '')}>
-              <img src={`${item.image.imgix_url}?w=200&auto=format,compression`} className='h-20 w-20 object-cover object-center cursor-pointer' />
+            <div title={item.description} onClick={() => setMainItem(item)} key={item.image.imgix_url} className={cn(`rounded-xl overflow-hidden border-2`, item.image.imgix_url === mainItem.image.imgix_url ? 'border-gray-600' : '')}>
+              <img src={`${item.image.imgix_url}?w=200&auto=format,compression`} className='h-20 w-20 object-cover object-center cursor-pointer' alt={item.description} />
             </div>
           );
         })}
