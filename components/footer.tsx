@@ -1,6 +1,8 @@
 // components/footer.tsx
 import { cosmic } from "@/lib/cosmic";
 import { FooterNavMenu } from "@/components/nav-menu";
+import { buttonVariants } from "./ui/button";
+import { MailIcon, PhoneIcon } from "lucide-react";
 
 export default async function Footer() {
   // Footer data
@@ -29,11 +31,31 @@ export default async function Footer() {
   };
 
   return (
-    <div className="my-10 mx-auto justify-center w-full">
+    <div className="pb-8 md:my-10 mx-auto flex flex-col md:flex-row items-center justify-between container w-full">
       <div className="my-8">
         <FooterNavMenu items={footer.metadata.items} />
       </div>
-      <div className="mb-8 flex gap-x-8 justify-center">
+      <div className="flex mb-8 md:mb-0 gap-x-8 justify-center text-zinc-700 dark:text-zinc-300">
+        <div>
+          <a
+            href={`mailto:${settings.metadata.email}`}
+            className={buttonVariants({ variant: "outline" })}
+          >
+            <MailIcon className="w-4 inline-block mr-2" />
+            Email us
+          </a>
+        </div>
+        <div>
+          <a
+            href={`tel:${settings.metadata.phone}`}
+            className={buttonVariants({ variant: "outline" })}
+          >
+            <PhoneIcon className="w-4 inline-block mr-2" />
+            Call us
+          </a>
+        </div>
+      </div>
+      <div className="flex gap-x-8 justify-center">
         {settings.metadata.links.map((link: Link) => {
           return (
             <a href={link.url} key={link.url} target="_blank" rel="noreferrer">
@@ -45,14 +67,6 @@ export default async function Footer() {
             </a>
           );
         })}
-      </div>
-      <div className="flex gap-x-8 justify-center text-zinc-700 dark:text-zinc-300">
-        <div>
-          <a href={`mailto:${settings.metadata.email}`}>Email us</a>
-        </div>
-        <div>
-          <a href={`tel:${settings.metadata.phone}`}>Call us</a>
-        </div>
       </div>
     </div>
   );

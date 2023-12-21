@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${display.variable} ${sans.variable} font-sans md:p-0 bg-white dark:bg-black`}
+        className={`${display.variable} ${sans.variable} font-sans md:p-0 bg-white dark:bg-black h-dvh w-full`}
       >
         <Header />
-        <div className="p-4">{children}</div>
+        {children}
         <Footer />
       </body>
     </html>

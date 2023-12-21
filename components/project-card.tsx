@@ -13,13 +13,14 @@ export type ProjectType = {
     client: {
       title: string;
     };
+    year: number;
     content: number;
   };
 };
 
 export function ProjectCard({ project }: { project: ProjectType }) {
   return (
-    <Link href={`/work/`} className="group relative w-full">
+    <Link href={`/work/${project.slug}`} className="group relative w-full">
       <div className="w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
         {project.metadata.image?.imgix_url && (
           <img
@@ -41,9 +42,14 @@ export function ProjectCard({ project }: { project: ProjectType }) {
         className="pt-2 text-sm font-medium text-zinc-500 dark:text-zinc-300"
         dangerouslySetInnerHTML={{ __html: project.metadata.summary }}
       />
-      <p className="pt-2 text-sm font-medium text-zinc-900 dark:text-zinc-50">
-        {project.metadata.client.title}
-      </p>
+      <div className="flex justify-between">
+        <p className="pt-2 text-sm font-medium text-zinc-900 dark:text-zinc-50">
+          {project.metadata.client.title}
+        </p>
+        <p className="pt-2 text-sm font-medium text-zinc-500 dark:text-zinc-400 font-mono">
+          {project.metadata.year}
+        </p>
+      </div>
     </Link>
   );
 }

@@ -28,7 +28,7 @@ export default async function SingleBlogPage({
   );
 
   return (
-    <>
+    <main className="p-4">
       <div className="mb-10 w-full max-h-[500px] overflow-hidden">
         <img
           src={`${blog.metadata.image.imgix_url}?w=2000&auto=format,compression`}
@@ -82,6 +82,6 @@ export default async function SingleBlogPage({
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

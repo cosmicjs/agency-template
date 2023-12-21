@@ -12,7 +12,7 @@ export default async function BlogPage() {
     .depth(1);
 
   return (
-    <>
+    <main className="p-4">
       <section className="md:container pb-8 m-auto">
         <div className="relative m-auto flex max-w-[950px] flex-col items-start gap-2">
           <h1 className="mb-4 m-auto md:mx-0 text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
@@ -25,6 +25,6 @@ export default async function BlogPage() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

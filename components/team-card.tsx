@@ -17,14 +17,14 @@ export type MemberType = {
 export function TeamCard({ member }: { member: MemberType }) {
   return (
     <div className="flex w-full flex-col overflow-hidden rounded-lg bg-white  dark:bg-zinc-800 md:flex-row border border-zinc-200 dark:border-zinc-700">
-      <div className="h-full w-full md:w-2/5">
+      <div className="md:w-2/5">
         <img
           className="h-full w-full object-cover object-center"
           src={`${member.metadata.image.imgix_url}?w=600&h=600&auto=format,compression&fit=crop&crop=faces}`}
           alt={member.title}
         />
       </div>
-      <div className="w-full space-y-2 p-6 text-left md:w-3/5 md:p-4">
+      <div className="w-full space-y-2 p-4 text-left md:w-3/5">
         <p className="text-xl font-bold text-zinc-700 dark:text-zinc-100">
           {member.title}
         </p>

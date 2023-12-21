@@ -22,7 +22,7 @@ export default async function Header() {
     .depth(1);
 
   return (
-    <div className="my-4 space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
+    <div className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
       <div className="flex w-full items-center justify-between container">
         <Link href="/">
           <img

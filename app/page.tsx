@@ -16,7 +16,7 @@ export default async function HomePage() {
     .depth(1);
 
   return (
-    <main>
+    <main className="p-4">
       <div className="w-full flex flex-col-reverse md:flex-row justify-between md:gap-12 max-w-6xl mx-auto pb-16 text-zinc-950 dark:text-zinc-50">
         <div className="flex flex-col items-start justify-start w-full md:w-1/2">
           <div className="pt-4 md:pt-20 pb-4">

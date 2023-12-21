@@ -95,7 +95,7 @@ export function FooterNavMenu({ items }: { items: Item[] }) {
   return (
     <NavigationMenu className="mx-auto">
       <NavigationMenuList>
-        <NavigationMenuItem className="grid grid-cols-4 md:grid-cols-none md:flex">
+        <NavigationMenuItem className="grid grid-cols-3 md:grid-cols-none md:flex">
           {items.map((item: Item) => {
             return (
               <Link href={item.link} legacyBehavior passHref key={item.title}>
