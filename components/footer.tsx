@@ -3,6 +3,7 @@ import { cosmic } from "@/lib/cosmic";
 import { FooterNavMenu } from "@/components/nav-menu";
 import { buttonVariants } from "./ui/button";
 import { MailIcon, PhoneIcon } from "lucide-react";
+import { ModeToggle } from "./theme-toggle";
 
 export default async function Footer() {
   // Footer data
@@ -68,6 +69,7 @@ export default async function Footer() {
           );
         })}
       </div>
+      <ModeToggle />
     </div>
   );
 }
