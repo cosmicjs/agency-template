@@ -28,10 +28,10 @@ export function TeamCard({ member }: { member: MemberType }) {
         <p className="text-xl font-bold text-zinc-700 dark:text-zinc-100">
           {member.title}
         </p>
-        <p className="text-base font-normal text-zinc-700 dark:text-zinc-100">
+        <p className="font-normal text-zinc-700 dark:text-zinc-100">
           {member.metadata.position}
         </p>
-        <p className="text-base font-normal leading-relaxed text-zinc-700 dark:text-gray-300">
+        <p className="text-sm font-normal leading-relaxed text-zinc-700 dark:text-gray-300">
           {member.metadata.bio}
         </p>
         <div className="flex justify-start space-x-4 py-4">

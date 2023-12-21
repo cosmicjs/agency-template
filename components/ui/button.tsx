@@ -10,9 +10,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-gradient-to-br from-red-400 to-orange-600 text-white hover:bg-primary/90 shadow-inner shadow-white/30 ring-1 ring-orange-600 hover:opacity-90",
+          "bg-gradient-to-br from-red-400 to-orange-600 text-white hover:bg-primary/90 shadow-[inset_0_1px_1px_0_rgb(255_255_255_/_0.4),inset_0_-1px_1px_0_rgba(0,0,0,0.2)] dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.4),inset_0_-1px_1px_0_rgba(0,0,0,0.3)] border border-orange-600 hover:opacity-90",
         secondary:
-          "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-800/80 hover:bg-zinc-100/80 ring-1 ring-zinc-200 dark:ring-zinc-700",
+          "bg-zinc-100 text-zinc-900 hover:bg-zinc-200/75 border border-zinc-200/75 dark:bg-gradient-to-b dark:from-zinc-700 dark:to-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-800/80 dark:border-zinc-700 dark:shadow-white/10 hover:opacity-80 transition-all ease-in-out duration-150 shadow-[inset_0_1px_1px_0_rgb(255_255_255_/_0.9)] dark:shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.2),inset_0_-1px_1px_0_rgba(0,0,0,0.8)]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:

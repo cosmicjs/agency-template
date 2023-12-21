@@ -30,7 +30,7 @@ export default async function AboutPage() {
             </h1>
             <div
               dangerouslySetInnerHTML={{ __html: page.metadata.content }}
-              className="md:text-xl text-zinc-700 dark:text-zinc-300"
+              className="text-zinc-700 dark:text-zinc-300"
             />
           </div>
         </div>
