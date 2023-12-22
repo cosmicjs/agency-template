@@ -96,7 +96,9 @@ export default async function HomePage() {
       </section>
 
       <section className="md:container mt-12 pb-8 m-auto">
-        {page.metadata.faqs && <FAQs faqs={page.metadata.faqs} />}
+        <div className="max-w-6xl mx-auto">
+          {page.metadata.faqs && <FAQs faqs={page.metadata.faqs} />}
+        </div>
       </section>
     </main>
   );
