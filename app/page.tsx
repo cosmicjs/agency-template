@@ -36,7 +36,7 @@ export default async function HomePage() {
                   "w-full md:w-max",
                   buttonVariants({
                     variant: "default",
-                  }),
+                  })
                 )}
                 href="https://www.cosmicjs.com"
               >
@@ -47,7 +47,7 @@ export default async function HomePage() {
                   "w-full md:w-max",
                   buttonVariants({
                     variant: "secondary",
-                  }),
+                  })
                 )}
                 href="https://www.cosmicjs.com/contact"
               >
@@ -96,7 +96,7 @@ export default async function HomePage() {
       </section>
 
       <section className="md:container mt-12 pb-8 m-auto">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {page.metadata.faqs && <FAQs faqs={page.metadata.faqs} />}
         </div>
       </section>
