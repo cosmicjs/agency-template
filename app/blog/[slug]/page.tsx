@@ -76,7 +76,7 @@ export default async function SingleBlogPage({
           </Markdown>
           <Comments resourceId={blog.id} />
           <div className="my-10">
-            <Link href="/blog" className="flex text-blue-800">
+            <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
               <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
             </Link>
           </div>
