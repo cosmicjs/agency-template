@@ -9,6 +9,12 @@ export type PostType = {
     image: {
       imgix_url: string;
     };
+    categories: {
+      title: string;
+      metadata: {
+        color: string;
+      };
+    }[];
     content: string;
     author: {
       title: string;
@@ -42,7 +48,17 @@ export function BlogCard({ post }: { post: PostType }) {
         border-transparent px-5 py-8 dark:border-gray-900 md:px-8"
         >
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold text-black dark:text-white">
+            {post.metadata.categories.map((category: any) => {
+              return (
+                <span
+                  className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mr-2"
+                  key={category.slug}
+                >
+                  {category.title}
+                </span>
+              );
+            })}
+            <h2 className="mt-2 text-2xl font-bold text-black dark:text-white">
               {post.title}
             </h2>
             <p className="line-clamp-3 w-full pt-3 text-gray-600 dark:text-gray-400">
