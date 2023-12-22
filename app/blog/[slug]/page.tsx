@@ -31,6 +31,11 @@ export default async function SingleBlogPage({
     <main className="p-4">
       <section className="md:container grid items-center pb-8 m-auto">
         <div className="relative m-auto flex max-w-[750px] flex-col items-start gap-2">
+          <div className="lg:absolute lg:top-2 lg:-left-[170px]">
+            <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
+              <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
+            </Link>
+          </div>
           <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl text-black dark:text-white">
             {blog.title}
           </h1>
