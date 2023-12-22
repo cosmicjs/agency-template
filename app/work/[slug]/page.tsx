@@ -25,7 +25,7 @@ export default async function SingleProjectsPage({
           <img
             src={`${project.metadata.image.imgix_url}?w=2000&auto=format,compression`}
             alt={project.title}
-            className="h-full md:max-w-5xl mx-auto object-fit border border-zinc-100 dark:border-zinc-800 rounded-lg"
+            className="md:max-w-5xl mx-auto object-fit border border-zinc-100 dark:border-zinc-800 rounded-lg"
           />
         )}
       </div>
