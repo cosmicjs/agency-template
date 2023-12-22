@@ -32,8 +32,8 @@ export function BlogCard({ post }: { post: PostType }) {
   return (
     <article>
       <Link
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-lg shadow-2xl shadow-gray-500/20 
-        transition hover:bg-gray-50 bg-zinc-50 dark:bg-zinc-900 dark:shadow-none dark:hover:bg-zinc-900/40"
+        className="group relative flex h-full w-full flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl shadow-gray-500/20 
+        transition hover:bg-white bg-zinc-50 dark:bg-zinc-900 dark:shadow-none dark:hover:bg-zinc-800 linear duration-300"
         href={`/blog/${post.slug}`}
       >
         <div className="relative h-full">
