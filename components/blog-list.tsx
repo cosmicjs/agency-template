@@ -18,8 +18,8 @@ function BlogList({ posts }: { posts: PostType[] }) {
 
   return (
     <div className="relative m-auto flex max-w-[950px] flex-col items-start gap-2">
-      <div className="flex justify-between w-full items-center">
-        <h1 className="mb-4 m-auto md:mx-0 text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
+      <div className="flex justify-between w-full items-baseline mb-4">
+        <h1 className="md:mx-0 text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
           Blog
         </h1>
         <CategoryFilter posts={posts} onCategoryChange={setSelectedCategory} />
