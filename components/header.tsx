@@ -23,7 +23,7 @@ export default async function Header() {
 
   return (
     <div className="space-x-4 fixed top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
-      <div className="flex w-full items-center justify-between container">
+      <div className="flex w-full items-center md:container justify-between pl-2 pr-4">
         <Link href="/">
           <img
             src={`${settings.metadata.logo.imgix_url}?w=500&auto=format,compression`}
