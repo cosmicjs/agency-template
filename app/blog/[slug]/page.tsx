@@ -24,36 +24,41 @@ export default async function SingleBlogPage({
       year: "numeric",
       month: "long",
       day: "numeric",
-    },
+    }
   );
 
   return (
     <main className="p-4">
-      <div className="mb-10 w-full max-h-[500px] overflow-hidden">
-        <img
-          src={`${blog.metadata.image.imgix_url}?w=2000&auto=format,compression`}
-          alt={blog.title}
-          className="object-cover w-full"
-        />
-      </div>
-      <section className="container grid items-center pb-8 m-auto">
+      <section className="md:container grid items-center pb-8 m-auto">
         <div className="relative m-auto flex max-w-[750px] flex-col items-start gap-2">
+          <div className="lg:absolute lg:top-2 lg:-left-[170px]">
+            <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
+              <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
+            </Link>
+          </div>
           <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl text-black dark:text-white">
             {blog.title}
           </h1>
-          <div className="flex mb-8">
+          <div className="mb-10 w-full overflow-hidden rounded-xl">
+            <img
+              src={`${blog.metadata.image.imgix_url}?w=2000&auto=format,compression`}
+              alt={blog.title}
+              className="object-cover w-full"
+            />
+          </div>
+          <div className="md:flex mb-8">
             <img
               className="mr-2 h-[60px] w-[60px] rounded-full object-cover"
               src={`${blog.metadata.author.metadata.image.imgix_url}?w=120&auto=format,compression`}
               alt={blog.metadata.author.title}
             />
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-4">
               <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                 {blog.metadata.author.title}
               </span>
               <span className="text-zinc-500 dark:text-zinc-400">{date}</span>
             </div>
-            <div className="absolute right-0">
+            <div className="md:absolute md:right-0">
               {blog.metadata.categories.map((category: any) => {
                 const categoryBackgroundColor = `${category.metadata.color}22`;
                 return (
@@ -76,7 +81,7 @@ export default async function SingleBlogPage({
           </Markdown>
           <Comments resourceId={blog.id} />
           <div className="my-10">
-            <Link href="/blog" className="flex text-blue-800">
+            <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
               <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
             </Link>
           </div>

@@ -36,7 +36,7 @@ export default async function HomePage() {
                   "w-full md:w-max",
                   buttonVariants({
                     variant: "default",
-                  }),
+                  })
                 )}
                 href="https://www.cosmicjs.com"
               >
@@ -47,7 +47,7 @@ export default async function HomePage() {
                   "w-full md:w-max",
                   buttonVariants({
                     variant: "secondary",
-                  }),
+                  })
                 )}
                 href="https://www.cosmicjs.com/contact"
               >
@@ -69,7 +69,7 @@ export default async function HomePage() {
           />
         </div>
       </div>
-      <section className="grid items-center py-10 bg-zinc-50 dark:bg-zinc-900">
+      <section className="grid items-center py-10 bg-zinc-50 dark:bg-zinc-900 -m-4 p-4">
         <div className="relative m-auto max-w-6xl flex flex-col items-start gap-2">
           <h2 className="m-auto max-w-[800px] text-center text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 pt-8">
             {page.metadata.section_title}
@@ -96,7 +96,7 @@ export default async function HomePage() {
       </section>
 
       <section className="md:container mt-12 pb-8 m-auto">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           {page.metadata.faqs && <FAQs faqs={page.metadata.faqs} />}
         </div>
       </section>
