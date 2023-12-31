@@ -1,18 +1,10 @@
 // components/header.tsx
 import Link from "next/link";
 import { cosmic } from "@/cosmic/client";
-import { NavMenu } from "@/components/nav-menu";
+import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
 
 export default async function Header() {
   // Header data
-  const { object: header } = await cosmic.objects
-    .findOne({
-      type: "navigation-menus",
-      slug: "header",
-    })
-    .props("metadata")
-    .depth(1);
-
   const { object: settings } = await cosmic.objects
     .findOne({
       type: "global-settings",
@@ -36,7 +28,7 @@ export default async function Header() {
             className="h-10 m-auto hidden dark:block"
           />
         </Link>
-        <NavMenu items={header.metadata.items} />
+        <NavMenu query={{ type: "navigation-menus", slug: "header" }} />
       </div>
     </div>
   );

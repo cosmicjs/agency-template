@@ -1,20 +1,11 @@
 // components/footer.tsx
 import { cosmic } from "@/cosmic/client";
-import { FooterNavMenu } from "@/components/nav-menu";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "@/cosmic/elements/Button";
 import { MailIcon, PhoneIcon } from "lucide-react";
 import { ModeToggle } from "./theme-toggle";
+import { FooterNavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
 
 export default async function Footer() {
-  // Footer data
-  const { object: footer } = await cosmic.objects
-    .findOne({
-      type: "navigation-menus",
-      slug: "footer",
-    })
-    .props("metadata")
-    .depth(1);
-
   const { object: settings } = await cosmic.objects
     .findOne({
       type: "global-settings",
@@ -34,7 +25,7 @@ export default async function Footer() {
   return (
     <div className="pb-8 md:my-10 mx-auto flex flex-col lg:flex-row items-center justify-between container w-full">
       <div className="my-8">
-        <FooterNavMenu items={footer.metadata.items} />
+        <FooterNavMenu query={{ type: "navigation-menus", slug: "footer" }} />
       </div>
       <div className="flex mb-6 lg:mb-0 gap-x-8 justify-center text-zinc-700 dark:text-zinc-300">
         <div>
