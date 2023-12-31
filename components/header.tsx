@@ -1,6 +1,6 @@
 // components/header.tsx
 import Link from "next/link";
-import { cosmic } from "@/lib/cosmic";
+import { cosmic } from "@/cosmic/client";
 import { NavMenu } from "@/components/nav-menu";
 
 export default async function Header() {

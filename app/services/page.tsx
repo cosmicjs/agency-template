@@ -1,5 +1,5 @@
 // app/page.tsx
-import { cosmic } from "@/lib/cosmic";
+import { cosmic } from "@/cosmic/client";
 import { ProductList } from "@/cosmic/blocks/products/ProductList";
 
 export default async function ShopPage() {

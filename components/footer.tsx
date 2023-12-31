@@ -1,5 +1,5 @@
 // components/footer.tsx
-import { cosmic } from "@/lib/cosmic";
+import { cosmic } from "@/cosmic/client";
 import { FooterNavMenu } from "@/components/nav-menu";
 import { buttonVariants } from "./ui/button";
 import { MailIcon, PhoneIcon } from "lucide-react";

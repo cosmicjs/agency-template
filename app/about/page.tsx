@@ -1,5 +1,5 @@
 // app/page.tsx
-import { cosmic } from "@/lib/cosmic";
+import { cosmic } from "@/cosmic/client";
 import { TeamList } from "@/cosmic/blocks/team/TeamList";
 
 export default async function AboutPage() {
