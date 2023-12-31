@@ -19,7 +19,7 @@ export async function Testimonials({
     .props("id,slug,title,metadata")
     .depth(1)
     .sort(sort ? sort : "-order")
-    .limit(limit ? limit : 0)
+    .limit(limit ? limit : 100)
     .skip(skip ? skip : 0);
   return (
     <div className={className}>
