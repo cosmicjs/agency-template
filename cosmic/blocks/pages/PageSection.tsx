@@ -1,41 +1,46 @@
 // components/page-section.tsx
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/cosmic/utils"
+import { buttonVariants } from "@/cosmic/elements/Button"
 
 type SectionType = {
-  heading: string;
+  heading: string
   layout: {
-    key: string;
-    value: string;
-  };
+    key: string
+    value: string
+  }
   image: {
-    url: string;
-    imgix_url: string;
-  };
-  content: string;
-  cta_link: string;
-  cta_text: string;
-};
+    url: string
+    imgix_url: string
+  }
+  content: string
+  cta_link: string
+  cta_text: string
+}
 
-export function Section({ section }: { section: SectionType }) {
+export function Section({
+  section,
+  className,
+}: {
+  section: SectionType
+  className?: string
+}) {
   return (
-    <div key={section.heading}>
+    <div key={section.heading} className={className}>
       {section.layout.key === "1-column-center" && (
         <div className="m-auto max-w-[800px]">
           <div className="mb-6 text-center">
-            <h2 className="mb-4 text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
-              {section.heading}
-            </h2>
-            <p
-              className="mb-6 text-zinc-600 dark:text-zinc-400"
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
+            <div
+              className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
               <a
                 className={cn(
+                  "ml-2",
                   buttonVariants({
-                    variant: "outline",
-                  }),
+                    variant: "default",
+                  })
                 )}
                 href={section.cta_link}
               >
@@ -62,19 +67,18 @@ export function Section({ section }: { section: SectionType }) {
             />
           </div>
           <div>
-            <h2 className="mb-4 text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
-              {section.heading}
-            </h2>
-            <p
-              className="mb-6 text-zinc-600 dark:text-zinc-400"
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
+            <div
+              className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
               <a
                 className={cn(
+                  "ml-2",
                   buttonVariants({
-                    variant: "outline",
-                  }),
+                    variant: "default",
+                  })
                 )}
                 href={section.cta_link}
               >
@@ -87,19 +91,18 @@ export function Section({ section }: { section: SectionType }) {
       {section.layout.key === "2-column-content-image" && (
         <div className="grid gap-2 md:grid-cols-2">
           <div className="mr-4">
-            <h2 className="mb-4 text-2xl font-semibold text-zinc-800 dark:text-zinc-200">
-              {section.heading}
-            </h2>
-            <p
-              className="mb-6 text-zinc-600 dark:text-zinc-400"
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
+            <div
+              className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
               <a
                 className={cn(
+                  "ml-2",
                   buttonVariants({
-                    variant: "outline",
-                  }),
+                    variant: "default",
+                  })
                 )}
                 href={section.cta_link}
               >
@@ -117,5 +120,5 @@ export function Section({ section }: { section: SectionType }) {
         </div>
       )}
     </div>
-  );
+  )
 }

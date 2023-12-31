@@ -1,22 +1,35 @@
 // components/team-card.tsx
+import { cn } from "@/cosmic/utils"
+
 export type MemberType = {
-  title: string;
-  slug: string;
+  title: string
+  slug: string
   metadata: {
     image: {
-      imgix_url: string;
-    };
-    position: string;
-    bio: string;
+      imgix_url: string
+    }
+    position: string
+    bio: string
     links: {
-      x: string;
-      linkedin: string;
-    };
-  };
-};
-export function TeamCard({ member }: { member: MemberType }) {
+      x: string
+      linkedin: string
+    }
+  }
+}
+export function TeamCard({
+  member,
+  className,
+}: {
+  member: MemberType
+  className?: string
+}) {
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-lg bg-white  dark:bg-zinc-800 md:flex-row border border-zinc-200 dark:border-zinc-700">
+    <div
+      className={cn(
+        "flex w-full flex-col overflow-hidden rounded-lg border  border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-800 md:flex-row",
+        className
+      )}
+    >
       <div className="md:w-2/5">
         <img
           className="h-full w-full object-cover object-center"
@@ -79,5 +92,5 @@ export function TeamCard({ member }: { member: MemberType }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

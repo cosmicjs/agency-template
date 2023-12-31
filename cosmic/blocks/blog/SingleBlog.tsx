@@ -1,38 +1,56 @@
 // app/blog/[slug]/page.tsx
-import { SingleBlog } from "@/cosmic/blocks/blog/SingleBlog";
+import { cosmic } from "@/cosmic/client";
+import Markdown from "react-markdown";
+import { ArrowLeftIcon } from "lucide-react";
+import Link from "next/link";
+import { Comments } from "@/cosmic/blocks/comments/Comments";
 
-export default async function SingleBlogPage({
-  params,
+export async function SingleBlog({
+  query,
+  className,
 }: {
-  params: { slug: string };
+  query: any;
+  className?: string;
 }) {
+  const { object: blog } = await cosmic.objects
+    .findOne(query)
+    .props("id,slug,title,metadata")
+    .depth(1);
+
+  const date = new Date(blog.metadata.published_date).toLocaleDateString(
+    "en-us",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
   return (
-    <main className="p-4">
-      <SingleBlog query={{ slug: params.slug, type: "blog-posts" }} />
-      {/* <section className="md:container grid items-center pb-8 m-auto">
+    <div className={className}>
+      <section className="m-auto grid items-center pb-8 md:container">
         <div className="relative m-auto flex max-w-[750px] flex-col items-start gap-2">
-          <div className="lg:absolute lg:top-2 lg:-left-[170px]">
+          <div className="lg:absolute lg:-left-[170px] lg:top-2">
             <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
-              <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
+              <ArrowLeftIcon className="mr-2 mt-1 h-4 w-4" /> Back to blog
             </Link>
           </div>
-          <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl text-black dark:text-white">
+          <h1 className="mb-4 text-3xl font-extrabold leading-tight tracking-tighter text-black dark:text-white md:text-4xl">
             {blog.title}
           </h1>
           <div className="mb-10 w-full overflow-hidden rounded-xl">
             <img
               src={`${blog.metadata.image.imgix_url}?w=2000&auto=format,compression`}
               alt={blog.title}
-              className="object-cover w-full"
+              className="w-full object-cover"
             />
           </div>
-          <div className="md:flex mb-8">
+          <div className="mb-8 md:flex">
             <img
               className="mr-2 h-[60px] w-[60px] rounded-full object-cover"
               src={`${blog.metadata.author.metadata.image.imgix_url}?w=120&auto=format,compression`}
               alt={blog.metadata.author.title}
             />
-            <div className="flex flex-col mb-4">
+            <div className="mb-4 flex flex-col">
               <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                 {blog.metadata.author.title}
               </span>
@@ -56,17 +74,23 @@ export default async function SingleBlogPage({
               })}
             </div>
           </div>
-          <Markdown className="text-zinc-700 dark:text-zinc-300 space-y-4">
+          <Markdown className="space-y-4 text-zinc-700 dark:text-zinc-300">
             {blog.metadata.content}
           </Markdown>
-          <Comments resourceId={blog.id} />
+          <Comments
+            query={{
+              type: "comments",
+              "metadata.resource": blog.id,
+              "metadata.approved": true,
+            }}
+          />
           <div className="my-10">
             <Link href="/blog" className="flex text-sky-500 dark:text-sky-400">
-              <ArrowLeftIcon className="w-4 h-4 mr-2 mt-1" /> Back to blog
+              <ArrowLeftIcon className="mr-2 mt-1 h-4 w-4" /> Back to blog
             </Link>
           </div>
         </div>
-      </section> */}
-    </main>
+      </section>
+    </div>
   );
 }

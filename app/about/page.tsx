@@ -1,8 +1,6 @@
 // app/page.tsx
 import { cosmic } from "@/lib/cosmic";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { TeamCard, MemberType } from "@/components/team-card";
+import { TeamList } from "@/cosmic/blocks/team/TeamList";
 
 export default async function AboutPage() {
   const { object: page } = await cosmic.objects
@@ -12,14 +10,6 @@ export default async function AboutPage() {
     })
     .props("slug,title,metadata")
     .depth(1);
-
-  const { objects: members } = await cosmic.objects
-    .find({
-      type: "team-members",
-    })
-    .props("title,slug,metadata")
-    .depth(1);
-
   return (
     <main className="py-4">
       <section className="pb-8 m-auto px-4">
@@ -40,11 +30,10 @@ export default async function AboutPage() {
           <h2 className="w-full mb-4 text-2xl md:text-4xl font-display text-zinc-900 dark:text-zinc-100 tracking-tighter justify-center flex">
             Our team
           </h2>
-          <div className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
-            {members.map((member: MemberType) => {
-              return <TeamCard key={member.slug} member={member} />;
-            })}
-          </div>
+          <TeamList
+            query={{ type: "team-members" }}
+            className="grid w-full grid-cols-1 gap-6 lg:grid-cols-2"
+          />
         </section>
       </div>
     </main>

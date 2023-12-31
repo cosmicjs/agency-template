@@ -1,6 +1,6 @@
 // app/page.tsx
 import { cosmic } from "@/lib/cosmic";
-import { ProductCard, ProductType } from "@/components/product-card";
+import { ProductList } from "@/cosmic/blocks/products/ProductList";
 
 export default async function ShopPage() {
   const { object: page } = await cosmic.objects
@@ -9,13 +9,6 @@ export default async function ShopPage() {
       slug: "services",
     })
     .props("slug,title,metadata")
-    .depth(1);
-
-  const { objects: products } = await cosmic.objects
-    .find({
-      type: "products",
-    })
-    .props("id,slug,title,metadata")
     .depth(1);
 
   return (
@@ -34,11 +27,10 @@ export default async function ShopPage() {
               className="text-xl text-zinc-700 dark:text-zinc-300"
             />
           </div>
-          <div className="mt-6 w-full grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            {products.map((product: ProductType) => {
-              return <ProductCard key={product.id} product={product} />;
-            })}
-          </div>
+          <ProductList
+            className="mt-6 w-full grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
+            query={{ type: "products" }}
+          />
         </div>
       </section>
     </main>

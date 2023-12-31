@@ -1,28 +1,35 @@
 // components/comment-form.tsx
-"use client";
+"use client"
 
-import { useState } from "react";
-import { CheckCircle, Loader2, XCircle } from "lucide-react";
+import { useState } from "react"
+import { CheckCircle, Loader2, XCircle } from "lucide-react"
+import { cn } from "@/cosmic/utils"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/cosmic/elements/Button"
+import { Input } from "@/cosmic/elements/Input"
+import { Label } from "@/cosmic/elements/Label"
+import { Textarea } from "@/cosmic/elements/TextArea"
 
-export function CommentForm({ resourceId }: { resourceId: string }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [comment, setComment] = useState("");
-  const [submitting, setSubmitting] = useState(false);
-  const [sumbitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+export function CommentForm({
+  resourceId,
+  className,
+}: {
+  resourceId: string
+  className?: string
+}) {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [comment, setComment] = useState("")
+  const [submitting, setSubmitting] = useState(false)
+  const [sumbitted, setSubmitted] = useState(false)
+  const [error, setError] = useState(false)
   async function handleSubmitComment(e: React.SyntheticEvent) {
-    setError(false);
-    setSubmitting(true);
+    setError(false)
+    setSubmitting(true)
     if (!name.trim() || !email.trim() || !comment.trim()) {
-      setSubmitting(false);
-      setError(true);
-      return;
+      setSubmitting(false)
+      setError(true)
+      return
     }
     const newComment = {
       type: "comments",
@@ -32,50 +39,50 @@ export function CommentForm({ resourceId }: { resourceId: string }) {
         comment,
         resource: resourceId, // Add resource id here such as blog post or product id
       },
-    };
+    }
     try {
       await fetch("/api/comments", {
         method: "POST",
         body: JSON.stringify({ comment: newComment }),
-      });
+      })
     } catch (err) {
-      setSubmitting(false);
-      setError(true);
-      return;
+      setSubmitting(false)
+      setError(true)
+      return
     }
-    setSubmitting(false);
-    setSubmitted(true);
+    setSubmitting(false)
+    setSubmitted(true)
     setTimeout(() => {
-      setSubmitted(false);
-      setName("");
-      setEmail("");
-      setComment("");
-    }, 3000);
+      setSubmitted(false)
+      setName("")
+      setEmail("")
+      setComment("")
+    }, 3000)
   }
   function handleChangeName(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement;
-    setName(target.value);
+    const target = e.target as HTMLInputElement
+    setName(target.value)
   }
   function handleChangeEmail(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement;
-    setEmail(target.value);
+    const target = e.target as HTMLInputElement
+    setEmail(target.value)
   }
   function handleChangeComment(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement;
-    setComment(target.value);
+    const target = e.target as HTMLInputElement
+    setComment(target.value)
   }
   return (
-    <div className="mb-8">
-      <h2 className="text-lg mb-4">Add a new comment</h2>
+    <div className={cn("mb-8", className)}>
+      <h2 className="mb-4 text-2xl">Add a new comment</h2>
       {error && (
-        <div className="border border-red-500 rounded-xl p-8 flex mb-4">
-          <XCircle className="mr-4 h-4 w-4 text-red-500 top-1 relative" />
+        <div className="mb-4 flex rounded-xl border border-red-500 p-8">
+          <XCircle className="relative top-1 mr-4 h-4 w-4 text-red-500" />
           There was an error with your request. Make sure all fields are valid.
         </div>
       )}
       {sumbitted ? (
-        <div className="border border-green-500 rounded-xl p-8 flex">
-          <CheckCircle className="mr-4 h-4 w-4 text-green-500 top-1 relative" />
+        <div className="flex rounded-xl border border-green-500 p-8">
+          <CheckCircle className="relative top-1 mr-4 h-4 w-4 text-green-500" />
           Comment submitted for approval.
         </div>
       ) : (
@@ -126,5 +133,5 @@ export function CommentForm({ resourceId }: { resourceId: string }) {
         </>
       )}
     </div>
-  );
+  )
 }
