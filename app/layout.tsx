@@ -13,8 +13,8 @@ const display = Fjalla_One({
 });
 
 export const metadata: Metadata = {
-  title: "Cosmic Blocks",
-  description: "Build content-powered websites and apps faster with Cosmic",
+  title: "ProLine Content Corps",
+  description: "Build and scale faster with ProLine and Cosmic Blocks",
 };
 
 export default function RootLayout({
