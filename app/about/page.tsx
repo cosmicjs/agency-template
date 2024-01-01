@@ -14,15 +14,13 @@ export default async function AboutPage() {
     <main className="py-4">
       <section className="pb-8 m-auto px-4">
         <div className="m-auto max-w-[950px] flex flex-col items-start gap-2">
-          <div className="md:container">
-            <h1 className="mb-4 m-auto md:mx-0 text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
-              {page.metadata.h1}
-            </h1>
-            <div
-              dangerouslySetInnerHTML={{ __html: page.metadata.content }}
-              className="text-zinc-700 dark:text-zinc-300"
-            />
-          </div>
+          <h1 className="mb-4 m-auto md:mx-0 text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
+            {page.metadata.h1}
+          </h1>
+          <div
+            dangerouslySetInnerHTML={{ __html: page.metadata.content }}
+            className="text-zinc-700 dark:text-zinc-300"
+          />
         </div>
       </section>
       <div className="mt-4 md:mt-8 w-full bg-zinc-50 dark:bg-zinc-900 px-4">
