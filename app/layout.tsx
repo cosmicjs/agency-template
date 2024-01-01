@@ -2,8 +2,8 @@
 import type { Metadata } from "next";
 import { Libre_Franklin, Fjalla_One } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/TESTHeader";
+import Footer from "@/components/TESTFooter";
 import Banner from "@/components/Banner";
 import { ThemeProvider } from "@/components/theme-provider";
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" });
