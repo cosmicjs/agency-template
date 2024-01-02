@@ -1,6 +1,6 @@
 // app/api/comments/route.ts
 import { type NextRequest } from "next/server";
-import { cosmic } from "@/lib/cosmic";
+import { cosmic } from "@/cosmic/client";
 
 export async function POST(request: NextRequest) {
   const res = await request.json();

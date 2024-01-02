@@ -1,18 +1,10 @@
 // components/header.tsx
 import Link from "next/link";
-import { cosmic } from "@/lib/cosmic";
-import { NavMenu } from "@/components/nav-menu";
+import { cosmic } from "@/cosmic/client";
+import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
 
 export default async function Header() {
   // Header data
-  const { object: header } = await cosmic.objects
-    .findOne({
-      type: "navigation-menus",
-      slug: "header",
-    })
-    .props("metadata")
-    .depth(1);
-
   const { object: settings } = await cosmic.objects
     .findOne({
       type: "global-settings",
@@ -22,7 +14,7 @@ export default async function Header() {
     .depth(1);
 
   return (
-    <div className="space-x-4 fixed top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
+    <div className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
       <div className="flex w-full items-center md:container justify-between pl-2 pr-4">
         <Link href="/">
           <img
@@ -36,7 +28,7 @@ export default async function Header() {
             className="h-10 m-auto hidden dark:block"
           />
         </Link>
-        <NavMenu items={header.metadata.items} />
+        <NavMenu query={{ type: "navigation-menus", slug: "header" }} />
       </div>
     </div>
   );

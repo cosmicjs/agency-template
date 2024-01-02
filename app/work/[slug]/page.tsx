@@ -1,9 +1,7 @@
 // app/projects/[slug]/page.tsx
-import { cosmic } from "@/lib/cosmic";
-import Markdown from "react-markdown";
+import { cosmic } from "@/cosmic/client";
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
-import { Comments } from "@/components/comments";
 
 export default async function SingleProjectsPage({
   params,

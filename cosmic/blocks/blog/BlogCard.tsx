@@ -1,45 +1,45 @@
-// components/blog-card.tsx
-import Link from "next/link";
+import Link from "next/link"
 
 export type PostType = {
-  id: string;
-  title: string;
-  slug: string;
+  id: string
+  title: string
+  slug: string
   metadata: {
+    categories: any
     image: {
-      imgix_url: string;
-    };
-    categories: {
-      title: string;
-      metadata: {
-        color: string;
-      };
-    }[];
-    content: string;
+      imgix_url: string
+    }
+    content: string
     author: {
-      title: string;
+      title: string
       metadata: {
         image: {
-          imgix_url: string;
-        };
-      };
-    };
-    published_date: string;
-  };
-};
+          imgix_url: string
+        }
+      }
+    }
+    published_date: string
+  }
+}
 
-export function BlogCard({ post }: { post: PostType }) {
+export function BlogCard({
+  post,
+  className,
+}: {
+  post: PostType
+  className?: string
+}) {
   return (
-    <article>
+    <article className={className}>
       <Link
-        className="group relative flex h-full w-full flex-col overflow-hidden rounded-lg shadow-md hover:shadow-xl shadow-gray-500/20 
-        transition hover:bg-white bg-zinc-50 dark:bg-zinc-900 dark:shadow-none dark:hover:bg-zinc-800 linear duration-300"
+        className="linear group relative flex h-full w-full flex-col overflow-hidden rounded-lg bg-zinc-50 shadow-md 
+        shadow-gray-500/20 transition duration-300 hover:bg-white hover:shadow-xl dark:bg-zinc-900 dark:shadow-none dark:hover:bg-zinc-800"
         href={`/blog/${post.slug}`}
       >
         <div className="relative h-full">
           <img
             alt={post.title}
-            className="object-cover h-80 w-full"
+            className="h-80 w-full object-cover"
             src={`${post.metadata.image.imgix_url}?w=1200&auto=format,compression`}
           />
         </div>
@@ -51,12 +51,12 @@ export function BlogCard({ post }: { post: PostType }) {
             {post.metadata.categories.map((category: any) => {
               return (
                 <span
-                  className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400 mr-2"
+                  className="mr-2 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400"
                   key={category.slug}
                 >
                   {category.title}
                 </span>
-              );
+              )
             })}
             <h2 className="mt-2 text-2xl font-bold text-black dark:text-white">
               {post.title}
@@ -78,7 +78,7 @@ export function BlogCard({ post }: { post: PostType }) {
                   <img
                     alt={post.metadata.author.title}
                     src={`${post.metadata.author.metadata.image.imgix_url}?w=400&auto=format,compression`}
-                    className="w-[50px] h-[50px] rounded-full object-cover"
+                    className="h-[50px] w-[50px] rounded-full object-cover"
                   />
                 </div>
                 <div>
@@ -93,7 +93,7 @@ export function BlogCard({ post }: { post: PostType }) {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
-                      },
+                      }
                     )}
                   </div>
                 </div>
@@ -103,5 +103,5 @@ export function BlogCard({ post }: { post: PostType }) {
         </div>
       </Link>
     </article>
-  );
+  )
 }

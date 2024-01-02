@@ -2,8 +2,9 @@
 import type { Metadata } from "next";
 import { Libre_Franklin, Fjalla_One } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Banner from "@/components/Banner";
 import { ThemeProvider } from "@/components/theme-provider";
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" });
 const display = Fjalla_One({
@@ -13,8 +14,8 @@ const display = Fjalla_One({
 });
 
 export const metadata: Metadata = {
-  title: "Cosmic Blocks",
-  description: "Build content-powered websites and apps faster with Cosmic",
+  title: "ProLine Content Corps",
+  description: "Build and scale faster with ProLine and Cosmic Blocks",
 };
 
 export default function RootLayout({
@@ -33,8 +34,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Header />
-          <div className="mt-12">{children}</div>
+          <div>
+            <Banner />
+            <Header />
+            {children}
+          </div>
           <Footer />
         </ThemeProvider>
       </body>
