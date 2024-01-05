@@ -17,7 +17,7 @@ export async function SingleEvent({ query }: { query: any }) {
               <div className="flex items-center">
                 <Link
                   href="/events"
-                  className="mr-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="mr-2 text-sm font-medium text-zinc-900 dark:text-white"
                 >
                   Events
                 </Link>
@@ -33,7 +33,7 @@ export async function SingleEvent({ query }: { query: any }) {
                 </svg>
               </div>
             </li>
-            <li className="text-sm font-medium text-gray-500 hover:text-gray-600">
+            <li className="text-sm font-medium text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 hover:dark:text-zinc-300">
               {event.title}
             </li>
           </ol>

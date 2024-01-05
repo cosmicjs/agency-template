@@ -18,7 +18,7 @@ export async function SingleProduct({ query }: { query: any }) {
               <div className="flex items-center">
                 <Link
                   href="/services"
-                  className="mr-2 text-sm font-medium text-gray-900 dark:text-white"
+                  className="mr-2 text-sm font-medium text-zinc-900 dark:text-white"
                 >
                   Services
                 </Link>
@@ -28,13 +28,13 @@ export async function SingleProduct({ query }: { query: any }) {
                   viewBox="0 0 16 20"
                   fill="currentColor"
                   aria-hidden="true"
-                  className="h-5 w-4 text-gray-300"
+                  className="h-5 w-4 text-zinc-300"
                 >
                   <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                 </svg>
               </div>
             </li>
-            <li className="text-sm font-medium text-gray-500 hover:text-gray-600">
+            <li className="text-sm font-medium text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 hover:dark:text-zinc-300">
               {product.title}
             </li>
           </ol>
@@ -44,7 +44,7 @@ export async function SingleProduct({ query }: { query: any }) {
             <ImageGallery query={query} />
           </div>
           <div>
-            <h1 className="mt-6 mb-2 md:mt-0 md:mb-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl text-zinc-900 dark:text-zinc-50">
+            <h1 className="mt-6 mb-2 md:mt-0 md:mb-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl text-gray-900 dark:text-gray-50">
               {product.title}
             </h1>
             <p className="text-3xl tracking-tight text-gray-900 dark:text-white mb-6">
