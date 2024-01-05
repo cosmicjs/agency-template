@@ -1,5 +1,5 @@
 {
-  "name": "cosmic-app",
+  "name": "agency-template",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,8 +22,6 @@
     "lucide-react": "^0.303.0",
     "next": "latest",
     "next-themes": "^0.2.1",
-    "prettier": "^3.1.1",
-    "prettier-plugin-tailwindcss": "^0.5.9",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
@@ -39,6 +37,8 @@
     "postcss": "^8",
     "tailwindcss": "latest",
     "eslint": "^8",
-    "eslint-config-next": "14.0.3"
+    "eslint-config-next": "14.0.3",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9"
   }
 }
