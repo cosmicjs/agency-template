@@ -20,8 +20,8 @@ export type EventCardType = {
 export function EventCard({ event, className }: { event: EventCardType; className?: string }) {
   return (
     <div className={cn('group relative w-full mb-auto', className)}>
-      <div className='w-full overflow-hidden rounded-xl bg-gray-200 group-hover:opacity-75'>
-        <img className='h-full w-full object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800' src={`${event.metadata.image.imgix_url}?w=500&h=500&auto=format,compression`} alt={event.title} />
+      <div className='w-full overflow-hidden bg-gray-200 group-hover:opacity-75'>
+        <img className='h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800' src={`${event.metadata.image.imgix_url}?w=500&h=500&auto=format,compression`} alt={event.title} />
       </div>
       <div className='mt-4'>
         <div className='text-lg font-medium leading-tight text-zinc-700 dark:text-zinc-300'>{event.title}</div>
