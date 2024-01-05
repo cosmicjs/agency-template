@@ -39,10 +39,13 @@ export function EventCard({ event, className }: { event: EventCardType; classNam
                 })}
               </span>
               </div>
-              <div className='flex items-center space-x-2 text-sm font-medium text-zinc-900 dark:text-zinc-50'>
-              <Clock className='shrink-0 w-4 h-4' />
+              <div className='flex items-center space-x-1 text-sm font-medium text-zinc-900 dark:text-zinc-50'>
+              <Clock className='shrink-0 mr-1 w-4 h-4' />
+              <span>From</span>
               <span>
                 {event.metadata.start_time}
+              </span>
+              <span>
                 {new Date(event.metadata.end_date).toLocaleDateString('en-us', {
                   weekday: 'short',
                   year: 'numeric',
@@ -50,7 +53,7 @@ export function EventCard({ event, className }: { event: EventCardType; classNam
                   day: 'numeric',
                 })}
                 </span>
-              <span>at</span>
+              <span>until</span>
               <span>
               {event.metadata.end_time}
               </span>
