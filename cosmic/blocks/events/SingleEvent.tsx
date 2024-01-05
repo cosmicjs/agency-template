@@ -50,7 +50,7 @@ export async function SingleEvent({ query }: { query: any }) {
               <Button type="submit">Get tickets</Button>
             </div>
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Date and Time</h3>
-            <div className='flex items-center space-x-1 text-sm text-zinc-900 dark:text-zinc-50'>
+            <div className='flex items-center space-x-1 text-sm text-zinc-900 dark:text-gray-300'>
               <span>
                   {new Date(event.metadata.start_date).toLocaleDateString('en-us', {
                     weekday: 'short',
@@ -75,7 +75,7 @@ export async function SingleEvent({ query }: { query: any }) {
               dangerouslySetInnerHTML={{
                 __html: event.metadata.description,
               }}
-              className="mb-6 text-sm text-gray-700 dark:text-white"
+              className="mb-6 text-sm text-gray-700 dark:text-gray-300"
             />
             <div>
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
@@ -85,7 +85,7 @@ export async function SingleEvent({ query }: { query: any }) {
                 dangerouslySetInnerHTML={{
                   __html: event.metadata.location,
                 }}
-                className="mb-6 text-sm text-gray-700 dark:text-white"
+                className="mb-6 text-sm text-gray-700 dark:text-gray-300"
               />
             </div>
             <div>
