@@ -33,7 +33,7 @@ export function EventCard({
       <div className="w-full overflow-hidden group-hover:opacity-75">
         <img
           className="h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800"
-          src={`${event.metadata.image.imgix_url}?w=500&h=500&auto=format,compression`}
+          src={`${event.metadata.image.imgix_url}?w=1000&h=1000&auto=format,compression`}
           alt={event.title}
         />
       </div>
