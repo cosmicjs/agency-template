@@ -1,5 +1,6 @@
 import { cn } from '@/cosmic/utils';
 import { Calendar, Clock, Pin } from 'lucide-react';
+import Link from 'next/link';
 
 export type EventCardType = {
   title: string;
@@ -19,6 +20,7 @@ export type EventCardType = {
 
 export function EventCard({ event, className }: { event: EventCardType; className?: string }) {
   return (
+    <Link href={`/events/${event.slug}`}>
     <div className={cn('group relative w-full mb-auto', className)}>
       <div className='w-full overflow-hidden group-hover:opacity-75'>
         <img className='h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800' src={`${event.metadata.image.imgix_url}?w=500&h=500&auto=format,compression`} alt={event.title} />
@@ -40,25 +42,17 @@ export function EventCard({ event, className }: { event: EventCardType; classNam
               </span>
               </div>
               <div className='flex items-center space-x-1 text-sm font-medium text-zinc-900 dark:text-zinc-50'>
-              <Clock className='shrink-0 mr-1 w-4 h-4' />
-              <span>From</span>
-              <span>
-                {event.metadata.start_time}
-              </span>
-              <span>
-                {new Date(event.metadata.end_date).toLocaleDateString('en-us', {
-                  weekday: 'short',
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
+                <Clock className='shrink-0 mr-1 w-4 h-4' />
+                <span>From</span>
+                <span>
+                  {event.metadata.start_time}
                 </span>
-              <span>until</span>
-              <span>
-              {event.metadata.end_time}
-              </span>
-            </div>
-            <div className='flex items-center space-x-2 text-sm font-medium text-zinc-900 dark:text-zinc-50'>
+                <span>until</span>
+                <span>
+                {event.metadata.end_time}
+                </span>
+              </div>
+              <div className='flex items-center space-x-2 text-sm font-medium text-zinc-900 dark:text-zinc-50'>
               <Pin className='shrink-0 w-4 h-4' />
               <span>
                 {event.metadata.location}
@@ -67,6 +61,7 @@ export function EventCard({ event, className }: { event: EventCardType; classNam
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 }
