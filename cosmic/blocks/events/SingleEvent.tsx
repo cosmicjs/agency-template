@@ -97,8 +97,8 @@ export async function SingleEvent({ query }: { query: any }) {
               >
                 <ul className="flex flex-col gap-4">
                   {event.metadata.agenda.map((item: any) => (
-                    <li className="bg-gray-50 rounded-lg flex flex-col py-2 px-3 space-y-1">
-                      <span className="text-xs text-orange-600">{item.time}</span>
+                    <li className="bg-gray-50 dark:bg-zinc-800 rounded-lg flex flex-col py-2 px-3 space-y-1">
+                      <span className="text-xs text-orange-600 dark:text-orange-400">{item.time}</span>
                       <span className="font-medium">{item.item}</span>
                     </li>
                   ))}
