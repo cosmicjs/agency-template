@@ -30,7 +30,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
           />
         )}
       </div>
-      <div className="mt-4 flex justify-between">
+      <div className="mt-4">
         <div>
           <h3 className="text-lg font-medium leading-tight text-zinc-700 dark:text-zinc-300">
             <span aria-hidden="true" className="absolute inset-0"></span>
