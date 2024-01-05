@@ -1,28 +1,28 @@
 // components/page-section.tsx
-import { cn } from "@/cosmic/utils";
-import { buttonVariants } from "@/cosmic/elements/Button";
+import { cn } from "@/cosmic/utils"
+import { buttonVariants } from "@/cosmic/elements/Button"
 
 type SectionType = {
-  heading: string;
+  heading: string
   layout: {
-    key: string;
-    value: string;
-  };
+    key: string
+    value: string
+  }
   image: {
-    url: string;
-    imgix_url: string;
-  };
-  content: string;
-  cta_link: string;
-  cta_text: string;
-};
+    url: string
+    imgix_url: string
+  }
+  content: string
+  cta_link: string
+  cta_text: string
+}
 
 export function Section({
   section,
   className,
 }: {
-  section: SectionType;
-  className?: string;
+  section: SectionType
+  className?: string
 }) {
   return (
     <div key={section.heading} className={className}>
@@ -117,5 +117,5 @@ export function Section({
         </div>
       )}
     </div>
-  );
+  )
 }

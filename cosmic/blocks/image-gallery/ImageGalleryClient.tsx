@@ -1,24 +1,24 @@
 // components/image-gallery.tsx
-"use client";
+"use client"
 
-import { useState } from "react";
-import { cn } from "@/cosmic/utils";
+import { useState } from "react"
+import { cn } from "@/cosmic/utils"
 
 export type GalleryItemType = {
   image: {
-    imgix_url: string;
-  };
-  description: string;
-};
+    imgix_url: string
+  }
+  description: string
+}
 
 export function ImageGalleryClient({
   items,
   className,
 }: {
-  items: GalleryItemType[];
-  className?: string;
+  items: GalleryItemType[]
+  className?: string
 }) {
-  const [mainItem, setMainItem] = useState(items[0]);
+  const [mainItem, setMainItem] = useState(items[0])
 
   return (
     <div className={className}>
@@ -48,9 +48,9 @@ export function ImageGalleryClient({
                 alt={item.description}
               />
             </div>
-          );
+          )
         })}
       </div>
     </div>
-  );
+  )
 }

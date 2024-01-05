@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react"
 
 export default function Banner(): JSX.Element {
   return (
@@ -15,5 +15,5 @@ export default function Banner(): JSX.Element {
         </div>
       </a>
     </div>
-  );
+  )
 }

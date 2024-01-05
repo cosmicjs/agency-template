@@ -1,7 +1,7 @@
 // components/header.tsx
-import Link from "next/link";
-import { cosmic } from "@/cosmic/client";
-import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
+import Link from "next/link"
+import { cosmic } from "@/cosmic/client"
+import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu"
 
 export default async function Header() {
   // Header data
@@ -11,7 +11,7 @@ export default async function Header() {
       slug: "settings",
     })
     .props("metadata")
-    .depth(1);
+    .depth(1)
 
   return (
     <div className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
@@ -31,5 +31,5 @@ export default async function Header() {
         <NavMenu query={{ type: "navigation-menus", slug: "header" }} />
       </div>
     </div>
-  );
+  )
 }

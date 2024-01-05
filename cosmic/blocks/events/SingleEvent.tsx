@@ -1,20 +1,20 @@
 // app/events/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client";
-import Link from "next/link";
-import { Button } from "@/cosmic/elements/Button";
-import { cn } from "@/cosmic/utils";
+import { cosmic } from "@/cosmic/client"
+import Link from "next/link"
+import { Button } from "@/cosmic/elements/Button"
+import { cn } from "@/cosmic/utils"
 
 export async function SingleEvent({
   query,
   className,
 }: {
-  query: any;
-  className?: string;
+  query: any
+  className?: string
 }) {
   const { object: event } = await cosmic.objects
     .findOne(query)
     .props("id,slug,title,metadata")
-    .depth(1);
+    .depth(1)
   return (
     <section className={cn("md:container pb-8 m-auto", className)}>
       <div className="relative m-auto max-w-[950px]">
@@ -124,5 +124,5 @@ export async function SingleEvent({
         </div>
       </div>
     </section>
-  );
+  )
 }
