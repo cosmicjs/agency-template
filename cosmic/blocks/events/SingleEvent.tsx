@@ -40,7 +40,11 @@ export async function SingleEvent({ query }: { query: any }) {
         </nav>
         <div className="grid md:grid-cols-2 md:gap-x-8">
           <div>
-            <img className='h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800' src={`${event.metadata.image.imgix_url}?w=500&h=500&auto=format,compression`} alt={event.title} />
+            <img
+              className="h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800"
+              src={`${event.metadata.image.imgix_url}?w=1000&h=2000&auto=format,compression`}
+              alt={event.title}
+            />
           </div>
           <div>
             <h1 className="mt-6 mb-2 md:mt-0 md:mb-4 text-3xl font-extrabold leading-tight tracking-tight md:text-4xl text-zinc-900 dark:text-zinc-50">
@@ -49,24 +53,25 @@ export async function SingleEvent({ query }: { query: any }) {
             <div className="mb-8">
               <Button type="submit">Get tickets</Button>
             </div>
-            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Date and Time</h3>
-            <div className='flex items-center space-x-1 text-sm text-zinc-900 dark:text-gray-300'>
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+              Date and Time
+            </h3>
+            <div className="flex items-center space-x-1 text-sm text-zinc-900 dark:text-gray-300">
               <span>
-                  {new Date(event.metadata.start_date).toLocaleDateString('en-us', {
-                    weekday: 'short',
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                  </span>
-                <span>from</span>
-                <span>
-                  {event.metadata.start_time}
-                </span>
-                <span>until</span>
-                <span>
-                {event.metadata.end_time}
-                </span>
+                {new Date(event.metadata.start_date).toLocaleDateString(
+                  "en-us",
+                  {
+                    weekday: "short",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  },
+                )}
+              </span>
+              <span>from</span>
+              <span>{event.metadata.start_time}</span>
+              <span>until</span>
+              <span>{event.metadata.end_time}</span>
             </div>
             <h3 className="mt-6 text-lg font-medium text-gray-900 dark:text-white mb-2">
               Details
@@ -92,13 +97,16 @@ export async function SingleEvent({ query }: { query: any }) {
               <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                 Agenda
               </h3>
-              <div
-                className="mb-6 text-sm text-gray-700 dark:text-white"
-              >
+              <div className="mb-6 text-sm text-gray-700 dark:text-white">
                 <ul className="flex flex-col gap-4">
                   {event.metadata.agenda.map((item: any) => (
-                    <li key={item.item} className="bg-gray-50 dark:bg-zinc-800 rounded-lg flex flex-col py-2 px-3 space-y-1">
-                      <span className="text-xs text-orange-600 dark:text-orange-400">{item.time}</span>
+                    <li
+                      key={item.item}
+                      className="bg-gray-50 dark:bg-zinc-800 rounded-lg flex flex-col py-2 px-3 space-y-1"
+                    >
+                      <span className="text-xs text-orange-600 dark:text-orange-400">
+                        {item.time}
+                      </span>
                       <span className="font-medium">{item.item}</span>
                     </li>
                   ))}
