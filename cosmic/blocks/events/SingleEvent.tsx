@@ -2,14 +2,21 @@
 import { cosmic } from "@/cosmic/client";
 import Link from "next/link";
 import { Button } from "@/cosmic/elements/Button";
+import { cn } from "@/cosmic/utils";
 
-export async function SingleEvent({ query }: { query: any }) {
+export async function SingleEvent({
+  query,
+  className,
+}: {
+  query: any;
+  className?: string;
+}) {
   const { object: event } = await cosmic.objects
     .findOne(query)
     .props("id,slug,title,metadata")
     .depth(1);
   return (
-    <section className="md:container pb-8 m-auto">
+    <section className={cn("md:container pb-8 m-auto", className)}>
       <div className="relative m-auto max-w-[950px]">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol role="list" className="flex space-x-2">
@@ -65,7 +72,7 @@ export async function SingleEvent({ query }: { query: any }) {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
-                  },
+                  }
                 )}
               </span>
               <span>from</span>
