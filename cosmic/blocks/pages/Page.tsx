@@ -75,7 +75,7 @@ export async function Page({
           <h2 className="m-auto max-w-[800px] text-center text-3xl md:text-6xl font-display text-zinc-900 dark:text-zinc-100 pt-8">
             {page.metadata.section_title}
           </h2>
-          <p
+          <div
             dangerouslySetInnerHTML={{ __html: page.metadata.content }}
             className="m-auto mb-16 max-w-[800px] text-center text-zinc-700 dark:text-zinc-300"
           />
