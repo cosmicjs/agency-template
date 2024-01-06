@@ -1,5 +1,5 @@
-import { cosmic } from "@/cosmic/client";
-import { TeamCard, MemberType } from "./TeamCard";
+import { cosmic } from "@/cosmic/client"
+import { TeamCard, MemberType } from "./TeamCard"
 
 export async function TeamList({
   query,
@@ -8,11 +8,11 @@ export async function TeamList({
   skip,
   className,
 }: {
-  query: any;
-  sort?: string;
-  limit?: number;
-  skip?: number;
-  className?: string;
+  query: any
+  sort?: string
+  limit?: number
+  skip?: number
+  className?: string
 }) {
   const { objects: members } = await cosmic.objects
     .find(query)
@@ -20,12 +20,12 @@ export async function TeamList({
     .depth(1)
     .sort(sort ? sort : "-order")
     .limit(limit ? limit : 100)
-    .skip(skip ? skip : 0);
+    .skip(skip ? skip : 0)
   return (
     <div className={className}>
       {members.map((member: MemberType) => {
-        return <TeamCard key={member.slug} member={member} />;
+        return <TeamCard key={member.slug} member={member} />
       })}
     </div>
-  );
+  )
 }

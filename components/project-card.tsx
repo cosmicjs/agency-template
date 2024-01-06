@@ -1,22 +1,22 @@
 // components/product-card.tsx
-import Link from "next/link";
+import Link from "next/link"
 
 export type ProjectType = {
-  id: string;
-  title: string;
-  slug: string;
+  id: string
+  title: string
+  slug: string
   metadata: {
     image: {
-      imgix_url?: string;
-    };
-    summary: string;
+      imgix_url?: string
+    }
+    summary: string
     client: {
-      title: string;
-    };
-    year: number;
-    content: number;
-  };
-};
+      title: string
+    }
+    year: number
+    content: number
+  }
+}
 
 export function ProjectCard({ project }: { project: ProjectType }) {
   return (
@@ -30,7 +30,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
           />
         )}
       </div>
-      <div className="mt-4 flex justify-between">
+      <div className="mt-4">
         <div>
           <h3 className="text-lg font-medium leading-tight text-zinc-700 dark:text-zinc-300">
             <span aria-hidden="true" className="absolute inset-0"></span>
@@ -51,5 +51,5 @@ export function ProjectCard({ project }: { project: ProjectType }) {
         </p>
       </div>
     </Link>
-  );
+  )
 }

@@ -1,21 +1,21 @@
 // app/blog/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client";
-import Markdown from "react-markdown";
-import { ArrowLeftIcon } from "lucide-react";
-import Link from "next/link";
-import { Comments } from "@/cosmic/blocks/comments/Comments";
+import { cosmic } from "@/cosmic/client"
+import Markdown from "react-markdown"
+import { ArrowLeftIcon } from "lucide-react"
+import Link from "next/link"
+import { Comments } from "@/cosmic/blocks/comments/Comments"
 
 export async function SingleBlog({
   query,
   className,
 }: {
-  query: any;
-  className?: string;
+  query: any
+  className?: string
 }) {
   const { object: blog } = await cosmic.objects
     .findOne(query)
     .props("id,slug,title,metadata")
-    .depth(1);
+    .depth(1)
 
   const date = new Date(blog.metadata.published_date).toLocaleDateString(
     "en-us",
@@ -24,7 +24,7 @@ export async function SingleBlog({
       month: "long",
       day: "numeric",
     }
-  );
+  )
   return (
     <div className={className}>
       <section className="m-auto grid items-center pb-8 md:container">
@@ -58,7 +58,7 @@ export async function SingleBlog({
             </div>
             <div className="md:absolute md:right-0">
               {blog.metadata.categories.map((category: any) => {
-                const categoryBackgroundColor = `${category.metadata.color}22`;
+                const categoryBackgroundColor = `${category.metadata.color}22`
                 return (
                   <span
                     className="mb-1 mr-1 rounded-xl px-3 py-1 text-black/70 dark:text-white/70"
@@ -70,7 +70,7 @@ export async function SingleBlog({
                   >
                     {category.title}
                   </span>
-                );
+                )
               })}
             </div>
           </div>
@@ -92,5 +92,5 @@ export async function SingleBlog({
         </div>
       </section>
     </div>
-  );
+  )
 }
