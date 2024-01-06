@@ -1,20 +1,20 @@
 // app/page.tsx
-import { cn } from "@/cosmic/utils";
-import { buttonVariants } from "@/cosmic/elements/Button";
-import { Section } from "./PageSection";
-import { cosmic } from "@/cosmic/client";
+import { cn } from "@/cosmic/utils"
+import { buttonVariants } from "@/cosmic/elements/Button"
+import { Section } from "./PageSection"
+import { cosmic } from "@/cosmic/client"
 
 export async function Page({
   query,
   className,
 }: {
-  query: any;
-  className?: string;
+  query: any
+  className?: string
 }) {
   const { object: page } = await cosmic.objects
     .findOne(query)
     .props("slug,title,metadata")
-    .depth(1);
+    .depth(1)
 
   return (
     <div className={className}>
@@ -81,11 +81,11 @@ export async function Page({
           />
           <div className="grid gap-y-28">
             {page.metadata.sections.map((section: any) => {
-              return <Section key={section.heading} section={section} />;
+              return <Section key={section.heading} section={section} />
             })}
           </div>
         </div>
       </section>
     </div>
-  );
+  )
 }

@@ -1,14 +1,14 @@
 // app/shop/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client";
-import Link from "next/link";
-import { Button } from "@/cosmic/elements/Button";
-import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery";
+import { cosmic } from "@/cosmic/client"
+import Link from "next/link"
+import { Button } from "@/cosmic/elements/Button"
+import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery"
 
 export async function SingleProduct({ query }: { query: any }) {
   const { object: product } = await cosmic.objects
     .findOne(query)
     .props("id,slug,title,metadata")
-    .depth(1);
+    .depth(1)
   return (
     <section className="md:container pb-8 m-auto">
       <div className="relative m-auto max-w-[950px]">
@@ -66,5 +66,5 @@ export async function SingleProduct({ query }: { query: any }) {
         </div>
       </div>
     </section>
-  );
+  )
 }

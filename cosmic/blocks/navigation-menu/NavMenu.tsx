@@ -1,24 +1,24 @@
-import Link from "next/link";
-import { cosmic } from "@/cosmic/client";
-import { MobileNav } from "./MobileNav";
+import Link from "next/link"
+import { cosmic } from "@/cosmic/client"
+import { MobileNav } from "./MobileNav"
 
 export type ItemType = {
-  title: string;
-  link: string;
-  open_in_new_tab: boolean;
-};
+  title: string
+  link: string
+  open_in_new_tab: boolean
+}
 
 export async function NavMenu({
   query,
   className,
 }: {
-  query: any;
-  className?: string;
+  query: any
+  className?: string
 }) {
   const { object: nav } = await cosmic.objects
     .findOne(query)
     .props("metadata")
-    .depth(1);
+    .depth(1)
   return (
     <div className={className}>
       {/* Desktop */}
@@ -34,27 +34,27 @@ export async function NavMenu({
               >
                 {item.title}
               </Link>
-            );
+            )
           })}
         </div>
       </div>
       {/* Mobile */}
       <MobileNav items={nav.metadata.items} />
     </div>
-  );
+  )
 }
 
 export async function FooterNavMenu({
   query,
   className,
 }: {
-  query: any;
-  className?: string;
+  query: any
+  className?: string
 }) {
   const { object: nav } = await cosmic.objects
     .findOne(query)
     .props("metadata")
-    .depth(1);
+    .depth(1)
   return (
     <div className={className}>
       {nav.metadata.items.map((item: ItemType) => {
@@ -67,8 +67,8 @@ export async function FooterNavMenu({
           >
             {item.title}
           </Link>
-        );
+        )
       })}
     </div>
-  );
+  )
 }

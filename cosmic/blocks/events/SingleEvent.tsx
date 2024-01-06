@@ -1,15 +1,22 @@
 // app/events/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client";
-import Link from "next/link";
-import { Button } from "@/cosmic/elements/Button";
+import { cosmic } from "@/cosmic/client"
+import Link from "next/link"
+import { Button } from "@/cosmic/elements/Button"
+import { cn } from "@/cosmic/utils"
 
-export async function SingleEvent({ query }: { query: any }) {
+export async function SingleEvent({
+  query,
+  className,
+}: {
+  query: any
+  className?: string
+}) {
   const { object: event } = await cosmic.objects
     .findOne(query)
     .props("id,slug,title,metadata")
-    .depth(1);
+    .depth(1)
   return (
-    <section className="md:container pb-8 m-auto">
+    <section className={cn("md:container pb-8 m-auto", className)}>
       <div className="relative m-auto max-w-[950px]">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol role="list" className="flex space-x-2">
@@ -42,7 +49,7 @@ export async function SingleEvent({ query }: { query: any }) {
           <div>
             <img
               className="h-full w-full rounded-xl object-cover object-center aspect-square lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800"
-              src={`${event.metadata.image.imgix_url}?w=1000&h=2000&auto=format,compression`}
+              src={`${event.metadata.image.imgix_url}?w=2000&h=2000&auto=format,compression`}
               alt={event.title}
             />
           </div>
@@ -65,7 +72,7 @@ export async function SingleEvent({ query }: { query: any }) {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
-                  },
+                  }
                 )}
               </span>
               <span>from</span>
@@ -117,5 +124,5 @@ export async function SingleEvent({ query }: { query: any }) {
         </div>
       </div>
     </section>
-  );
+  )
 }
