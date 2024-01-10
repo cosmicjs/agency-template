@@ -2,7 +2,8 @@
 
 # Agency Template, powered by Blocks
 
-I custom template built using Cosmic's data infused components. Use this tempalate to get familiar with Blocks and how they can be used to build common content-powered features for your website or app, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
+A custom template built using Cosmic's data infused components, [Blocks](https://github.com/cosmicjs/blocks). Use this tempalate to get familiar with Blocks and how they can be used to build common content-powered features for your website or app, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
+[View the preview](https://cosmic-agency-template.vercel.app/).
 
 ## Blocks included
 
