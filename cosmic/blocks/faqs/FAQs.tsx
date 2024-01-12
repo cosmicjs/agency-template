@@ -28,13 +28,7 @@ export async function FAQs({
     <div className={className}>
       {(page?.metadata?.faqs).map((faq: FAQ) => {
         return (
-          <Accordion
-            aria-aria-label={faq.question}
-            aria-aria-labelledby={faq.question}
-            type="single"
-            collapsible
-            key={faq.question}
-          >
+          <Accordion type="single" collapsible key={faq.question}>
             <AccordionItem value="item-1">
               <AccordionTrigger>{faq.question}</AccordionTrigger>
               <AccordionContent>{faq.answer}</AccordionContent>
