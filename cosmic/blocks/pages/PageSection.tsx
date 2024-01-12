@@ -32,6 +32,7 @@ export function Section({
           <div className="mb-6 text-center">
             <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
             <div
+              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
@@ -69,6 +70,7 @@ export function Section({
           <div>
             <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
             <div
+              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
@@ -92,6 +94,7 @@ export function Section({
           <div className="mr-4">
             <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
             <div
+              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
