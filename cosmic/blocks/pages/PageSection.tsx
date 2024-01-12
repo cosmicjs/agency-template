@@ -1,6 +1,7 @@
 // components/page-section.tsx
 import { cn } from "@/cosmic/utils"
 import { buttonVariants } from "@/cosmic/elements/Button"
+import Link from "next/link"
 
 type SectionType = {
   heading: string
@@ -72,7 +73,7 @@ export function Section({
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
-              <a
+              <Link
                 className={cn(
                   buttonVariants({
                     variant: "secondary",
@@ -81,7 +82,7 @@ export function Section({
                 href={section.cta_link}
               >
                 {section.cta_text}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
