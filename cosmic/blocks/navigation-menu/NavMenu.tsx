@@ -20,7 +20,7 @@ export async function NavMenu({
     .props("metadata")
     .depth(1)
   return (
-    <nav className={className}>
+    <div className={className}>
       {/* Desktop */}
       <div className="hidden md:block">
         <div>
@@ -40,7 +40,7 @@ export async function NavMenu({
       </div>
       {/* Mobile */}
       <MobileNav items={nav.metadata.items} />
-    </nav>
+    </div>
   )
 }
 
@@ -56,7 +56,7 @@ export async function FooterNavMenu({
     .props("metadata")
     .depth(1)
   return (
-    <nav className={className}>
+    <div className={className}>
       {nav.metadata.items.map((item: ItemType) => {
         return (
           <Link
@@ -69,6 +69,6 @@ export async function FooterNavMenu({
           </Link>
         )
       })}
-    </nav>
+    </div>
   )
 }

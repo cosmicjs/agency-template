@@ -14,7 +14,7 @@ export default async function Header() {
     .depth(1)
 
   return (
-    <div className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
+    <nav className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
       <div className="flex w-full items-center md:container justify-between pl-2 pr-4">
         <Link href="/">
           <img
@@ -30,6 +30,6 @@ export default async function Header() {
         </Link>
         <NavMenu query={{ type: "navigation-menus", slug: "header" }} />
       </div>
-    </div>
+    </nav>
   )
 }
