@@ -8,7 +8,7 @@ export default function Banner(): JSX.Element {
           <span className="text-zinc-800 dark:text-zinc-200">
             Source code available on
           </span>
-          <span className="text-green-500 font-medium dark:text-green-300">
+          <span className="text-green-700 font-medium dark:text-green-300">
             GitHub
           </span>
           <ChevronRight className="w-4 h-4" />

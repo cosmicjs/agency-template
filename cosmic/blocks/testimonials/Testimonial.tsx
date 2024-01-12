@@ -39,10 +39,10 @@ export function Testimonial({
           </p>
         </blockquote>
         <figcaption className="font-medium">
-          <div className="text-sky-500 dark:text-sky-400">
+          <div className="text-sky-700 dark:text-sky-400">
             {testimonial.title}
           </div>
-          <div className="text-zinc-500 dark:text-zinc-400">
+          <div className="text-zinc-600 dark:text-zinc-400">
             {testimonial.metadata.position}, {testimonial.metadata.company}
           </div>
         </figcaption>
