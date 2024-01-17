@@ -5,7 +5,7 @@ import { Page } from "@/cosmic/blocks/pages/Page"
 
 export default async function HomePage() {
   return (
-    <main className="p-4">
+    <main>
       <Page query={{ slug: "home", type: "pages" }} />
       <section className="md:container mt-12 pb-8 m-auto">
         <div className="relative m-auto flex max-w-[950px] flex-col items-start gap-2">

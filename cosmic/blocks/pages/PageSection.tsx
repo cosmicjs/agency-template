@@ -1,4 +1,4 @@
-// components/page-section.tsx
+// cosmic/blocks/pages/PageSection.tsx
 import { cn } from "@/cosmic/utils"
 import { buttonVariants } from "@/cosmic/elements/Button"
 import Link from "next/link"
@@ -30,15 +30,15 @@ export function Section({
       {section.layout.key === "1-column-center" && (
         <div className="m-auto max-w-[800px]">
           <div className="mb-6 text-center">
-            <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
             <div
-              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
-              <a
+              <Link
                 className={cn(
+                  "ml-2",
                   buttonVariants({
                     variant: "secondary",
                   })
@@ -46,7 +46,7 @@ export function Section({
                 href={section.cta_link}
               >
                 {section.cta_text}
-              </a>
+              </Link>
             </div>
           </div>
           <div>
@@ -68,15 +68,15 @@ export function Section({
             />
           </div>
           <div>
-            <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
             <div
-              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
               <Link
                 className={cn(
+                  "ml-2",
                   buttonVariants({
                     variant: "secondary",
                   })
@@ -92,15 +92,15 @@ export function Section({
       {section.layout.key === "2-column-content-image" && (
         <div className="grid gap-2 md:grid-cols-2">
           <div className="mr-4">
-            <h3 className="mb-4 text-2xl font-semibold">{section.heading}</h3>
+            <h2 className="mb-4 text-2xl font-semibold">{section.heading}</h2>
             <div
-              id={section.heading}
               className="mb-6"
               dangerouslySetInnerHTML={{ __html: section.content }}
             />
             <div>
-              <a
+              <Link
                 className={cn(
+                  "ml-2",
                   buttonVariants({
                     variant: "secondary",
                   })
@@ -108,7 +108,7 @@ export function Section({
                 href={section.cta_link}
               >
                 {section.cta_text}
-              </a>
+              </Link>
             </div>
           </div>
           <div>
