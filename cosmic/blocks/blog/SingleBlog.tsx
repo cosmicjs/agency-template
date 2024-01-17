@@ -85,6 +85,7 @@ export async function SingleBlog({
                 "metadata.resource": blog.id,
                 "metadata.approved": true,
               }}
+              className="mt-10"
             />
             <div className="my-10">
               <Link
