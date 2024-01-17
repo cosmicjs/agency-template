@@ -7,6 +7,7 @@ A custom template built using Cosmic's data infused components, [Blocks](https:/
 ## Links
 
 [Install this template](https://www.cosmicjs.com/marketplace/templates/agency)
+
 [View the live demo](https://cosmic-agency-template.vercel.app/)
 
 ## Getting started
