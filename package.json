@@ -20,7 +20,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "lucide-react": "^0.303.0",
+    "lucide-react": "^0.311.0",
     "next": "latest",
     "next-themes": "^0.2.1",
     "react": "^18",

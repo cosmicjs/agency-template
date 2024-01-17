@@ -7,12 +7,14 @@ export async function Testimonials({
   limit,
   skip,
   className,
+  status,
 }: {
   query: any
   sort?: string
   limit?: number
   skip?: number
   className?: string
+  status?: "draft" | "published" | "any"
 }) {
   const { objects: testimonials } = await cosmic.objects
     .find(query)
@@ -21,6 +23,7 @@ export async function Testimonials({
     .sort(sort ? sort : "-order")
     .limit(limit ? limit : 100)
     .skip(skip ? skip : 0)
+    .status(status ? status : "published")
   return (
     <div className={className}>
       {testimonials?.map((testimonial: TestimonialType) => {

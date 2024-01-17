@@ -7,12 +7,14 @@ export async function TeamList({
   limit,
   skip,
   className,
+  status,
 }: {
   query: any
   sort?: string
   limit?: number
   skip?: number
   className?: string
+  status?: "draft" | "published" | "any"
 }) {
   const { objects: members } = await cosmic.objects
     .find(query)
@@ -21,6 +23,7 @@ export async function TeamList({
     .sort(sort ? sort : "-order")
     .limit(limit ? limit : 100)
     .skip(skip ? skip : 0)
+    .status(status ? status : "published")
   return (
     <div className={className}>
       {members.map((member: MemberType) => {
