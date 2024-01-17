@@ -36,9 +36,9 @@ export function ImageGalleryClient({
               onClick={() => setMainItem(item)}
               key={item.image.imgix_url}
               className={cn(
-                `rounded-xl overflow-hidden border-2`,
+                `overflow-hidden rounded-xl border-4`,
                 item.image.imgix_url === mainItem.image.imgix_url
-                  ? "border-gray-600"
+                  ? "border-orange-600"
                   : ""
               )}
             >

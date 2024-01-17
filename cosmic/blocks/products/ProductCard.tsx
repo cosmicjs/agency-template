@@ -1,5 +1,6 @@
 // components/product-card.tsx
 import Link from "next/link"
+import { cn } from "@/cosmic/utils"
 
 export type ProductType = {
   id: string
@@ -14,17 +15,23 @@ export type ProductType = {
   }
 }
 
-export function ProductCard({ product }: { product: ProductType }) {
+export function ProductCard({
+  product,
+  className,
+}: {
+  product: ProductType
+  className?: string
+}) {
   return (
     <Link
       href={`/services/${product.slug}`}
-      className="group relative w-full md:w-56"
+      className={cn("group relative w-56", className)}
     >
-      <div className="w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 h-52">
+      <div className="h-52 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
         <img
           src={`${product.metadata.image.imgix_url}?w=1200&auto=format,compression`}
           alt={product.title}
-          className="h-full w-full object-cover object-center lg:h-full lg:w-full border border-zinc-100 dark:border-zinc-800"
+          className="h-full w-full border border-zinc-100 object-cover object-center dark:border-zinc-800 lg:h-full lg:w-full"
         />
       </div>
       <div className="mt-2 flex justify-between">
