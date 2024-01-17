@@ -30,10 +30,10 @@ export async function SingleProduct({
               <li>
                 <div className="flex items-center">
                   <Link
-                    href="/shop"
+                    href="/services"
                     className="mr-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Shop
+                    Services
                   </Link>
                   <svg
                     width="16"
