@@ -10,14 +10,21 @@ A custom template built using Cosmic's data infused components, [Blocks](https:/
 [View the live demo](https://cosmic-agency-template.vercel.app/)
 
 ## Features
-- Performance optimized
-- Draft preview ready
-- Mobile responsive
-- Localization ready
-- Dark mode ready
-- Customizable
-- Accessible
-- Type safe
+⚡️ Performance optimized
+
+👁 Draft preview ready
+
+📱 Mobile responsive
+
+🌎 Localization ready
+
+🌓 Dark mode ready
+
+🔧 Customizable
+
+♿️ Accessible
+
+🦺 Type safe
 
 ![blocks.png](https://imgix.cosmicjs.com/271670f0-b156-11ee-9844-f9a09795e2a3-blocks.png)
 ![blocks.png](https://imgix.cosmicjs.com/0bf19f40-b16d-11ee-9844-f9a09795e2a3-blocks.png)
