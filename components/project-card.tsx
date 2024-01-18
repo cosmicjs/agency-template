@@ -38,7 +38,7 @@ export function ProjectCard({ project }: { project: ProjectType }) {
           </h3>
         </div>
       </div>
-      <p
+      <div
         className="pt-2 text-sm font-medium text-zinc-500 dark:text-zinc-300"
         dangerouslySetInnerHTML={{ __html: project.metadata.summary }}
       />

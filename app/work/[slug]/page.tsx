@@ -47,7 +47,7 @@ export default async function SingleProjectsPage({
               </span>
             </div>
           </div>
-          <p
+          <div
             className="text-zinc-700 dark:text-zinc-300 space-y-4"
             dangerouslySetInnerHTML={{ __html: project.metadata.content }}
           />
