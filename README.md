@@ -1,6 +1,5 @@
-![image](https://github.com/cosmicjs/agency-template/assets/26257029/e74694d3-eec3-429b-98b1-7fd14b9b89e6)
-
 # Agency Template, powered by Blocks
+![desktop.png](https://imgix.cosmicjs.com/69313380-b156-11ee-9844-f9a09795e2a3-desktop.png)
 
 A custom template built using Cosmic's data infused components, [Blocks](https://blocks.cosmicjs.com). Use this tempalate to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
 
@@ -9,6 +8,19 @@ A custom template built using Cosmic's data infused components, [Blocks](https:/
 [Install this template](https://www.cosmicjs.com/marketplace/templates/agency)
 
 [View the live demo](https://cosmic-agency-template.vercel.app/)
+
+## Features
+- Performance optimized
+- Draft preview ready
+- Mobile responsive
+- Localization ready
+- Dark mode ready
+- Customizable
+- Accessible
+- Type safe
+
+![blocks.png](https://imgix.cosmicjs.com/271670f0-b156-11ee-9844-f9a09795e2a3-blocks.png)
+![blocks.png](https://imgix.cosmicjs.com/0bf19f40-b16d-11ee-9844-f9a09795e2a3-blocks.png)
 
 ## Getting started
 
