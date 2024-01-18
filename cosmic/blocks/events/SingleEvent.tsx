@@ -2,7 +2,7 @@
 import { cosmic } from "@/cosmic/client"
 import Link from "next/link"
 import { Button } from "@/cosmic/elements/Button"
-import { cn } from "@/cosmic/utils"
+import { cn, getFormattedDate } from "@/cosmic/utils"
 import { notFound } from "next/navigation"
 
 export async function SingleEvent({
@@ -70,20 +70,13 @@ export async function SingleEvent({
                 Date and Time
               </h3>
               <div className="flex items-center space-x-1 text-sm text-zinc-900 dark:text-gray-300">
-                <span>
-                  {new Date(event.metadata.start_date).toLocaleDateString(
-                    "en-us",
-                    {
-                      weekday: "short",
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    }
-                  )}
-                </span>
+                <span>{getFormattedDate(event.metadata.start_date)}</span>
                 <span>from</span>
                 <span>{event.metadata.start_time}</span>
                 <span>until</span>
+                {event.metadata.start_date !== event.metadata.end_date && (
+                  <span>{getFormattedDate(event.metadata.end_date)}</span>
+                )}
                 <span>{event.metadata.end_time}</span>
               </div>
               <h3 className="mb-2 mt-6 text-lg font-medium text-gray-900 dark:text-white">
