@@ -34,7 +34,6 @@ A custom template built using Cosmic's data infused components, [Blocks](https:/
 1. [Install this template in Cosmic](https://www.cosmicjs.com/marketplace/templates/agency).
 
 2. Download this code repository and install the dependencies.
-
 ```bash
 git clone https://github.com/cosmicjs/agency-template
 cd agency-template
@@ -42,13 +41,19 @@ bun install
 ```
 
 3. Create a `.env.local` file with your Cosmic API keys. Find these after logging in to the Cosmic dashboard in [Project > API keys](https://app.cosmicjs.com/?redirect_to=?highlight=api-keys).
-
 ```
 cp .env.example .env.local
 ```
 
-4. Run the template.
+It will look like this:
+```
+# .env.local
+COSMIC_BUCKET_SLUG=change_to_your_bucket_slug
+COSMIC_READ_KEY=change_to_your_bucket_read_key
+COSMIC_WRITE_KEY=change_to_your_bucket_write_key
+```
 
+4. Run the template.
 ```
 bun dev
 ```
