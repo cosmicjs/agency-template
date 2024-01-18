@@ -23,7 +23,7 @@ export default async function SingleProjectsPage({
           <img
             src={`${project.metadata.image.imgix_url}?w=2000&auto=format,compression`}
             alt={project.title}
-            className="aspect-video md:max-w-5xl mx-auto object-cover border border-zinc-100 dark:border-zinc-800 rounded-lg"
+            className="aspect-video w-full md:max-w-5xl mx-auto object-cover border border-zinc-100 dark:border-zinc-800 rounded-lg"
           />
         )}
       </div>
@@ -47,7 +47,7 @@ export default async function SingleProjectsPage({
               </span>
             </div>
           </div>
-          <p
+          <div
             className="text-zinc-700 dark:text-zinc-300 space-y-4"
             dangerouslySetInnerHTML={{ __html: project.metadata.content }}
           />
