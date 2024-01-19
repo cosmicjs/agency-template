@@ -23,7 +23,7 @@ export async function SingleProduct({
       .status(status ? status : "published")
 
     return (
-      <section className={cn("container m-auto pb-8", className)}>
+      <section className={cn("md:container m-auto pb-8", className)}>
         <div className="relative m-auto max-w-[950px]">
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol role="list" className="flex space-x-2">
