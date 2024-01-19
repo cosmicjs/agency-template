@@ -34,7 +34,7 @@ function Comment({
         className
       )}
     >
-      <div className="mb-4 flex w-full flex-col items-center justify-between gap-2 text-gray-500 dark:text-gray-200 sm:flex-row">
+      <div className="mb-4 flex w-full flex-col md:items-center justify-between gap-2 text-gray-500 dark:text-gray-200 sm:flex-row">
         <div className="flex items-center gap-2 text-black dark:text-white">
           <UserRound className="h-4 w-4" />
           <div className="text-lg">{comment.title}</div>
