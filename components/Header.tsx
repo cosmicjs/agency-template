@@ -28,7 +28,10 @@ export default async function Header() {
             className="h-10 m-auto hidden dark:block"
           />
         </Link>
-        <NavMenu query={{ type: "navigation-menus", slug: "header" }} />
+        <NavMenu
+          query={{ type: "navigation-menus", slug: "header" }}
+          hasMobileMenu
+        />
       </div>
     </nav>
   )
