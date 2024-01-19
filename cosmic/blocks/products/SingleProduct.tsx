@@ -53,7 +53,7 @@ export async function SingleProduct({
             </ol>
           </nav>
           <div className="grid md:grid-cols-2 md:gap-x-8">
-            <div>
+            <div className="mb-4">
               <ImageGallery query={query} />
             </div>
             <div>
