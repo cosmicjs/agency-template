@@ -1,7 +1,7 @@
 # Agency Template, powered by Blocks
 ![desktop.png](https://imgix.cosmicjs.com/69313380-b156-11ee-9844-f9a09795e2a3-desktop.png)
 
-A website template built using Cosmic's data infused components, [Blocks](https://blocks.cosmicjs.com). Use this tempalate to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
+A website template built using Cosmic's data infused components, [Blocks](https://blocks.cosmicjs.com). Use this template to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
 
 ## Links
 
