@@ -1,19 +1,22 @@
 // app/shop/[slug]/page.tsx
 import { cosmic } from "@/cosmic/client"
 import Link from "next/link"
-import { Button } from "@/cosmic/elements/Button"
 import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery"
 import { cn } from "@/cosmic/utils"
 import { notFound } from "next/navigation"
+import { PurchaseProduct } from "@/components/PurchaseProduct";
+import { CheckCircleIcon } from "lucide-react";
 
 export async function SingleProduct({
   query,
   className,
   status,
+  purchased
 }: {
   query: any
   className?: string
   status?: "draft" | "published" | "any"
+  purchased?: boolean
 }) {
   try {
     const { object: product } = await cosmic.objects
@@ -25,6 +28,12 @@ export async function SingleProduct({
     return (
       <section className={cn("md:container m-auto pb-8", className)}>
         <div className="relative m-auto max-w-[950px]">
+          {purchased &&
+            <div className="flex border-green-700 text-green-700 border p-4 rounded-lg mb-6">
+              <CheckCircleIcon className="mr-4 size-4 mt-1" />
+              <div>Purchase complete. Thank you for your order, we will be in touch to get your project started soon!</div>
+            </div>
+          }
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol role="list" className="flex space-x-2">
               <li>
@@ -64,7 +73,25 @@ export async function SingleProduct({
                 ${product.metadata.price.toLocaleString("en-US")}
               </p>
               <div className="mb-8">
-                <Button type="submit">Add to cart</Button>
+                {!product.metadata.quantity ? (
+                  <div className="flex border-red-500 border p-4 rounded-lg mt-4">
+                    <XCircleIcon className="text-red-500 mr-4" />
+                    Sold out
+                  </div>
+                ) : (
+                  <>
+                    {product.metadata.stripe_product_id ? (
+                      <PurchaseProduct
+                        stripe_product_id={product.metadata.stripe_product_id}
+                      />
+                    ) : (
+                      <div className="flex border-red-500 border p-4 rounded-lg">
+                        <XCircleIcon className="text-red-500 mr-4" />
+                        Product not available for purchase
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
               <h2 className="mb-2 text-sm font-medium text-gray-900 dark:text-white">
                 Details

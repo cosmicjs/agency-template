@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { getFormattedDate } from "@/cosmic/utils"
 
 export type PostType = {
   id: string
@@ -87,14 +88,7 @@ export function BlogCard({
                       {post.metadata.author.title}
                     </span>
                     <br />
-                    {new Date(post.metadata.published_date).toLocaleDateString(
-                      "en-us",
-                      {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      }
-                    )}
+                    {getFormattedDate(post.metadata.published_date)}
                   </div>
                 </div>
               </div>
