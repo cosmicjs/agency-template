@@ -6,12 +6,12 @@ export default async function SingleProductPage({
 }: {
     params: { slug: string }
     searchParams: {
-      success: string
+      success?: string
     }
   }) {
   return (
     <main className="p-4">
-      <SingleProduct query={{ slug: params.slug, type: "products" }} purchased={searchParams.success} />
+      <SingleProduct query={{ slug: params.slug, type: "products" }} purchased={searchParams.success ? true : false} />
     </main>
   )
 }
