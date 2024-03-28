@@ -33,7 +33,7 @@ export async function SingleProduct({
               <CheckCircleIcon className="mr-4 size-4 mt-1" />
               <div>
                 Purchase complete. Thank you for your order, we will be in touch
-                to get your project started soon!
+                with your order details!
               </div>
             </div>
           )}
