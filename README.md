@@ -1,5 +1,10 @@
 # Agency Template, powered by Blocks
+
 ![desktop.png](https://imgix.cosmicjs.com/69313380-b156-11ee-9844-f9a09795e2a3-desktop.png)
+
+### UPDATED
+
+🛒 Now includes product management and checkout using Stripe.
 
 A website template built using Cosmic's data infused components, [Blocks](https://blocks.cosmicjs.com). Use this template to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
 
@@ -10,6 +15,9 @@ A website template built using Cosmic's data infused components, [Blocks](https:
 [View the live demo](https://cosmic-agency-template.vercel.app/)
 
 ## Features
+
+🛒 Product management and checkout using Stripe
+
 ⚡️ Performance optimized
 
 👁 Draft preview ready
@@ -34,6 +42,7 @@ A website template built using Cosmic's data infused components, [Blocks](https:
 1. [Install this template in Cosmic](https://www.cosmicjs.com/marketplace/templates/agency).
 
 2. Download this code repository and install the dependencies.
+
 ```bash
 git clone https://github.com/cosmicjs/agency-template
 cd agency-template
@@ -41,19 +50,24 @@ bun install
 ```
 
 3. Create a `.env.local` file with your Cosmic API keys. Find these after logging in to the Cosmic dashboard in [Project > API keys](https://app.cosmicjs.com/?redirect_to=?highlight=api-keys).
+
 ```
 cp .env.example .env.local
 ```
 
 It will look like this:
+
 ```
 # .env.local
 COSMIC_BUCKET_SLUG=change_to_your_bucket_slug
 COSMIC_READ_KEY=change_to_your_bucket_read_key
 COSMIC_WRITE_KEY=change_to_your_bucket_write_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=change_to_your_stripe_public_key
+STRIPE_SECRET_KEY=change_to_your_stripe_secret_key
 ```
 
 4. Run the template.
+
 ```
 bun dev
 ```

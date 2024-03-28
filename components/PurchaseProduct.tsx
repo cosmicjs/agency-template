@@ -12,6 +12,7 @@ export function PurchaseProduct({
   stripe_product_id: string
 }) {
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState()
   async function handleSubmit() {
     setSubmitting(true)
     const res = await fetch("/api/checkout", {
@@ -24,11 +25,11 @@ export function PurchaseProduct({
         "Content-Type": "application/json",
       },
     })
+    const data = await res.json()
     if (!res.ok) {
       setSubmitting(false)
-      alert("There was an error with this request. Please contact support.")
+      setError(data.raw.message)
     } else {
-      const data = await res.json()
       if (data.url) window.location = data.url
     }
   }
@@ -46,8 +47,34 @@ export function PurchaseProduct({
     }
   }, [])
   return (
-    <Button disabled={submitting} type="submit" onClick={handleSubmit}>
-      {submitting ? <>Redirecting to purchase...</> : "Buy now"}
-    </Button>
+    <>
+      <Button disabled={submitting} type="submit" onClick={handleSubmit}>
+        {submitting ? <>Redirecting to purchase...</> : "Buy now"}
+      </Button>
+      {error && (
+        <div className="mt-6 border-red-500 border p-4 rounded-lg">
+          There was an error from the API: <br />
+          <br />
+          {error}
+          <br />
+          <br />
+          View the{" "}
+          <a
+            href="https://github.com/cosmicjs/agency-template"
+            className="text-orange-600"
+          >
+            GitHub readme
+          </a>{" "}
+          for more information or reach out to{" "}
+          <a
+            href="https://www.cosmicjs.com/contact"
+            className="text-orange-600"
+          >
+            Cosmic support
+          </a>
+          .
+        </div>
+      )}
+    </>
   )
 }
