@@ -1,6 +1,8 @@
 // components/image-gallery.tsx
 "use client"
 
+import Zoom from "react-medium-image-zoom"
+import "react-medium-image-zoom/dist/styles.css"
 import { useState } from "react"
 import { cn } from "@/cosmic/utils"
 
@@ -23,11 +25,13 @@ export function ImageGalleryClient({
   return (
     <div className={className}>
       <div>
-        <img
-          src={`${mainItem.image.imgix_url}?w=1200&auto=format,compression`}
-          alt={mainItem.description}
-          className="mb-4 h-80 w-full rounded-xl object-cover object-center"
-        />
+        <Zoom classDialog="custom-zoom">
+          <img
+            src={`${mainItem.image.imgix_url}?w=1200&auto=format,compression`}
+            alt={mainItem.description}
+            className="mb-4 h-80 w-full rounded-xl object-cover object-center"
+          />
+        </Zoom>
       </div>
       <div className="flex gap-x-2">
         {items.map((item: GalleryItemType) => {

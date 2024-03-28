@@ -27,6 +27,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
+    "react-medium-image-zoom": "^5.1.11",
     "stripe": "^14.22.0",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7"
