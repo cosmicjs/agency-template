@@ -1,5 +1,5 @@
 // app/api/submissions/route.ts
-import { type NextRequest } from "next/server"
+import { type NextRequest, NextResponse } from "next/server"
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 export async function POST(request: NextRequest) {
@@ -20,6 +20,6 @@ export async function POST(request: NextRequest) {
     })
     return Response.json({ url: session.url })
   } catch (err) {
-    return Response.json(err)
+    return NextResponse.json(err, { status: 500 })
   }
 }

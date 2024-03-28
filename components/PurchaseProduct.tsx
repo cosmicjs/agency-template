@@ -25,10 +25,12 @@ export function PurchaseProduct({
       },
     })
     if (!res.ok) {
-      throw new Error("Failed to fetch data")
+      setSubmitting(false)
+      alert("There was an error with this request. Please contact support.")
+    } else {
+      const data = await res.json()
+      if (data.url) window.location = data.url
     }
-    const data = await res.json()
-    if (data.url) window.location = data.url
   }
   React.useEffect(() => {
     // Check to see if this is a redirect back from Checkout
