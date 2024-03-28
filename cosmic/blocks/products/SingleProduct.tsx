@@ -4,14 +4,14 @@ import Link from "next/link"
 import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery"
 import { cn } from "@/cosmic/utils"
 import { notFound } from "next/navigation"
-import { PurchaseProduct } from "@/components/PurchaseProduct";
-import { CheckCircleIcon, XCircleIcon } from "lucide-react";
+import { PurchaseProduct } from "@/components/PurchaseProduct"
+import { CheckCircleIcon, XCircleIcon } from "lucide-react"
 
 export async function SingleProduct({
   query,
   className,
   status,
-  purchased
+  purchased,
 }: {
   query: any
   className?: string
@@ -28,12 +28,15 @@ export async function SingleProduct({
     return (
       <section className={cn("md:container m-auto pb-8", className)}>
         <div className="relative m-auto max-w-[950px]">
-          {purchased &&
+          {purchased && (
             <div className="flex border-green-700 text-green-700 border p-4 rounded-lg mb-6">
               <CheckCircleIcon className="mr-4 size-4 mt-1" />
-              <div>Purchase complete. Thank you for your order, we will be in touch to get your project started soon!</div>
+              <div>
+                Purchase complete. Thank you for your order, we will be in touch
+                to get your project started soon!
+              </div>
             </div>
-          }
+          )}
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol role="list" className="flex space-x-2">
               <li>
@@ -71,6 +74,9 @@ export async function SingleProduct({
               </h1>
               <p className="mb-6 text-3xl tracking-tight text-gray-900 dark:text-white">
                 ${product.metadata.price.toLocaleString("en-US")}
+                {product.metadata.recurring.is_recurring && (
+                  <span> / {product.metadata.recurring.interval.value}</span>
+                )}
               </p>
               <div className="mb-8">
                 {!product.metadata.quantity ? (
