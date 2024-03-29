@@ -11,6 +11,7 @@ const display = Fjalla_One({
   subsets: ["latin"],
   variable: "--font-display",
 })
+import Banner from "@/components/Banner"
 
 export const metadata: Metadata = {
   title: "ProLine Content Corps",
@@ -34,6 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div>
+            <Banner />
             <Header />
             {children}
           </div>
