@@ -78,7 +78,7 @@ export default function Banner(): JSX.Element {
           href="https://www.cosmicjs.com/templates/agency"
           className="text-[#3c9dc7] dark:text-[#29ABE2] mr-1 font-medium"
         >
-          Agency Website Template page
+          Agency Website template page
         </a>
         and find the source code on
         <a
