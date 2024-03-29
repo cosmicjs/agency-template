@@ -14,8 +14,8 @@ export default async function Header() {
     .depth(1)
 
   return (
-    <nav className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg py-2 w-full z-[9999]">
-      <div className="flex w-full items-center md:container justify-between pl-2 pr-4">
+    <nav className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg w-full z-[9999]">
+      <div className="flex w-full items-center md:container justify-between p-4">
         <Link href="/">
           <img
             src={`${settings.metadata.logo.imgix_url}?w=500&auto=format,compression`}

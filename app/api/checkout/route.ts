@@ -1,4 +1,4 @@
-// app/api/submissions/route.ts
+// app/api/checkout/route.ts
 import { type NextRequest, NextResponse } from "next/server"
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 

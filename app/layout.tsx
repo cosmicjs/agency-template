@@ -4,7 +4,6 @@ import { Libre_Franklin, Fjalla_One } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import Banner from "@/components/Banner"
 import { ThemeProvider } from "@/components/theme-provider"
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" })
 const display = Fjalla_One({
@@ -12,6 +11,7 @@ const display = Fjalla_One({
   subsets: ["latin"],
   variable: "--font-display",
 })
+import Banner from "@/components/Banner"
 
 export const metadata: Metadata = {
   title: "ProLine Content Corps",
