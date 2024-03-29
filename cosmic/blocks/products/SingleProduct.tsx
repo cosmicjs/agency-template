@@ -4,7 +4,7 @@ import Link from "next/link"
 import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery"
 import { cn } from "@/cosmic/utils"
 import { notFound } from "next/navigation"
-import { PurchaseProduct } from "@/components/PurchaseProduct"
+import { PurchaseProduct } from "@/cosmic/blocks/products/PurchaseProduct"
 import { CheckCircleIcon, XCircleIcon } from "lucide-react"
 
 export async function SingleProduct({
