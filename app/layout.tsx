@@ -37,10 +37,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Banner />
           <CartProvider>
-            <Header />
-            {children}
+            <div>
+              <Banner />
+              <Header />
+              {children}
+            </div>
             <Footer />
           </CartProvider>
           <TailwindIndicator />
