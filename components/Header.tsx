@@ -1,7 +1,8 @@
 // components/header.tsx
-import Link from "next/link"
-import { cosmic } from "@/cosmic/client"
-import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu"
+import Link from "next/link";
+import { cosmic } from "@/cosmic/client";
+import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
+import { CheckOut } from "@/cosmic/blocks/products/CheckOut";
 
 export default async function Header() {
   // Header data
@@ -11,7 +12,7 @@ export default async function Header() {
       slug: "settings",
     })
     .props("metadata")
-    .depth(1)
+    .depth(1);
 
   return (
     <nav className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg w-full z-[9999]">
@@ -32,7 +33,10 @@ export default async function Header() {
           query={{ type: "navigation-menus", slug: "header" }}
           hasMobileMenu
         />
+        <div className="absolute right-12 md:right-2 top-2">
+          <CheckOut className="mr-2" productPath={"/services"} />
+        </div>
       </div>
     </nav>
-  )
+  );
 }
