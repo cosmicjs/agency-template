@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { CartProvider } from "@/components/cart-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import Banner from "@/components/Banner";
+import { Suspense } from "react";
 
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" });
 const display = Fjalla_One({
@@ -31,22 +32,24 @@ export default function RootLayout({
       <body
         className={`${display.variable} ${sans.variable} font-sans md:p-0 bg-white dark:bg-black h-dvh w-full`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <CartProvider>
-            <div>
-              <Banner />
-              <Header />
-              {children}
-            </div>
-            <Footer />
-          </CartProvider>
-          <TailwindIndicator />
-        </ThemeProvider>
+        <Suspense>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <CartProvider>
+              <div>
+                <Banner />
+                <Header />
+                {children}
+              </div>
+              <Footer />
+            </CartProvider>
+            <TailwindIndicator />
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );

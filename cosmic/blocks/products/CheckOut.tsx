@@ -114,7 +114,7 @@ export function CheckOut({
           {cartOpen ? (
             <div className="absolute w-[330px] top-12 right-0 bg-white dark:bg-black border-gray-300 dark:border-gray-500 border p-4 rounded-lg text-gray-700 dark:text-gray-200">
               <div className="text-xl mb-2 font-semibold">Your Cart</div>
-              <div class="max-h-[300px] overflow-scroll">
+              <div className="max-h-[300px] overflow-scroll">
                 {cart.map((item: ProductType) => {
                   return (
                     <CartItem
