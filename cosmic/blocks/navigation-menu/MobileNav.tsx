@@ -28,7 +28,7 @@ export function MobileNav({
         )}
       </button>
       {isOpen && (
-        <div className="absolute -right-[120px] top-11 z-[9999] w-[96svw] rounded-xl bg-white p-4 shadow-lg dark:bg-zinc-800">
+        <div className="absolute -right-3 top-full z-[9999] mt-2 w-[90svw] rounded-xl bg-white p-4 shadow-lg dark:bg-zinc-800">
           <div>
             {items.map((item: ItemType) => {
               return (
