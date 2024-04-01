@@ -1,7 +1,7 @@
 export default function Banner(): JSX.Element {
   return (
     <div className="bg-zinc-100 text-center md:flex justify-center p-5 dark:bg-zinc-800 text-base">
-      <div>
+      <div className="md:mr-4 mr-0">
         <a
           href="https://www.cosmicjs.com"
           className="text-[#3c9dc7] dark:text-[#29ABE2] font-medium"
