@@ -135,7 +135,9 @@ export function CheckOut({
                 {submitting ? (
                   <>Checking out...</>
                 ) : (
-                  <>Checkout Total: ${cartTotal(cart)}</>
+                  <>
+                    Checkout Total: ${cartTotal(cart).toLocaleString("en-US")}
+                  </>
                 )}
               </Button>
               <div
