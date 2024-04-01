@@ -1,5 +1,5 @@
-import { BlogCard, PostType } from "./BlogCard"
-import { cosmic } from "@/cosmic/client"
+import { BlogCard, PostType } from "./BlogCard";
+import { cosmic } from "@/cosmic/client";
 
 export async function BlogList({
   query,
@@ -9,12 +9,12 @@ export async function BlogList({
   className,
   status,
 }: {
-  query: any
-  sort?: string
-  limit?: number
-  skip?: number
-  className?: string
-  status?: "draft" | "published" | "any"
+  query: any;
+  sort?: string;
+  limit?: number;
+  skip?: number;
+  className?: string;
+  status?: "draft" | "published" | "any";
 }) {
   const { objects: posts } = await cosmic.objects
     .find(query)
@@ -23,13 +23,13 @@ export async function BlogList({
     .sort(sort ? sort : "-order")
     .limit(limit ? limit : 100)
     .skip(skip ? skip : 0)
-    .status(status ? status : "published")
+    .status(status ? status : "published");
 
   return (
     <div className={className}>
       {posts.map((post: PostType) => {
-        return <BlogCard key={post.id} post={post} />
+        return <BlogCard key={post.id} post={post} />;
       })}
     </div>
-  )
+  );
 }

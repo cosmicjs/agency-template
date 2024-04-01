@@ -1,6 +1,6 @@
 // app/page.tsx
-import { cosmic } from "@/cosmic/client"
-import { ProductList } from "@/cosmic/blocks/products/ProductList"
+import { cosmic } from "@/cosmic/client";
+import { ProductList } from "@/cosmic/blocks/products/ProductList";
 
 export default async function ShopPage() {
   const { object: page } = await cosmic.objects
@@ -9,7 +9,7 @@ export default async function ShopPage() {
       slug: "services",
     })
     .props("slug,title,metadata")
-    .depth(1)
+    .depth(1);
 
   return (
     <main className="p-4">
@@ -34,5 +34,5 @@ export default async function ShopPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }

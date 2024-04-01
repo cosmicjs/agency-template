@@ -1,24 +1,24 @@
-import { cn } from "@/cosmic/utils"
+import { cn } from "@/cosmic/utils";
 
 export type TestimonialType = {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
   metadata: {
-    company: string
-    position: string
-    quote: string
+    company: string;
+    position: string;
+    quote: string;
     image: {
-      imgix_url: string
-    }
-  }
-}
+      imgix_url: string;
+    };
+  };
+};
 
 export function Testimonial({
   testimonial,
   className,
 }: {
-  testimonial: TestimonialType
-  className?: string
+  testimonial: TestimonialType;
+  className?: string;
 }) {
   return (
     <figure
@@ -48,5 +48,5 @@ export function Testimonial({
         </figcaption>
       </div>
     </figure>
-  )
+  );
 }

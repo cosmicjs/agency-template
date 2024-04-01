@@ -1,7 +1,7 @@
 // app/page.tsx
-import { FAQs } from "@/cosmic/blocks/faqs/FAQs"
-import { Testimonials } from "@/cosmic/blocks/testimonials/Testimonials"
-import { Page } from "@/cosmic/blocks/pages/Page"
+import { FAQs } from "@/cosmic/blocks/faqs/FAQs";
+import { Testimonials } from "@/cosmic/blocks/testimonials/Testimonials";
+import { Page } from "@/cosmic/blocks/pages/Page";
 
 export default async function HomePage() {
   return (
@@ -25,5 +25,5 @@ export default async function HomePage() {
         </div>
       </section>
     </main>
-  )
+  );
 }

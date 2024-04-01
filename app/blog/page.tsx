@@ -1,5 +1,5 @@
 // app/blog/page.tsx
-import { BlogList } from "@/cosmic/blocks/blog/BlogList"
+import { BlogList } from "@/cosmic/blocks/blog/BlogList";
 
 export default async function BlogPage() {
   return (
@@ -19,5 +19,5 @@ export default async function BlogPage() {
         />
       </div>
     </main>
-  )
+  );
 }

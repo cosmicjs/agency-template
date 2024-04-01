@@ -1,29 +1,29 @@
 // app/blog/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client"
-import Markdown from "react-markdown"
-import { ArrowLeftIcon } from "lucide-react"
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { Comments } from "@/cosmic/blocks/comments/Comments"
-import { getFormattedDate } from "@/cosmic/utils"
+import { cosmic } from "@/cosmic/client";
+import Markdown from "react-markdown";
+import { ArrowLeftIcon } from "lucide-react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Comments } from "@/cosmic/blocks/comments/Comments";
+import { getFormattedDate } from "@/cosmic/utils";
 
 export async function SingleBlog({
   query,
   className,
   status,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
 }) {
   try {
     const { object: blog } = await cosmic.objects
       .findOne(query)
       .props("id,slug,title,metadata")
       .depth(1)
-      .status(status ? status : "published")
+      .status(status ? status : "published");
 
-    const date = getFormattedDate(blog.metadata.published_date)
+    const date = getFormattedDate(blog.metadata.published_date);
 
     return (
       <div className={className}>
@@ -61,7 +61,7 @@ export async function SingleBlog({
               </div>
               <div className="md:absolute md:right-0">
                 {blog.metadata.categories.map((category: any) => {
-                  const categoryBackgroundColor = `${category.metadata.color}22`
+                  const categoryBackgroundColor = `${category.metadata.color}22`;
                   return (
                     <span
                       className="mb-1 mr-1 rounded-xl px-3 py-1 text-black/70 dark:text-white/70"
@@ -73,7 +73,7 @@ export async function SingleBlog({
                     >
                       {category.title}
                     </span>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -99,8 +99,8 @@ export async function SingleBlog({
           </div>
         </section>
       </div>
-    )
+    );
   } catch (e: any) {
-    if (e.status === 404) return notFound()
+    if (e.status === 404) return notFound();
   }
 }
