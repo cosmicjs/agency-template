@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
         price: price.id,
         quantity: 1,
       });
-      mode = price.recurring ? "subscription" : "payment";
+      // If any items are recurring
+      if (price.type === "recurring") mode = "subscription";
     }
     const session = await stripe.checkout.sessions.create({
       line_items,
