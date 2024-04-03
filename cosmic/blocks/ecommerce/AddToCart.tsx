@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { Button } from "@/cosmic/elements/Button";
 import { useState } from "react";
 import { Loader2, XIcon } from "lucide-react";
-import { CartContext } from "@/components/cart-provider";
+import { CartContext } from "@/cosmic/blocks/ecommerce/CartProvider";
 
 export type ProductType = {
   title: string;

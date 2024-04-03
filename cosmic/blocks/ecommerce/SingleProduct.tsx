@@ -6,7 +6,7 @@ import { cn } from "@/cosmic/utils";
 import { notFound } from "next/navigation";
 import { CheckCircleIcon, XCircleIcon } from "lucide-react";
 import { Button } from "@/cosmic/elements/Button";
-import { AddToCart } from "@/cosmic/blocks/products/AddToCart";
+import { AddToCart } from "@/cosmic/blocks/ecommerce/AddToCart";
 
 export async function SingleProduct({
   query,
@@ -76,7 +76,19 @@ export async function SingleProduct({
               <p className="mb-6 text-3xl tracking-tight text-gray-900 dark:text-white">
                 ${product.metadata.price.toLocaleString("en-US")}
                 {product.metadata.recurring.is_recurring && (
-                  <span> / {product.metadata.recurring.interval.value}</span>
+                  <span>
+                    {" "}
+                    /{" "}
+                    {product.metadata.recurring.interval_count &&
+                    product.metadata.recurring.interval_count !== 1
+                      ? product.metadata.recurring.interval_count
+                      : ""}{" "}
+                    {product.metadata.recurring.interval.value}
+                    {product.metadata.recurring.interval_count &&
+                    product.metadata.recurring.interval_count !== 1
+                      ? "s"
+                      : ""}
+                  </span>
                 )}
               </p>
               <div className="mb-8">

@@ -5,8 +5,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Button } from "@/cosmic/elements/Button";
 import { ShoppingCartIcon, XIcon, Trash2Icon } from "lucide-react";
 import { useState, useContext } from "react";
-import { CartContext } from "@/components/cart-provider";
-import { ProductType } from "@/cosmic/blocks/products/AddToCart";
+import { CartContext } from "@/cosmic/blocks/ecommerce/CartProvider";
+import { ProductType } from "@/cosmic/blocks/ecommerce/AddToCart";
 import Link from "next/link";
 import { cn } from "@/cosmic/utils";
 
@@ -65,8 +65,20 @@ export function CheckOut({
           </div>
           <div className="mb-2 text-lg">
             ${item.metadata.price.toLocaleString("en-US")}
-            {item.metadata?.recurring?.is_recurring && (
-              <span> / {item.metadata.recurring.interval.value}</span>
+            {item.metadata.recurring.is_recurring && (
+              <span>
+                {" "}
+                /{" "}
+                {item.metadata.recurring.interval_count &&
+                item.metadata.recurring.interval_count !== 1
+                  ? item.metadata.recurring.interval_count
+                  : ""}{" "}
+                {item.metadata.recurring.interval.value}
+                {item.metadata.recurring.interval_count &&
+                item.metadata.recurring.interval_count !== 1
+                  ? "s"
+                  : ""}
+              </span>
             )}
           </div>
           <div className="cursor-pointer flex" onClick={() => removeItem(item)}>

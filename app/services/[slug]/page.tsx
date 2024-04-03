@@ -1,5 +1,5 @@
 // app/shop/[slug]/page.tsx
-import { SingleProduct } from "@/cosmic/blocks/products/SingleProduct";
+import { SingleProduct } from "@/cosmic/blocks/ecommerce/SingleProduct";
 export default async function SingleProductPage({
   params,
   searchParams,

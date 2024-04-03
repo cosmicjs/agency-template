@@ -1,6 +1,6 @@
 // app/page.tsx
 import { cosmic } from "@/cosmic/client";
-import { ProductList } from "@/cosmic/blocks/products/ProductList";
+import { ProductList } from "@/cosmic/blocks/ecommerce/ProductList";
 
 export default async function ShopPage() {
   const { object: page } = await cosmic.objects

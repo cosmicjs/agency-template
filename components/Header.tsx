@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { cosmic } from "@/cosmic/client";
 import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
-import { CheckOut } from "@/cosmic/blocks/products/CheckOut";
+import { CheckOut } from "@/cosmic/blocks/ecommerce/CheckOut";
 
 export default async function Header() {
   // Header data
