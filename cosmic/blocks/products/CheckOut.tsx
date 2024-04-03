@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-// @ts-nocheck
 "use client";
 import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
@@ -32,7 +31,7 @@ export function CheckOut({
 }) {
   const [submitting, setSubmitting] = useState(false);
   const { cart, setCart, cartOpen, setCartOpen } = useContext(CartContext);
-  const [error, setError] = useState();
+  const [error, setError] = useState<boolean | undefined>();
 
   function removeItem(item: ProductType) {
     const newCart = cart.filter(
@@ -66,7 +65,7 @@ export function CheckOut({
           </div>
           <div className="mb-2 text-lg">
             ${item.metadata.price.toLocaleString("en-US")}
-            {item.metadata.recurring.is_recurring && (
+            {item.metadata?.recurring?.is_recurring && (
               <span> / {item.metadata.recurring.interval.value}</span>
             )}
           </div>

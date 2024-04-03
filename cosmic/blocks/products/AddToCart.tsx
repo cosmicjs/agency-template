@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import React, { useContext } from "react";
 import { Button } from "@/cosmic/elements/Button";
@@ -9,12 +8,15 @@ import { CartContext } from "@/components/cart-provider";
 export type ProductType = {
   title: string;
   id: string;
+  slug: string;
   metadata: {
     stripe_product_id: string;
     image: {
       imgix_url: string;
     };
     price: number;
+    recurring: any;
+    is_recurring: boolean;
   };
 };
 
