@@ -1,25 +1,25 @@
 // app/events/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client"
-import Link from "next/link"
-import { Button } from "@/cosmic/elements/Button"
-import { cn, getFormattedDate } from "@/cosmic/utils"
-import { notFound } from "next/navigation"
+import { cosmic } from "@/cosmic/client";
+import Link from "next/link";
+import { Button } from "@/cosmic/elements/Button";
+import { cn, getFormattedDate } from "@/cosmic/utils";
+import { notFound } from "next/navigation";
 
 export async function SingleEvent({
   query,
   className,
   status,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
 }) {
   try {
     const { object: event } = await cosmic.objects
       .findOne(query)
       .props("id,slug,title,metadata")
       .depth(1)
-      .status(status ? status : "published")
+      .status(status ? status : "published");
 
     return (
       <section className={cn("m-auto pb-8 md:container", className)}>
@@ -123,8 +123,8 @@ export async function SingleEvent({
           </div>
         </div>
       </section>
-    )
+    );
   } catch (e: any) {
-    if (e.status === 404) return notFound()
+    if (e.status === 404) return notFound();
   }
 }

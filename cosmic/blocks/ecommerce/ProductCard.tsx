@@ -1,26 +1,26 @@
 // components/product-card.tsx
-import Link from "next/link"
-import { cn } from "@/cosmic/utils"
+import Link from "next/link";
+import { cn } from "@/cosmic/utils";
 
 export type ProductType = {
-  id: string
-  title: string
-  slug: string
+  id: string;
+  title: string;
+  slug: string;
   metadata: {
     image: {
-      imgix_url: string
-    }
-    description: string
-    price: number
-  }
-}
+      imgix_url: string;
+    };
+    description: string;
+    price: number;
+  };
+};
 
 export function ProductCard({
   product,
   className,
 }: {
-  product: ProductType
-  className?: string
+  product: ProductType;
+  className?: string;
 }) {
   return (
     <Link
@@ -46,5 +46,5 @@ export function ProductCard({
         </p>
       </div>
     </Link>
-  )
+  );
 }

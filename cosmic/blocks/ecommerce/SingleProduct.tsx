@@ -1,12 +1,12 @@
 // app/shop/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client"
-import Link from "next/link"
-import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery"
-import { cn } from "@/cosmic/utils"
-import { notFound } from "next/navigation"
-import { PurchaseProduct } from "@/cosmic/blocks/products/PurchaseProduct"
-import { CheckCircleIcon, XCircleIcon } from "lucide-react"
-import { Button } from "@/cosmic/elements/Button"
+import { cosmic } from "@/cosmic/client";
+import Link from "next/link";
+import { ImageGallery } from "@/cosmic/blocks/image-gallery/ImageGallery";
+import { cn } from "@/cosmic/utils";
+import { notFound } from "next/navigation";
+import { CheckCircleIcon, XCircleIcon } from "lucide-react";
+import { Button } from "@/cosmic/elements/Button";
+import { AddToCart } from "@/cosmic/blocks/ecommerce/AddToCart";
 
 export async function SingleProduct({
   query,
@@ -14,17 +14,17 @@ export async function SingleProduct({
   status,
   purchased,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
-  purchased?: boolean
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
+  purchased?: boolean;
 }) {
   try {
     const { object: product } = await cosmic.objects
       .findOne(query)
       .props("id,slug,title,metadata")
       .depth(1)
-      .status(status ? status : "published")
+      .status(status ? status : "published");
 
     return (
       <section className={cn("md:container m-auto pb-8", className)}>
@@ -76,7 +76,19 @@ export async function SingleProduct({
               <p className="mb-6 text-3xl tracking-tight text-gray-900 dark:text-white">
                 ${product.metadata.price.toLocaleString("en-US")}
                 {product.metadata.recurring.is_recurring && (
-                  <span> / {product.metadata.recurring.interval.value}</span>
+                  <span>
+                    {" "}
+                    /{" "}
+                    {product.metadata.recurring.interval_count &&
+                    product.metadata.recurring.interval_count !== 1
+                      ? product.metadata.recurring.interval_count
+                      : ""}{" "}
+                    {product.metadata.recurring.interval.value}
+                    {product.metadata.recurring.interval_count &&
+                    product.metadata.recurring.interval_count !== 1
+                      ? "s"
+                      : ""}
+                  </span>
                 )}
               </p>
               <div className="mb-8">
@@ -91,9 +103,9 @@ export async function SingleProduct({
                 ) : (
                   <>
                     {product.metadata.stripe_product_id ? (
-                      <PurchaseProduct
-                        stripe_product_id={product.metadata.stripe_product_id}
-                      />
+                      <>
+                        <AddToCart product={product} />
+                      </>
                     ) : (
                       <div className="flex border-red-500 dark:text-white text-gray-700 border p-4 rounded-lg">
                         <XCircleIcon className="text-red-500 mr-4" />
@@ -116,8 +128,8 @@ export async function SingleProduct({
           </div>
         </div>
       </section>
-    )
+    );
   } catch (e: any) {
-    if (e.status === 404) return notFound()
+    if (e.status === 404) return notFound();
   }
 }

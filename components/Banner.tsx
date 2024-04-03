@@ -1,7 +1,7 @@
 export default function Banner(): JSX.Element {
   return (
     <div className="bg-zinc-100 text-center md:flex justify-center p-5 dark:bg-zinc-800 text-base">
-      <div>
+      <div className="md:mr-4 mr-0">
         <a
           href="https://www.cosmicjs.com"
           className="text-[#3c9dc7] dark:text-[#29ABE2] font-medium"
@@ -12,7 +12,7 @@ export default function Banner(): JSX.Element {
             viewBox="0 0 37 37"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="inline mr-4"
+            className="inline"
           >
             <path
               d="M14.4706 12.7379C15.3467 11.953 16.1555 11.168 17.0316 10.4544C16.3576 9.95492 15.7511 9.52676 15.1445 9.0986C14.4032 9.74084 13.6618 10.4544 12.9205 11.168C13.6618 11.4535 14.201 12.0243 14.4706 12.7379Z"
@@ -91,5 +91,5 @@ export default function Banner(): JSX.Element {
         .
       </div>
     </div>
-  )
+  );
 }

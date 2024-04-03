@@ -1,22 +1,22 @@
 // components/product-card.tsx
-import Link from "next/link"
+import Link from "next/link";
 
 export type ProjectType = {
-  id: string
-  title: string
-  slug: string
+  id: string;
+  title: string;
+  slug: string;
   metadata: {
     image: {
-      imgix_url?: string
-    }
-    summary: string
+      imgix_url?: string;
+    };
+    summary: string;
     client: {
-      title: string
-    }
-    year: number
-    content: number
-  }
-}
+      title: string;
+    };
+    year: number;
+    content: number;
+  };
+};
 
 export function ProjectCard({ project }: { project: ProjectType }) {
   return (
@@ -51,5 +51,5 @@ export function ProjectCard({ project }: { project: ProjectType }) {
         </p>
       </div>
     </Link>
-  )
+  );
 }

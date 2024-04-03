@@ -1,34 +1,34 @@
-import Link from "next/link"
-import { getFormattedDate } from "@/cosmic/utils"
+import Link from "next/link";
+import { getFormattedDate } from "@/cosmic/utils";
 
 export type PostType = {
-  id: string
-  title: string
-  slug: string
+  id: string;
+  title: string;
+  slug: string;
   metadata: {
-    categories: any
+    categories: any;
     image: {
-      imgix_url: string
-    }
-    content: string
+      imgix_url: string;
+    };
+    content: string;
     author: {
-      title: string
+      title: string;
       metadata: {
         image: {
-          imgix_url: string
-        }
-      }
-    }
-    published_date: string
-  }
-}
+          imgix_url: string;
+        };
+      };
+    };
+    published_date: string;
+  };
+};
 
 export function BlogCard({
   post,
   className,
 }: {
-  post: PostType
-  className?: string
+  post: PostType;
+  className?: string;
 }) {
   return (
     <article className={className}>
@@ -57,7 +57,7 @@ export function BlogCard({
                 >
                   {category.title}
                 </span>
-              )
+              );
             })}
             <h2 className="mt-2 text-2xl font-bold text-black dark:text-white">
               {post.title}
@@ -97,5 +97,5 @@ export function BlogCard({
         </div>
       </Link>
     </article>
-  )
+  );
 }

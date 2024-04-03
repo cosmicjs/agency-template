@@ -1,5 +1,5 @@
 // app/events/page.tsx
-import { EventsList } from "@/cosmic/blocks/events/EventsList"
+import { EventsList } from "@/cosmic/blocks/events/EventsList";
 
 export default async function EventListPage() {
   return (
@@ -16,5 +16,5 @@ export default async function EventListPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }

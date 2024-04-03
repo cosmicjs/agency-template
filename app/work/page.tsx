@@ -1,6 +1,6 @@
 // app/page.tsx
-import { ProjectCard, ProjectType } from "@/components/project-card"
-import { cosmic } from "@/cosmic/client"
+import { ProjectCard, ProjectType } from "@/components/project-card";
+import { cosmic } from "@/cosmic/client";
 
 export default async function WorkPage() {
   const { object: page } = await cosmic.objects
@@ -9,14 +9,14 @@ export default async function WorkPage() {
       slug: "work",
     })
     .props("slug,title,metadata")
-    .depth(1)
+    .depth(1);
 
   const { objects: projects } = await cosmic.objects
     .find({
       type: "projects",
     })
     .props("id,slug,title,metadata")
-    .depth(1)
+    .depth(1);
 
   return (
     <main className="p-4">
@@ -33,11 +33,11 @@ export default async function WorkPage() {
           </div>
           <div className="mt-6 w-full grid grid-cols-1 gap-x-6 gap-y-10 lg:grid-cols-2 xl:gap-x-8">
             {projects.map((project: ProjectType) => {
-              return <ProjectCard key={project.id} project={project} />
+              return <ProjectCard key={project.id} project={project} />;
             })}
           </div>
         </div>
       </section>
     </main>
-  )
+  );
 }

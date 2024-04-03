@@ -1,12 +1,12 @@
 // app/projects/[slug]/page.tsx
-import { cosmic } from "@/cosmic/client"
-import { ArrowLeftIcon } from "lucide-react"
-import Link from "next/link"
+import { cosmic } from "@/cosmic/client";
+import { ArrowLeftIcon } from "lucide-react";
+import Link from "next/link";
 
 export default async function SingleProjectsPage({
   params,
 }: {
-  params: { slug: string }
+  params: { slug: string };
 }) {
   const { object: project } = await cosmic.objects
     .findOne({
@@ -14,7 +14,7 @@ export default async function SingleProjectsPage({
       slug: params.slug,
     })
     .props("id,slug,title,metadata")
-    .depth(1)
+    .depth(1);
 
   return (
     <main className="p-4">
@@ -59,5 +59,5 @@ export default async function SingleProjectsPage({
         </div>
       </section>
     </main>
-  )
+  );
 }

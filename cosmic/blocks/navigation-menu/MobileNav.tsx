@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import React from "react"
-import Link from "next/link"
-import { cn } from "@/cosmic/utils"
+import React from "react";
+import Link from "next/link";
+import { cn } from "@/cosmic/utils";
 
-import { MenuIcon, XIcon } from "lucide-react"
-import { ItemType } from "./NavMenu"
+import { MenuIcon, XIcon } from "lucide-react";
+import { ItemType } from "./NavMenu";
 
 export function MobileNav({
   items,
   className,
 }: {
-  items: ItemType[]
-  className?: string
+  items: ItemType[];
+  className?: string;
 }) {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className={cn("relative md:hidden", className)}>
       <button
@@ -41,11 +41,11 @@ export function MobileNav({
                 >
                   {item.title}
                 </Link>
-              )
+              );
             })}
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }

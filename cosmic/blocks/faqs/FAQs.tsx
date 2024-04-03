@@ -1,32 +1,32 @@
 // components/faqs.tsx
-import { cosmic } from "@/cosmic/client"
+import { cosmic } from "@/cosmic/client";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./Accordion"
+} from "./Accordion";
 
 type FAQ = {
-  question: string
-  answer: string
-}
+  question: string;
+  answer: string;
+};
 
 export async function FAQs({
   query,
   className,
   status,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
 }) {
   const { object: page } = await cosmic.objects
     .findOne(query)
     .props("slug,title,metadata")
     .depth(1)
-    .status(status ? status : "published")
-  if (!page?.metadata?.faqs) return <></>
+    .status(status ? status : "published");
+  if (!page?.metadata?.faqs) return <></>;
   return (
     <div className={className}>
       {(page?.metadata?.faqs).map((faq: FAQ) => {
@@ -37,8 +37,8 @@ export async function FAQs({
               <AccordionContent>{faq.answer}</AccordionContent>
             </AccordionItem>
           </Accordion>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -1,8 +1,12 @@
-import Link from "next/link"
-import { cosmic } from "@/cosmic/client"
-import { MobileNav } from "./MobileNav"
+import Link from "next/link";
+import { cosmic } from "@/cosmic/client";
+import { MobileNav } from "./MobileNav";
 
-export type ItemType = { title: string; link: string; open_in_new_tab: boolean }
+export type ItemType = {
+  title: string;
+  link: string;
+  open_in_new_tab: boolean;
+};
 
 export async function NavMenu({
   query,
@@ -10,16 +14,16 @@ export async function NavMenu({
   status,
   hasMobileMenu,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
-  hasMobileMenu?: boolean
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
+  hasMobileMenu?: boolean;
 }) {
   const { object: nav } = await cosmic.objects
     .findOne(query)
     .props("metadata")
     .depth(1)
-    .status(status ? status : "published")
+    .status(status ? status : "published");
   return (
     <div className={className}>
       {/* Desktop */}
@@ -34,11 +38,11 @@ export async function NavMenu({
             >
               {item.title}
             </Link>
-          )
+          );
         })}
       </div>
       {/* Mobile */}
       {hasMobileMenu && <MobileNav items={nav.metadata.items} />}
     </div>
-  )
+  );
 }

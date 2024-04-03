@@ -1,6 +1,6 @@
 // app/page.tsx
-import { cosmic } from "@/cosmic/client"
-import { TeamList } from "@/cosmic/blocks/team/TeamList"
+import { cosmic } from "@/cosmic/client";
+import { TeamList } from "@/cosmic/blocks/team/TeamList";
 
 export default async function AboutPage() {
   const { object: page } = await cosmic.objects
@@ -9,7 +9,7 @@ export default async function AboutPage() {
       slug: "about",
     })
     .props("slug,title,metadata")
-    .depth(1)
+    .depth(1);
   return (
     <main className="py-4">
       <section className="pb-8 m-auto px-4">
@@ -35,5 +35,5 @@ export default async function AboutPage() {
         </section>
       </div>
     </main>
-  )
+  );
 }

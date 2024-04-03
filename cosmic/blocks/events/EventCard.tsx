@@ -1,29 +1,29 @@
-import { cn, getFormattedDate } from "@/cosmic/utils"
-import { Calendar, Clock, Pin } from "lucide-react"
-import Link from "next/link"
+import { cn, getFormattedDate } from "@/cosmic/utils";
+import { Calendar, Clock, Pin } from "lucide-react";
+import Link from "next/link";
 
 export type EventCardType = {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
   metadata: {
-    description: string
-    location: string
-    start_date: string
-    start_time: string
-    end_date: string
-    end_time: string
+    description: string;
+    location: string;
+    start_date: string;
+    start_time: string;
+    end_date: string;
+    end_time: string;
     image: {
-      imgix_url: string
-    }
-  }
-}
+      imgix_url: string;
+    };
+  };
+};
 
 export function EventCard({
   event,
   className,
 }: {
-  event: EventCardType
-  className?: string
+  event: EventCardType;
+  className?: string;
 }) {
   return (
     <Link
@@ -69,5 +69,5 @@ export function EventCard({
         </div>
       </div>
     </Link>
-  )
+  );
 }

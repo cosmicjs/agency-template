@@ -1,35 +1,35 @@
 // components/comment-form.tsx
-"use client"
+"use client";
 
-import { useState } from "react"
-import { CheckCircle, Loader2, XCircle } from "lucide-react"
-import { cn } from "@/cosmic/utils"
+import { useState } from "react";
+import { CheckCircle, Loader2, XCircle } from "lucide-react";
+import { cn } from "@/cosmic/utils";
 
-import { Button } from "@/cosmic/elements/Button"
-import { Input } from "@/cosmic/elements/Input"
-import { Label } from "@/cosmic/elements/Label"
-import { Textarea } from "@/cosmic/elements/TextArea"
+import { Button } from "@/cosmic/elements/Button";
+import { Input } from "@/cosmic/elements/Input";
+import { Label } from "@/cosmic/elements/Label";
+import { Textarea } from "@/cosmic/elements/TextArea";
 
 export function CommentForm({
   resourceId,
   className,
 }: {
-  resourceId: string
-  className?: string
+  resourceId: string;
+  className?: string;
 }) {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [comment, setComment] = useState("")
-  const [submitting, setSubmitting] = useState(false)
-  const [sumbitted, setSubmitted] = useState(false)
-  const [error, setError] = useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [comment, setComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [sumbitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
   async function handleSubmitComment(e: React.SyntheticEvent) {
-    setError(false)
-    setSubmitting(true)
+    setError(false);
+    setSubmitting(true);
     if (!name.trim() || !email.trim() || !comment.trim()) {
-      setSubmitting(false)
-      setError(true)
-      return
+      setSubmitting(false);
+      setError(true);
+      return;
     }
     const newComment = {
       type: "comments",
@@ -39,37 +39,37 @@ export function CommentForm({
         comment,
         resource: resourceId, // Add resource id here such as blog post or product id
       },
-    }
+    };
     try {
       await fetch("/api/comments", {
         method: "POST",
         body: JSON.stringify({ comment: newComment }),
-      })
+      });
     } catch (err) {
-      setSubmitting(false)
-      setError(true)
-      return
+      setSubmitting(false);
+      setError(true);
+      return;
     }
-    setSubmitting(false)
-    setSubmitted(true)
+    setSubmitting(false);
+    setSubmitted(true);
     setTimeout(() => {
-      setSubmitted(false)
-      setName("")
-      setEmail("")
-      setComment("")
-    }, 3000)
+      setSubmitted(false);
+      setName("");
+      setEmail("");
+      setComment("");
+    }, 3000);
   }
   function handleChangeName(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement
-    setName(target.value)
+    const target = e.target as HTMLInputElement;
+    setName(target.value);
   }
   function handleChangeEmail(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement
-    setEmail(target.value)
+    const target = e.target as HTMLInputElement;
+    setEmail(target.value);
   }
   function handleChangeComment(e: React.SyntheticEvent) {
-    const target = e.target as HTMLInputElement
-    setComment(target.value)
+    const target = e.target as HTMLInputElement;
+    setComment(target.value);
   }
   return (
     <div className={cn("mb-8", className)}>
@@ -133,5 +133,5 @@ export function CommentForm({
         </>
       )}
     </div>
-  )
+  );
 }

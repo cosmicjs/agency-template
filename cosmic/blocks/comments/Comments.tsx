@@ -1,24 +1,24 @@
 // components/comments.tsx
-import { cosmic } from "@/cosmic/client"
-import { UserRound } from "lucide-react"
-import { cn } from "@/cosmic/utils"
-import { CommentForm } from "./CommentForm"
+import { cosmic } from "@/cosmic/client";
+import { UserRound } from "lucide-react";
+import { cn } from "@/cosmic/utils";
+import { CommentForm } from "./CommentForm";
 
 type Comment = {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
   metadata: {
-    comment: string
-  }
-  created_at: string
-}
+    comment: string;
+  };
+  created_at: string;
+};
 
 function Comment({
   comment,
   className,
 }: {
-  comment: Comment
-  className?: string
+  comment: Comment;
+  className?: string;
 }) {
   const date = new Date(comment.created_at).toLocaleDateString("en-us", {
     year: "numeric",
@@ -26,7 +26,7 @@ function Comment({
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
-  })
+  });
   return (
     <div
       className={cn(
@@ -45,7 +45,7 @@ function Comment({
         {comment.metadata.comment}
       </div>
     </div>
-  )
+  );
 }
 
 export async function Comments({
@@ -53,12 +53,12 @@ export async function Comments({
   className,
   status,
 }: {
-  query: any
-  className?: string
-  status?: "draft" | "published" | "any"
+  query: any;
+  className?: string;
+  status?: "draft" | "published" | "any";
 }) {
-  let comments = []
-  const resourceId = query["metadata.resource"]
+  let comments = [];
+  const resourceId = query["metadata.resource"];
   try {
     // Get the id
     const { objects } = await cosmic.objects
@@ -66,16 +66,16 @@ export async function Comments({
       .props("title,slug,metadata,created_at")
       .depth(1)
       .sort("created_at")
-      .status(status ? status : "published")
-    comments = objects
+      .status(status ? status : "published");
+    comments = objects;
   } catch (err) {}
   return (
     <div className={className}>
       <h2 className="mb-4 text-2xl">Comments</h2>
       {comments.map((comment: Comment) => {
-        return <Comment comment={comment} key={comment.slug} />
+        return <Comment comment={comment} key={comment.slug} />;
       })}
       <CommentForm resourceId={resourceId} />
     </div>
-  )
+  );
 }

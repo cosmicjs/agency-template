@@ -1,9 +1,9 @@
 // components/footer.tsx
-import { cosmic } from "@/cosmic/client"
-import { buttonVariants } from "@/cosmic/elements/Button"
-import { MailIcon, PhoneIcon } from "lucide-react"
-import { ModeToggle } from "./theme-toggle"
-import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu"
+import { cosmic } from "@/cosmic/client";
+import { buttonVariants } from "@/cosmic/elements/Button";
+import { MailIcon, PhoneIcon } from "lucide-react";
+import { ModeToggle } from "./theme-toggle";
+import { NavMenu } from "@/cosmic/blocks/navigation-menu/NavMenu";
 
 export default async function Footer() {
   const { object: settings } = await cosmic.objects
@@ -12,15 +12,15 @@ export default async function Footer() {
       slug: "settings",
     })
     .props("metadata")
-    .depth(1)
+    .depth(1);
 
   type Link = {
-    url: string
-    company: string
+    url: string;
+    company: string;
     icon: {
-      imgix_url: string
-    }
-  }
+      imgix_url: string;
+    };
+  };
 
   return (
     <nav className="pb-8 md:my-10 mx-auto flex flex-col lg:flex-row items-center justify-between container w-full">
@@ -57,10 +57,10 @@ export default async function Footer() {
                 alt={link.company}
               />
             </a>
-          )
+          );
         })}
       </div>
       <ModeToggle />
     </nav>
-  )
+  );
 }

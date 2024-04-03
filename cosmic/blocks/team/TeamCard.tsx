@@ -1,27 +1,27 @@
 // components/team-card.tsx
-import { cn } from "@/cosmic/utils"
+import { cn } from "@/cosmic/utils";
 
 export type MemberType = {
-  title: string
-  slug: string
+  title: string;
+  slug: string;
   metadata: {
     image: {
-      imgix_url: string
-    }
-    position: string
-    bio: string
+      imgix_url: string;
+    };
+    position: string;
+    bio: string;
     links: {
-      x: string
-      linkedin: string
-    }
-  }
-}
+      x: string;
+      linkedin: string;
+    };
+  };
+};
 export function TeamCard({
   member,
   className,
 }: {
-  member: MemberType
-  className?: string
+  member: MemberType;
+  className?: string;
 }) {
   return (
     <div
@@ -92,5 +92,5 @@ export function TeamCard({
         </div>
       </div>
     </div>
-  )
+  );
 }
