@@ -5,6 +5,7 @@ export default function Banner(): JSX.Element {
         <a
           href="https://www.cosmicjs.com"
           className="text-[#3c9dc7] dark:text-[#29ABE2] font-medium"
+          aria-label="Go to Cosmic website"
         >
           <svg
             width="37"
