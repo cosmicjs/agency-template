@@ -6,7 +6,7 @@
 
 🛒 Now includes product management and checkout using Stripe.
 
-A website template built using Cosmic's data infused components, [Blocks](https://blocks.cosmicjs.com). Use this template to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
+A website template built using Cosmic's React components, [Blocks](https://blocks.cosmicjs.com). Use this template to get familiar with Blocks and how they can be used to build common content-powered features for your websites and apps, or simply use it as a starting point for your next project. Save development time and learn content modeling best practices.
 
 ## Links
 
