@@ -9,6 +9,7 @@ import { CartProvider } from "@/cosmic/blocks/ecommerce/CartProvider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import Banner from "@/components/Banner";
 import { Suspense } from "react";
+import { AuthProvider } from "@/cosmic/context/AuthContext";
 
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" });
 const display = Fjalla_One({
@@ -39,22 +40,24 @@ export default function RootLayout({
         className={`${display.variable} ${sans.variable} font-sans md:p-0 bg-white dark:bg-black h-dvh w-full`}
       >
         <Suspense>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <CartProvider>
-              <div>
-                <Banner />
-                <Header />
-                {children}
-              </div>
-              <Footer />
-            </CartProvider>
-            <TailwindIndicator />
-          </ThemeProvider>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <CartProvider>
+                <div>
+                  <Banner />
+                  <Header />
+                  {children}
+                </div>
+                <Footer />
+              </CartProvider>
+              <TailwindIndicator />
+            </ThemeProvider>
+          </AuthProvider>
         </Suspense>
       </body>
     </html>

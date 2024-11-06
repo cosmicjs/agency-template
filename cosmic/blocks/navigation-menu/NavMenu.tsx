@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cosmic } from "@/cosmic/client";
 import { MobileNav } from "./MobileNav";
+import { AuthButton } from "../user/AuthButton";
 
 export type ItemType = {
   title: string;
@@ -40,6 +41,7 @@ export async function NavMenu({
             </Link>
           );
         })}
+        <AuthButton />
       </div>
       {/* Mobile */}
       {hasMobileMenu && <MobileNav items={nav.metadata.items} />}
