@@ -103,6 +103,7 @@ export async function login(formData: FormData) {
         type: "users",
         "metadata.email": email,
         "metadata.email_verified": true,
+        "metadata.active_status": true,
       })
       .props(["id", "title", "metadata"])
       .depth(0);
@@ -146,6 +147,15 @@ export async function getUserData(userId: string) {
       .props("id,title,metadata")
       .depth(0);
 
+    if (!object) {
+      return { data: null, error: "User not found" };
+    }
+
+    // Check active status after finding the user
+    if (!object.metadata.active_status) {
+      return { data: null, error: "Account is not active" };
+    }
+
     return { data: object, error: null };
   } catch (error) {
     return { data: null, error: "Failed to fetch user data" };
@@ -165,11 +175,12 @@ export async function getUserFromCookie() {
       .findOne({
         type: "users",
         id: userId.value,
+        "metadata.active_status": true,
       })
       .props(["id", "metadata.name", "metadata.email", "metadata.image"])
       .depth(0);
 
-    if (!result) {
+    if (!result?.object) {
       return null;
     }
 

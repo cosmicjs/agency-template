@@ -3,32 +3,56 @@
 import { useAuth } from "@/cosmic/blocks/user/AuthContext";
 import { UserProfileForm } from "@/cosmic/blocks/user/UserProfileForm";
 import { useEffect, useState } from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getUserData } from "@/cosmic/blocks/user/actions";
 import { Loader2 } from "lucide-react";
 
 export default function DashboardPage() {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, logout } = useAuth();
   const [userData, setUserData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !user) {
-      redirect("/login");
-    }
+    let isMounted = true;
 
-    if (user) {
-      getUserData(user.id).then(({ data, error }) => {
+    const checkUserAndFetchData = async () => {
+      if (isLoading) return;
+
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+
+      try {
+        const { data, error } = await getUserData(user.id);
+
+        if (!isMounted) return;
+
         if (error) {
+          if (error === "Account is not active") {
+            logout();
+            router.push("/login?error=Your account is no longer active");
+            return;
+          }
           setError(error);
-          return;
+        } else {
+          setUserData(data);
         }
-        setUserData(data);
-      });
-    }
-  }, [user, isLoading]);
+      } catch (err) {
+        if (!isMounted) return;
+        setError("Failed to fetch user data");
+      }
+    };
 
-  if (isLoading || !userData) {
+    checkUserAndFetchData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [user, isLoading, logout, router]);
+
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[50vh] p-4">
         <Loader2 className="w-8 h-8 text-orange-600 animate-spin" />
@@ -36,8 +60,28 @@ export default function DashboardPage() {
     );
   }
 
+  if (!user) {
+    return null;
+  }
+
+  if (error === "Account is not active") {
+    return null; // Don't show anything while redirecting
+  }
+
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="flex justify-center items-center min-h-[50vh] p-4">
+        <div className="text-red-500">Error: {error}</div>
+      </div>
+    );
+  }
+
+  if (!userData) {
+    return (
+      <div className="flex justify-center items-center min-h-[50vh] p-4">
+        <Loader2 className="w-8 h-8 text-orange-600 animate-spin" />
+      </div>
+    );
   }
 
   return (
