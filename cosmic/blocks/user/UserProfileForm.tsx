@@ -26,27 +26,19 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
   const [message, setMessage] = useState("");
   const { login } = useAuth();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (formData: FormData) => {
     setIsUpdating(true);
     setMessage("");
 
     try {
-      const formData = new FormData(event.currentTarget);
       // Update user logic here
-      const response = await cosmic.objects.updateOne(
-        user.id,
-        {
-          metadata: {
-            first_name: formData.get("firstName"),
-            last_name: formData.get("lastName"),
-            email: formData.get("email"),
-          },
+      const response = await cosmic.objects.updateOne(user.id, {
+        metadata: {
+          first_name: formData.get("firstName"),
+          last_name: formData.get("lastName"),
+          email: formData.get("email"),
         },
-        {
-          props: "id,title,metadata",
-        }
-      );
+      });
 
       // Update local storage with new user data
       login(localStorage.getItem("token") || "", {
