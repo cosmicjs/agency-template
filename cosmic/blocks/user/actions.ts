@@ -46,7 +46,7 @@ export async function signUp(formData: FormData) {
     },
   });
 
-  redirect("/dashboard");
+  return { success: true };
 }
 
 export async function login(formData: FormData) {

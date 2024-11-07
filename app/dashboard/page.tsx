@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/cosmic/context/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user/AuthContext";
 import { UserProfileForm } from "@/cosmic/blocks/user/UserProfileForm";
 import { useEffect, useState } from "react";
 import { redirect } from "next/navigation";

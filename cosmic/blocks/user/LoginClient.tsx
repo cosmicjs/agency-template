@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@/cosmic/context/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user/AuthContext";
 import AuthForm from "@/cosmic/blocks/user/AuthForm";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";

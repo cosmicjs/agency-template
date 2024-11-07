@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { cosmic } from "@/cosmic/client";
-import { useAuth } from "@/cosmic/context/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user/AuthContext";
 import Image from "next/image";
 import { Button } from "@/cosmic/elements/Button";
 import { updateUserProfile } from "./actions";

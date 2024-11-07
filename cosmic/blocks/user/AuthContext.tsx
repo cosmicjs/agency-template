@@ -29,10 +29,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const userData = localStorage.getItem("userData");
+    const userData = localStorage.getItem("user");
 
-    if (token && userData && userData !== "undefined") {
-      setUser(JSON.parse(userData));
+    if (token && userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+        // Clear invalid data
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+      }
     }
     setIsLoading(false);
   }, []);

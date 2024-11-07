@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/cosmic/context/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user/AuthContext";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/cosmic/elements/Button";
@@ -15,14 +15,12 @@ interface AuthFormProps {
 export default function AuthForm({ type, onSubmit }: AuthFormProps) {
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
-  const [signupSuccess, setSignupSuccess] = useState(false);
   const router = useRouter();
   const { login: authLogin } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-    setSignupSuccess(false);
     setIsLoading(true);
 
     try {
@@ -33,8 +31,6 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           const response = await onSubmit(formData);
           if (response && response.token && response.user) {
             authLogin(response.token, response.user);
-
-            // Add a small delay before navigation
             setTimeout(() => {
               router.push("/dashboard");
               router.refresh();
@@ -46,7 +42,6 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
       } else {
         if (onSubmit) {
           await onSubmit(formData);
-          setSignupSuccess(true);
         }
       }
     } catch (err: any) {
@@ -55,23 +50,6 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
       setIsLoading(false);
     }
   };
-
-  if (signupSuccess) {
-    return (
-      <div className="max-w-md mx-auto mt-8 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-green-600">
-          Registration Successful!
-        </h2>
-        <p>
-          Please check your email for a verification link to complete your
-          registration.
-        </p>
-        <Link href="/login" className="text-blue-500 hover:text-blue-600">
-          Return to Login
-        </Link>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 space-y-6">
