@@ -70,6 +70,10 @@ export default function ResetPasswordForm({
           placeholder="Enter your new password"
           className="w-full p-2 border rounded"
         />
+        <p className="text-sm text-gray-500 mt-1">
+          Password must be at least 8 characters long and contain both letters
+          and numbers
+        </p>
       </div>
 
       <div>

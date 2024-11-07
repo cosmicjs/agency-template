@@ -8,12 +8,27 @@ import crypto from "crypto";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function isValidPassword(password: string): boolean {
+  return (
+    password.length >= 8 && /[A-Za-z]/.test(password) && /[0-9]/.test(password)
+  );
+}
+
 export async function signUp(formData: FormData) {
   try {
     const email = (formData.get("email") as string).toLowerCase();
     const password = formData.get("password") as string;
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
+
+    // Add password validation
+    if (!isValidPassword(password)) {
+      return {
+        success: false,
+        error:
+          "Password must be at least 8 characters long and contain both letters and numbers",
+      };
+    }
 
     // Check if user already exists
     let existingUser;
@@ -384,6 +399,15 @@ export async function forgotPassword(formData: FormData) {
 export async function resetPassword(token: string, formData: FormData) {
   try {
     const password = formData.get("password") as string;
+
+    // Add password validation
+    if (!isValidPassword(password)) {
+      return {
+        success: false,
+        error:
+          "Password must be at least 8 characters long and contain both letters and numbers",
+      };
+    }
 
     // Find user with reset token
     const existingUser = await cosmic.objects

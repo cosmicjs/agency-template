@@ -98,15 +98,15 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           id="password"
           name="password"
           required
+          minLength={8}
           placeholder="Enter your password"
           className="w-full p-2 border rounded"
         />
-        {type === "login" && (
-          <div className="mt-1">
-            <Link href="/forgot-password" className="text-sm text-orange-600">
-              Forgot password?
-            </Link>
-          </div>
+        {type === "signup" && (
+          <p className="text-sm text-gray-500 mt-1">
+            Password must be at least 8 characters long and contain both letters
+            and numbers
+          </p>
         )}
       </div>
 
