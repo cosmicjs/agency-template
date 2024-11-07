@@ -1,6 +1,6 @@
 "use client";
 
-import { useAuth } from "@/cosmic/blocks/user/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 

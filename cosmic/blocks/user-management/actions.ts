@@ -79,7 +79,7 @@ export async function signUp(formData: FormData) {
 
     try {
       await resend.emails.send({
-        from: "Cosmic Support <support@cosmicjs.com>",
+        from: `${process.env.NEXT_PUBLIC_APP_NAME} Support <${process.env.SUPPORT_EMAIL}>`,
         to: email,
         subject: "Verify your email address",
         html: `
@@ -267,7 +267,7 @@ export async function updateUserProfile(userId: string, formData: FormData) {
       // Send new verification email
       const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify?code=${verificationCode}`;
       await resend.emails.send({
-        from: "Cosmic Support <support@cosmicjs.com>",
+        from: `${process.env.NEXT_PUBLIC_APP_NAME} Support <${process.env.SUPPORT_EMAIL}>`,
         to: email,
         subject: "Verify your new email address",
         html: `
@@ -375,7 +375,7 @@ export async function forgotPassword(formData: FormData) {
     const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${resetToken}`;
 
     await resend.emails.send({
-      from: "Cosmic Support <support@cosmicjs.com>",
+      from: `${process.env.NEXT_PUBLIC_APP_NAME} Support <${process.env.SUPPORT_EMAIL}>`,
       to: email,
       subject: "Reset your password",
       html: `

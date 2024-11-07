@@ -1,5 +1,5 @@
-import SignUpClient from "@/cosmic/blocks/user/SignUpClient";
-import { signUp } from "@/cosmic/blocks/user/actions";
+import SignUpClient from "@/cosmic/blocks/user-management/SignUpClient";
+import { signUp } from "@/cosmic/blocks/user-management/actions";
 
 export default function SignUpPage() {
   return (

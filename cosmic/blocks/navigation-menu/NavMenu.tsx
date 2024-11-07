@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { cosmic } from "@/cosmic/client";
 import { MobileNav } from "./MobileNav";
-import { AuthButtons } from "../user/AuthButtons";
+import { AuthButtons } from "../user-management/AuthButtons";
 
 export type ItemType = {
   title: string;

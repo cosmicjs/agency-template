@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import ResetPasswordForm from "@/cosmic/blocks/user/ResetPasswordForm";
-import { resetPassword } from "@/cosmic/blocks/user/actions";
+import ResetPasswordForm from "@/cosmic/blocks/user-management/ResetPasswordForm";
+import { resetPassword } from "@/cosmic/blocks/user-management/actions";
 
 export default function ResetPasswordPage({
   searchParams,

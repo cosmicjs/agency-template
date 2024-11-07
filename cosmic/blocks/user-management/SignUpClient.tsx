@@ -1,6 +1,6 @@
 "use client";
-import { useAuth } from "@/cosmic/blocks/user/AuthContext";
-import AuthForm from "@/cosmic/blocks/user/AuthForm";
+import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
+import AuthForm from "@/cosmic/blocks/user-management/AuthForm";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";

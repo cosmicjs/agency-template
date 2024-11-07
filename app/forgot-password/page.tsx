@@ -1,5 +1,5 @@
-import ForgotPasswordForm from "@/cosmic/blocks/user/ForgotPasswordForm";
-import { forgotPassword } from "@/cosmic/blocks/user/actions";
+import ForgotPasswordForm from "@/cosmic/blocks/user-management/ForgotPasswordForm";
+import { forgotPassword } from "@/cosmic/blocks/user-management/actions";
 
 export default function ForgotPasswordPage() {
   return (

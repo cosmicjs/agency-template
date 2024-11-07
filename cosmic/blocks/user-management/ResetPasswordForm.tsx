@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/cosmic/elements/Button";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Input } from "@/cosmic/elements/Input";
+import { Label } from "@/cosmic/elements/Label";
 
 interface ResetPasswordFormProps {
   token: string;
@@ -60,15 +62,14 @@ export default function ResetPasswordForm({
       )}
 
       <div>
-        <label htmlFor="password">New Password</label>
-        <input
+        <Label htmlFor="password">New Password</Label>
+        <Input
           type="password"
           id="password"
           name="password"
           required
           minLength={8}
           placeholder="Enter your new password"
-          className="w-full p-2 border rounded"
         />
         <p className="text-sm text-gray-500 mt-1">
           Password must be at least 8 characters long and contain both letters
@@ -77,15 +78,14 @@ export default function ResetPasswordForm({
       </div>
 
       <div>
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input
+        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Input
           type="password"
           id="confirmPassword"
           name="confirmPassword"
           required
           minLength={8}
           placeholder="Confirm your new password"
-          className="w-full p-2 border rounded"
         />
       </div>
 

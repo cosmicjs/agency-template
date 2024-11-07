@@ -1,10 +1,10 @@
 "use client";
 
-import { useAuth } from "@/cosmic/blocks/user/AuthContext";
-import { UserProfileForm } from "@/cosmic/blocks/user/UserProfileForm";
+import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
+import { UserProfileForm } from "@/cosmic/blocks/user-management/UserProfileForm";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getUserData } from "@/cosmic/blocks/user/actions";
+import { getUserData } from "@/cosmic/blocks/user-management/actions";
 import { Loader2 } from "lucide-react";
 
 export default function DashboardPage() {

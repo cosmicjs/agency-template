@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth } from "@/cosmic/blocks/user/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
 import Image from "next/image";
 import { Button } from "@/cosmic/elements/Button";
 import { updateUserProfile } from "./actions";
 import { Loader2 } from "lucide-react";
 import { useFormStatus } from "react-dom";
+import { Input } from "@/cosmic/elements/Input";
+import { Label } from "@/cosmic/elements/Label";
 
 interface UserProfileFormProps {
   user: {
@@ -121,44 +123,35 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
       </div>
 
       <div>
-        <label htmlFor="firstName" className="block text-sm font-medium mb-1">
-          First Name
-        </label>
-        <input
+        <Label htmlFor="firstName">First Name</Label>
+        <Input
           type="text"
           id="firstName"
           name="firstName"
           defaultValue={user.metadata.first_name}
           required
-          className="w-full p-2 border rounded dark:bg-zinc-800 dark:border-zinc-700"
         />
       </div>
 
       <div>
-        <label htmlFor="lastName" className="block text-sm font-medium mb-1">
-          Last Name
-        </label>
-        <input
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input
           type="text"
           id="lastName"
           name="lastName"
           defaultValue={user.metadata.last_name}
           required
-          className="w-full p-2 border rounded dark:bg-zinc-800 dark:border-zinc-700"
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1">
-          Email
-        </label>
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
           type="email"
           id="email"
           name="email"
           defaultValue={user.metadata.email}
           required
-          className="w-full p-2 border rounded dark:bg-zinc-800 dark:border-zinc-700"
         />
         {!user.metadata.email_verified && (
           <p className="text-sm text-amber-600 mt-1">Email not verified</p>

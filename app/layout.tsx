@@ -9,7 +9,7 @@ import { CartProvider } from "@/cosmic/blocks/ecommerce/CartProvider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import Banner from "@/components/Banner";
 import { Suspense } from "react";
-import { AuthProvider } from "@/cosmic/blocks/user/AuthContext";
+import { AuthProvider } from "@/cosmic/blocks/user-management/AuthContext";
 
 const sans = Libre_Franklin({ subsets: ["latin"], variable: "--font-sans" });
 const display = Fjalla_One({

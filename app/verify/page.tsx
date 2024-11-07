@@ -1,6 +1,6 @@
 "use client";
 
-import { verifyEmail } from "@/cosmic/blocks/user/actions";
+import { verifyEmail } from "@/cosmic/blocks/user-management/actions";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";

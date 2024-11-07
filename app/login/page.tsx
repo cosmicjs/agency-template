@@ -1,6 +1,6 @@
 // Split into client and server components
-import LoginClient from "@/cosmic/blocks/user/LoginClient";
-import { login } from "@/cosmic/blocks/user/actions";
+import LoginClient from "@/cosmic/blocks/user-management/LoginClient";
+import { login } from "@/cosmic/blocks/user-management/actions";
 
 export default function LoginPage() {
   return (

@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/cosmic/blocks/user/AuthContext";
+import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/cosmic/elements/Button";
+import { Input } from "@/cosmic/elements/Input";
+import { Label } from "@/cosmic/elements/Label";
 
 interface AuthFormProps {
   type: "login" | "signup";
@@ -55,54 +57,50 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
       {type === "signup" && (
         <>
           <div>
-            <label htmlFor="firstName">First Name</label>
-            <input
+            <Label htmlFor="firstName">First Name</Label>
+            <Input
               type="text"
               id="firstName"
               name="firstName"
               required
               placeholder="Enter your first name"
-              className="w-full p-2 border rounded"
               autoFocus={type === "signup"}
             />
           </div>
           <div>
-            <label htmlFor="lastName">Last Name</label>
-            <input
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input
               type="text"
               id="lastName"
               name="lastName"
               required
               placeholder="Enter your last name"
-              className="w-full p-2 border rounded"
             />
           </div>
         </>
       )}
 
       <div>
-        <label htmlFor="email">Email</label>
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
           type="email"
           id="email"
           name="email"
           required
           placeholder="Enter your email address"
-          className="w-full p-2 border rounded"
           autoFocus={type === "login"}
         />
       </div>
 
       <div>
-        <label htmlFor="password">Password</label>
-        <input
+        <Label htmlFor="password">Password</Label>
+        <Input
           type="password"
           id="password"
           name="password"
           required
           minLength={8}
           placeholder="Enter your password"
-          className="w-full p-2 border rounded"
         />
         {type === "signup" ? (
           <p className="text-sm text-gray-500 mt-1">

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/cosmic/elements/Button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { Input } from "@/cosmic/elements/Input";
+import { Label } from "@/cosmic/elements/Label";
 
 interface ForgotPasswordFormProps {
   onSubmit: (formData: FormData) => Promise<any>;
@@ -59,14 +61,13 @@ export default function ForgotPasswordForm({
       </p>
 
       <div>
-        <label htmlFor="email">Email</label>
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
           type="email"
           id="email"
           name="email"
           required
           placeholder="Enter your email address"
-          className="w-full p-2 border rounded"
           autoFocus
         />
       </div>
