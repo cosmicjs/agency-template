@@ -226,6 +226,22 @@ export async function updateUserProfile(userId: string, formData: FormData) {
 
     // If email has changed, generate new verification
     if (email !== currentUser.metadata.email) {
+      // Check if new email already exists
+      const existingUser = await cosmic.objects
+        .findOne({
+          type: "users",
+          "metadata.email": email,
+        })
+        .props(["id"])
+        .depth(0);
+
+      if (existingUser.object) {
+        return {
+          success: false,
+          error: "An account with this email already exists",
+        };
+      }
+
       const verificationCode = crypto.randomBytes(32).toString("hex");
       const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
