@@ -19,7 +19,9 @@ export default function VerifyPage() {
 
       try {
         await verifyEmail(code);
-        router.push("/login?success=Email verified successfully");
+        router.push(
+          "/login?success=Email verified successfully. You may now log in."
+        );
       } catch (error) {
         const errorMessage =
           error instanceof Error ? error.message : "Verification failed";
