@@ -123,10 +123,17 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
       <div className="text-sm flex items-center justify-center gap-2">
         {type === "login" ? (
           <>
-            Don't have an account?
-            <Link href="/signup" className="text-orange-600">
-              Sign up
-            </Link>
+            <div className="flex flex-col items-center gap-2">
+              <div>
+                Don't have an account?
+                <Link href="/signup" className="text-orange-600 ml-2">
+                  Sign up
+                </Link>
+              </div>
+              <Link href="/forgot-password" className="text-orange-600">
+                Forgot your password?
+              </Link>
+            </div>
           </>
         ) : (
           <>
