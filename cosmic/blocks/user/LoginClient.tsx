@@ -3,6 +3,7 @@ import { useAuth } from "@/cosmic/context/AuthContext";
 import AuthForm from "@/cosmic/blocks/user/AuthForm";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 
 export default function LoginClient({ onSubmit }: { onSubmit: any }) {
   const { user, isLoading } = useAuth();
@@ -15,7 +16,11 @@ export default function LoginClient({ onSubmit }: { onSubmit: any }) {
   }, [user, isLoading, router]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Or your loading component
+    return (
+      <div className="flex justify-center items-center min-h-[50vh] p-4">
+        <Loader2 className="text-orange-600 w-8 h-8 animate-spin" />
+      </div>
+    );
   }
 
   return <AuthForm type="login" onSubmit={onSubmit} />;

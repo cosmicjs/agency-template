@@ -5,6 +5,9 @@ import { cosmic } from "@/cosmic/client";
 import { useAuth } from "@/cosmic/context/AuthContext";
 import Image from "next/image";
 import { Button } from "@/cosmic/elements/Button";
+import { updateUserProfile } from "./actions";
+import { Loader2 } from "lucide-react";
+import { useFormStatus } from "react-dom";
 
 interface UserProfileFormProps {
   user: {
@@ -21,38 +24,46 @@ interface UserProfileFormProps {
   };
 }
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button className="w-full" type="submit" disabled={pending}>
+      {pending ? (
+        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+      ) : (
+        "Update Profile"
+      )}
+    </Button>
+  );
+}
+
 export function UserProfileForm({ user }: UserProfileFormProps) {
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isAvatarUploading, setIsAvatarUploading] = useState(false);
   const [message, setMessage] = useState("");
   const { login } = useAuth();
 
   const handleSubmit = async (formData: FormData) => {
-    setIsUpdating(true);
     setMessage("");
 
     try {
-      // Update user logic here
-      const response = await cosmic.objects.updateOne(user.id, {
-        metadata: {
-          first_name: formData.get("firstName"),
-          last_name: formData.get("lastName"),
-          email: formData.get("email"),
-        },
-      });
+      const result = await updateUserProfile(user.id, formData);
 
-      // Update local storage with new user data
-      login(localStorage.getItem("token") || "", {
-        id: response.object.id,
-        name: response.object.title,
-        email: response.object.metadata.email,
-        image: response.object.metadata.avatar?.imgix_url,
-      });
+      if (result.success) {
+        // Update local storage with new user data
+        login(localStorage.getItem("token") || "", {
+          id: result.data.id,
+          name: result.data.title,
+          email: result.data.metadata.email,
+          image: result.data.metadata.avatar?.imgix_url,
+        });
 
-      setMessage("Profile updated successfully!");
+        setMessage("Profile updated successfully!");
+      } else {
+        setMessage("Error updating profile");
+      }
     } catch (error) {
       setMessage("Error updating profile");
-    } finally {
-      setIsUpdating(false);
     }
   };
 
@@ -60,11 +71,15 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
     user.metadata.avatar?.imgix_url || null
   );
 
-  const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
+      setIsAvatarUploading(true);
       const url = URL.createObjectURL(file);
       setAvatarPreview(url);
+      setIsAvatarUploading(false);
     }
   };
 
@@ -79,9 +94,14 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
             }
             alt="Profile avatar"
             fill
-            className="rounded-full object-cover"
+            className={`rounded-full object-cover ${isAvatarUploading ? "opacity-50" : ""}`}
             priority
           />
+          {isAvatarUploading && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            </div>
+          )}
         </div>
         <div>
           <input
@@ -146,11 +166,15 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
         )}
       </div>
 
-      {message && <div className="text-green-500 text-center">{message}</div>}
+      {message && (
+        <div
+          className={`text-center ${message.startsWith("Error") ? "text-red-500" : "text-green-500"}`}
+        >
+          {message}
+        </div>
+      )}
 
-      <Button type="submit" disabled={isUpdating}>
-        Update Profile
-      </Button>
+      <SubmitButton />
     </form>
   );
 }

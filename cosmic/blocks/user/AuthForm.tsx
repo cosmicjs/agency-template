@@ -88,6 +88,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
               id="firstName"
               name="firstName"
               required
+              placeholder="Enter your first name"
               className="w-full p-2 border rounded"
             />
           </div>
@@ -98,6 +99,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
               id="lastName"
               name="lastName"
               required
+              placeholder="Enter your last name"
               className="w-full p-2 border rounded"
             />
           </div>
@@ -111,6 +113,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           id="email"
           name="email"
           required
+          placeholder="Enter your email address"
           className="w-full p-2 border rounded"
         />
       </div>
@@ -122,6 +125,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           id="password"
           name="password"
           required
+          placeholder="Enter your password"
           className="w-full p-2 border rounded"
         />
       </div>
@@ -142,14 +146,14 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         {type === "login" ? (
           <p>
             Don't have an account?{" "}
-            <Link href="/signup" className="text-blue-500 hover:text-blue-600">
+            <Link href="/signup" className="text-orange-600">
               Sign up
             </Link>
           </p>
         ) : (
           <p>
             Already have an account?{" "}
-            <Link href="/login" className="text-blue-500 hover:text-blue-600">
+            <Link href="/login" className="text-orange-600">
               Login
             </Link>
           </p>

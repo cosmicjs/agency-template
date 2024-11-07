@@ -98,7 +98,7 @@ export async function getUserData(userId: string) {
         id: userId,
         type: "users",
       })
-      .props("title,metadata")
+      .props("id,title,metadata")
       .depth(0);
 
     return { data: object, error: null };
@@ -137,5 +137,52 @@ export async function getUserFromCookie() {
   } catch (error) {
     console.error("Error fetching user:", error);
     return null;
+  }
+}
+
+async function uploadFile(file: File) {
+  const arrayBuffer = await file.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  const media = { originalname: file.name, buffer };
+  return await cosmic.media.insertOne({
+    media,
+  });
+}
+
+export async function updateUserProfile(userId: string, formData: FormData) {
+  try {
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
+    const email = formData.get("email") as string;
+    const avatar = formData.get("avatar") as File;
+
+    const metadata: any = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+    };
+
+    let updates: {
+      title: string;
+      metadata: any;
+      thumbnail?: string;
+    } = {
+      title: `${firstName} ${lastName}`,
+      metadata,
+    };
+
+    // Handle avatar upload if provided
+    if (avatar && avatar.size > 0) {
+      const { media } = await uploadFile(avatar);
+      metadata.avatar = media.name;
+      updates.thumbnail = media.name;
+    }
+
+    const { object } = await cosmic.objects.updateOne(userId, updates);
+
+    return { success: true, data: object };
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return { success: false, error: "Failed to update profile" };
   }
 }
