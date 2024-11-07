@@ -201,11 +201,41 @@ export async function updateUserProfile(userId: string, formData: FormData) {
     const email = (formData.get("email") as string).toLowerCase();
     const avatar = formData.get("avatar") as File;
 
+    // Get current user data to check if email has changed
+    const { object: currentUser } = await cosmic.objects
+      .findOne({ id: userId })
+      .props(["metadata"])
+      .depth(0);
+
     const metadata: any = {
       first_name: firstName,
       last_name: lastName,
       email: email,
     };
+
+    // If email has changed, generate new verification
+    if (email !== currentUser.metadata.email) {
+      const verificationCode = crypto.randomBytes(32).toString("hex");
+      const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+      metadata.email_verified = false;
+      metadata.verification_code = verificationCode;
+      metadata.verification_expiry = verificationExpiry;
+
+      // Send new verification email
+      const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify?code=${verificationCode}`;
+      await resend.emails.send({
+        from: "Cosmic Support <support@cosmicjs.com>",
+        to: email,
+        subject: "Verify your new email address",
+        html: `
+          <h1>Verify Your New Email Address</h1>
+          <p>Please click the link below to verify your new email address:</p>
+          <a href="${verificationUrl}">Verify Email</a>
+          <p>This link will expire in 24 hours.</p>
+        `,
+      });
+    }
 
     let updates: {
       title: string;
