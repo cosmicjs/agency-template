@@ -86,8 +86,8 @@ export default function DashboardPage() {
 
   return (
     <main className="py-4">
-      <section className="pb-8 m-auto px-4">
-        <div className="flex flex-col items-center gap-2">
+      <section className="pb-8 m-auto">
+        <div className="flex flex-col items-center gap-2 px-4">
           <h1 className="mb-4 text-3xl md:text-4xl font-display text-zinc-900 dark:text-zinc-100 leading-tight tracking-tighter">
             Welcome, {userData.metadata.first_name}!
           </h1>

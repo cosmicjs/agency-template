@@ -3,5 +3,9 @@ import LoginClient from "@/cosmic/blocks/user/LoginClient";
 import { login } from "@/cosmic/blocks/user/actions";
 
 export default function LoginPage() {
-  return <LoginClient onSubmit={login} />;
+  return (
+    <div className="container mx-auto py-8 px-4">
+      <LoginClient onSubmit={login} />
+    </div>
+  );
 }
