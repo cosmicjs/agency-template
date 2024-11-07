@@ -38,7 +38,17 @@ export default function LoginClient({ onSubmit }: { onSubmit: any }) {
           {error}
         </div>
       )}
-      <AuthForm type="login" onSubmit={onSubmit} />
+      <AuthForm
+        type="login"
+        onSubmit={async (formData) => {
+          const result = await onSubmit(formData);
+          if (result.error) {
+            router.push(`/login?error=${encodeURIComponent(result.error)}`);
+          } else {
+            router.push("/dashboard");
+          }
+        }}
+      />
     </>
   );
 }

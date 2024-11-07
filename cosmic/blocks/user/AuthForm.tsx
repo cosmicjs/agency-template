@@ -13,42 +13,34 @@ interface AuthFormProps {
 }
 
 export default function AuthForm({ type, onSubmit }: AuthFormProps) {
-  const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { login: authLogin } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
     setIsLoading(true);
 
     try {
       const formData = new FormData(e.currentTarget);
 
-      if (type === "login") {
-        if (onSubmit) {
-          const response = await onSubmit(formData);
-          if (response && response.token && response.user) {
-            authLogin(response.token, response.user);
-            setTimeout(() => {
-              router.push("/dashboard");
-              router.refresh();
-            }, 100);
-          } else {
-            throw new Error("Invalid login response");
-          }
+      if (onSubmit) {
+        const result = await onSubmit(formData);
+
+        if (result.error) {
+          throw new Error(result.error);
         }
-      } else {
-        if (onSubmit) {
-          const result = await onSubmit(formData);
-          if (!result.success && result.error) {
-            throw new Error(result.error);
-          }
+
+        if (type === "login" && result.token && result.user) {
+          authLogin(result.token, result.user);
+          setTimeout(() => {
+            router.push("/dashboard");
+            router.refresh();
+          }, 100);
         }
       }
     } catch (err: any) {
-      setError(err.message || "An error occurred");
+      console.error(err.message || "An error occurred");
     } finally {
       setIsLoading(false);
     }
@@ -110,8 +102,6 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           className="w-full p-2 border rounded"
         />
       </div>
-
-      {error && <div className="text-red-500 text-center">{error}</div>}
 
       <Button type="submit" disabled={isLoading} className="w-full">
         {isLoading ? (

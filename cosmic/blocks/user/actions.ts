@@ -9,80 +9,88 @@ import crypto from "crypto";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function signUp(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  const firstName = formData.get("firstName") as string;
-  const lastName = formData.get("lastName") as string;
-
-  // Check if user already exists
-  let existingUser;
   try {
-    existingUser = await cosmic.objects
-      .findOne({
-        type: "users",
-        "metadata.email": email,
-      })
-      .props(["metadata"])
-      .depth(0);
-  } catch (err) {
-    // User does not exist
-  }
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const firstName = formData.get("firstName") as string;
+    const lastName = formData.get("lastName") as string;
 
-  if (existingUser) {
-    return {
-      success: false,
-      error: "An account with this email already exists",
-    };
-  }
+    // Check if user already exists
+    let existingUser;
+    try {
+      existingUser = await cosmic.objects
+        .findOne({
+          type: "users",
+          "metadata.email": email,
+        })
+        .props(["metadata"])
+        .depth(0);
+    } catch (err) {
+      // User does not exist
+    }
 
-  // Generate verification code
-  const verificationCode = crypto.randomBytes(32).toString("hex");
-  const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    if (existingUser) {
+      return {
+        success: false,
+        error: "An account with this email already exists",
+      };
+    }
 
-  // Hash password
-  const hashedPassword = await bcrypt.hash(password, 10);
+    // Generate verification code
+    const verificationCode = crypto.randomBytes(32).toString("hex");
+    const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-  // Create new user
-  await cosmic.objects.insertOne({
-    title: `${firstName} ${lastName}`,
-    type: "users",
-    metadata: {
-      first_name: firstName,
-      last_name: lastName,
-      email: email,
-      password: hashedPassword,
-      active_status: true,
-      email_verified: false,
-      verification_code: verificationCode,
-      verification_expiry: verificationExpiry,
-    },
-  });
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Send verification email
-  const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify?code=${verificationCode}`;
-
-  try {
-    await resend.emails.send({
-      from: "Cosmic Support <support@cosmicjs.com>",
-      to: email,
-      subject: "Verify your email address",
-      html: `
-        <h1>Welcome to ${process.env.NEXT_PUBLIC_APP_NAME}!</h1>
-        <p>Please click the link below to verify your email address:</p>
-        <a href="${verificationUrl}">Verify Email</a>
-        <p>This link will expire in 24 hours.</p>
-      `,
+    // Create new user
+    await cosmic.objects.insertOne({
+      title: `${firstName} ${lastName}`,
+      type: "users",
+      metadata: {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: hashedPassword,
+        active_status: true,
+        email_verified: false,
+        verification_code: verificationCode,
+        verification_expiry: verificationExpiry,
+      },
     });
-    console.log(`Verification email sent to ${email}`);
+
+    // Send verification email
+    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify?code=${verificationCode}`;
+
+    try {
+      await resend.emails.send({
+        from: "Cosmic Support <support@cosmicjs.com>",
+        to: email,
+        subject: "Verify your email address",
+        html: `
+          <h1>Welcome to ${process.env.NEXT_PUBLIC_APP_NAME}!</h1>
+          <p>Please click the link below to verify your email address:</p>
+          <a href="${verificationUrl}">Verify Email</a>
+          <p>This link will expire in 24 hours.</p>
+        `,
+      });
+      console.log(`Verification email sent to ${email}`);
+    } catch (error) {
+      console.error("Error sending verification email:", error);
+      return {
+        success: false,
+        error: "Failed to send verification email. Please try again.",
+      };
+    }
+
+    return { success: true };
   } catch (error) {
-    console.error("Error sending verification email:", error);
+    console.error("Signup error:", error);
     return {
       success: false,
-      error: "Failed to send verification email. Please try again.",
+      error: "Failed to create account. Please try again.",
     };
   }
-
-  return { success: true };
 }
 
 export async function login(formData: FormData) {
@@ -100,7 +108,7 @@ export async function login(formData: FormData) {
       .depth(0);
 
     if (!result.object) {
-      throw new Error("Invalid credentials");
+      return { error: "Invalid email or password" };
     }
 
     const isValid = await bcrypt.compare(
@@ -109,7 +117,7 @@ export async function login(formData: FormData) {
     );
 
     if (!isValid) {
-      throw new Error("Invalid credentials");
+      return { error: "Invalid email or password" };
     }
 
     const user = {
@@ -124,7 +132,7 @@ export async function login(formData: FormData) {
 
     return { token, user };
   } catch (error) {
-    throw new Error("Login failed");
+    return { error: "Invalid email or password" };
   }
 }
 

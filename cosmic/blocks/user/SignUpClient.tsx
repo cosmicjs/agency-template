@@ -10,6 +10,7 @@ export default function SignUpClient({ onSubmit }: { onSubmit: any }) {
   const { user, isLoading } = useAuth();
   const router = useRouter();
   const [isSignupComplete, setIsSignupComplete] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -40,13 +41,30 @@ export default function SignUpClient({ onSubmit }: { onSubmit: any }) {
     );
   }
 
-  const handleSubmit = async (...args: any[]) => {
-    const result = await onSubmit(...args);
+  const handleSubmit = async (formData: FormData) => {
+    setError("");
+    const result = await onSubmit(formData);
+
+    if (result.error) {
+      setError(result.error);
+      return result;
+    }
+
     if (result.success) {
       setIsSignupComplete(true);
     }
+
     return result;
   };
 
-  return <AuthForm type="signup" onSubmit={handleSubmit} />;
+  return (
+    <>
+      {error && (
+        <div className="max-w-md mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded-md">
+          {error}
+        </div>
+      )}
+      <AuthForm type="signup" onSubmit={handleSubmit} />
+    </>
+  );
 }
