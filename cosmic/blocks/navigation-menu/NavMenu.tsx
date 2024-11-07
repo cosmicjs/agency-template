@@ -41,7 +41,7 @@ export async function NavMenu({
             </Link>
           );
         })}
-        <AuthButtons />
+        {hasMobileMenu && <AuthButtons />}
       </div>
       {/* Mobile */}
       {hasMobileMenu && <MobileNav items={nav.metadata.items} />}

@@ -101,6 +101,13 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           placeholder="Enter your password"
           className="w-full p-2 border rounded"
         />
+        {type === "login" && (
+          <div className="mt-1">
+            <Link href="/forgot-password" className="text-sm text-orange-600">
+              Forgot password?
+            </Link>
+          </div>
+        )}
       </div>
 
       <Button type="submit" disabled={isLoading} className="w-full">

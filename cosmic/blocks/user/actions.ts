@@ -10,7 +10,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function signUp(formData: FormData) {
   try {
-    const email = formData.get("email") as string;
+    const email = (formData.get("email") as string).toLowerCase();
     const password = formData.get("password") as string;
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
@@ -94,7 +94,7 @@ export async function signUp(formData: FormData) {
 }
 
 export async function login(formData: FormData) {
-  const email = formData.get("email") as string;
+  const email = (formData.get("email") as string).toLowerCase();
   const password = formData.get("password") as string;
 
   try {
@@ -198,7 +198,7 @@ export async function updateUserProfile(userId: string, formData: FormData) {
   try {
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
-    const email = formData.get("email") as string;
+    const email = (formData.get("email") as string).toLowerCase();
     const avatar = formData.get("avatar") as File;
 
     const metadata: any = {
@@ -264,5 +264,114 @@ export async function verifyEmail(code: string) {
   } catch (error) {
     console.error("Error verifying email:", error);
     throw new Error("Email verification failed");
+  }
+}
+
+export async function forgotPassword(formData: FormData) {
+  try {
+    const email = (formData.get("email") as string).toLowerCase();
+
+    // Check if user exists
+    const existingUser = await cosmic.objects
+      .findOne({
+        type: "users",
+        "metadata.email": email,
+      })
+      .props(["id", "metadata"])
+      .depth(0);
+
+    if (!existingUser.object) {
+      return {
+        success: false,
+        error: "No account found with this email address",
+      };
+    }
+
+    // Generate reset token and expiry
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const resetExpiry = new Date(Date.now() + 1 * 60 * 60 * 1000); // 1 hour
+
+    // Update user with reset token
+    await cosmic.objects.updateOne(existingUser.object.id, {
+      metadata: {
+        reset_password_token: resetToken,
+        reset_password_expiry: resetExpiry,
+      },
+    });
+
+    // Send reset email
+    const resetUrl = `${process.env.NEXT_PUBLIC_APP_URL}/reset-password?token=${resetToken}`;
+
+    await resend.emails.send({
+      from: "Cosmic Support <support@cosmicjs.com>",
+      to: email,
+      subject: "Reset your password",
+      html: `
+        <h1>Reset Your Password</h1>
+        <p>Click the link below to reset your password:</p>
+        <a href="${resetUrl}">Reset Password</a>
+        <p>This link will expire in 1 hour.</p>
+      `,
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Forgot password error:", error);
+    return {
+      success: false,
+      error: "Failed to process request. Please try again.",
+    };
+  }
+}
+
+export async function resetPassword(token: string, formData: FormData) {
+  try {
+    const password = formData.get("password") as string;
+
+    // Find user with reset token
+    const existingUser = await cosmic.objects
+      .findOne({
+        type: "users",
+        "metadata.reset_password_token": token,
+      })
+      .props(["id", "metadata"])
+      .depth(0);
+
+    if (!existingUser.object) {
+      return {
+        success: false,
+        error: "Invalid or expired reset token",
+      };
+    }
+
+    const resetExpiry = new Date(
+      existingUser.object.metadata.reset_password_expiry
+    );
+    if (resetExpiry < new Date()) {
+      return {
+        success: false,
+        error: "Reset token has expired",
+      };
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Update user password and clear reset token
+    await cosmic.objects.updateOne(existingUser.object.id, {
+      metadata: {
+        password: hashedPassword,
+        reset_password_token: "",
+        reset_password_expiry: "",
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Reset password error:", error);
+    return {
+      success: false,
+      error: "Failed to reset password. Please try again.",
+    };
   }
 }
