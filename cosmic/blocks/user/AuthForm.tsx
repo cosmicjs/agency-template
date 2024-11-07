@@ -120,21 +120,21 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         )}
       </Button>
 
-      <div className="text-center text-sm">
+      <div className="text-sm flex items-center justify-center gap-2">
         {type === "login" ? (
-          <p>
-            Don't have an account?{" "}
+          <>
+            Don't have an account?
             <Link href="/signup" className="text-orange-600">
               Sign up
             </Link>
-          </p>
+          </>
         ) : (
-          <p>
-            Already have an account?{" "}
+          <>
+            Already have an account?
             <Link href="/login" className="text-orange-600">
               Login
             </Link>
-          </p>
+          </>
         )}
       </div>
     </form>
