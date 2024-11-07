@@ -63,6 +63,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
               required
               placeholder="Enter your first name"
               className="w-full p-2 border rounded"
+              autoFocus={type === "signup"}
             />
           </div>
           <div>
@@ -88,6 +89,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           required
           placeholder="Enter your email address"
           className="w-full p-2 border rounded"
+          autoFocus={type === "login"}
         />
       </div>
 

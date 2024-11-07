@@ -67,6 +67,7 @@ export default function ForgotPasswordForm({
           required
           placeholder="Enter your email address"
           className="w-full p-2 border rounded"
+          autoFocus
         />
       </div>
 
