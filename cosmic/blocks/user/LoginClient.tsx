@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
 export default function LoginClient({ onSubmit }: { onSubmit: any }) {
-  const { user, isLoading } = useAuth();
+  const { user, isLoading, login: authLogin } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const success = searchParams.get("success");
@@ -44,8 +44,9 @@ export default function LoginClient({ onSubmit }: { onSubmit: any }) {
           const result = await onSubmit(formData);
           if (result.error) {
             router.push(`/login?error=${encodeURIComponent(result.error)}`);
-          } else {
-            router.push("/dashboard");
+          } else if (result.token && result.user) {
+            // Login the user with the token and user data
+            authLogin(result.token, result.user);
           }
         }}
       />
