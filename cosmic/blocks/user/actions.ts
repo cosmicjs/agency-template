@@ -2,8 +2,11 @@
 
 import { cosmic } from "@/cosmic/client";
 import bcrypt from "bcryptjs";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { Resend } from "resend";
+import crypto from "crypto";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function signUp(formData: FormData) {
   const email = formData.get("email") as string;
@@ -22,12 +25,19 @@ export async function signUp(formData: FormData) {
       .props(["metadata"])
       .depth(0);
   } catch (err) {
-    console.error(err);
+    // User does not exist
   }
 
   if (existingUser) {
-    throw new Error("User already exists");
+    return {
+      success: false,
+      error: "An account with this email already exists",
+    };
   }
+
+  // Generate verification code
+  const verificationCode = crypto.randomBytes(32).toString("hex");
+  const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
   // Hash password
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -43,8 +53,34 @@ export async function signUp(formData: FormData) {
       password: hashedPassword,
       active_status: true,
       email_verified: false,
+      verification_code: verificationCode,
+      verification_expiry: verificationExpiry,
     },
   });
+
+  // Send verification email
+  const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verify?code=${verificationCode}`;
+
+  try {
+    await resend.emails.send({
+      from: "Cosmic Support <support@cosmicjs.com>",
+      to: email,
+      subject: "Verify your email address",
+      html: `
+        <h1>Welcome to ${process.env.NEXT_PUBLIC_APP_NAME}!</h1>
+        <p>Please click the link below to verify your email address:</p>
+        <a href="${verificationUrl}">Verify Email</a>
+        <p>This link will expire in 24 hours.</p>
+      `,
+    });
+    console.log(`Verification email sent to ${email}`);
+  } catch (error) {
+    console.error("Error sending verification email:", error);
+    return {
+      success: false,
+      error: "Failed to send verification email. Please try again.",
+    };
+  }
 
   return { success: true };
 }
@@ -58,6 +94,7 @@ export async function login(formData: FormData) {
       .findOne({
         type: "users",
         "metadata.email": email,
+        "metadata.email_verified": true,
       })
       .props(["id", "title", "metadata"])
       .depth(0);
@@ -184,5 +221,40 @@ export async function updateUserProfile(userId: string, formData: FormData) {
   } catch (error) {
     console.error("Error updating profile:", error);
     return { success: false, error: "Failed to update profile" };
+  }
+}
+
+// Add new verification function
+export async function verifyEmail(code: string) {
+  try {
+    const { object } = await cosmic.objects
+      .findOne({
+        type: "users",
+        "metadata.verification_code": code,
+      })
+      .props(["id", "metadata"])
+      .depth(0);
+
+    if (!object) {
+      throw new Error("Invalid verification code");
+    }
+
+    const verificationExpiry = new Date(object.metadata.verification_expiry);
+    if (verificationExpiry < new Date()) {
+      throw new Error("Verification code has expired");
+    }
+
+    await cosmic.objects.updateOne(object.id, {
+      metadata: {
+        email_verified: true,
+        verification_code: "",
+        verification_expiry: "",
+      },
+    });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error verifying email:", error);
+    throw new Error("Email verification failed");
   }
 }

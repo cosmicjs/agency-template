@@ -41,15 +41,11 @@ export default function SignUpClient({ onSubmit }: { onSubmit: any }) {
   }
 
   const handleSubmit = async (...args: any[]) => {
-    try {
-      const result = await onSubmit(...args);
-      if (result.success) {
-        setIsSignupComplete(true);
-      }
-    } catch (error) {
-      // Error handling is already done in AuthForm
-      console.error(error);
+    const result = await onSubmit(...args);
+    if (result.success) {
+      setIsSignupComplete(true);
     }
+    return result;
   };
 
   return <AuthForm type="signup" onSubmit={handleSubmit} />;

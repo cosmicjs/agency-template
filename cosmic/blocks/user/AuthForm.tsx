@@ -41,7 +41,10 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         }
       } else {
         if (onSubmit) {
-          await onSubmit(formData);
+          const result = await onSubmit(formData);
+          if (!result.success && result.error) {
+            throw new Error(result.error);
+          }
         }
       }
     } catch (err: any) {
