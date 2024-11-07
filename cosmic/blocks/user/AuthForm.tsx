@@ -102,11 +102,18 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           placeholder="Enter your password"
           className="w-full p-2 border rounded"
         />
-        {type === "signup" && (
+        {type === "signup" ? (
           <p className="text-sm text-gray-500 mt-1">
             Password must be at least 8 characters long and contain both letters
             and numbers
           </p>
+        ) : (
+          <Link
+            href="/forgot-password"
+            className="text-orange-600 text-sm mt-1 inline-block"
+          >
+            Forgot your password?
+          </Link>
         )}
       </div>
 
@@ -123,15 +130,10 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
       <div className="text-sm flex items-center justify-center gap-2">
         {type === "login" ? (
           <>
-            <div className="flex flex-col items-center gap-2">
-              <div>
-                Don't have an account?
-                <Link href="/signup" className="text-orange-600 ml-2">
-                  Sign up
-                </Link>
-              </div>
-              <Link href="/forgot-password" className="text-orange-600">
-                Forgot your password?
+            <div className="flex items-center gap-2">
+              Don't have an account?
+              <Link href="/signup" className="text-orange-600">
+                Sign up
               </Link>
             </div>
           </>
