@@ -12,9 +12,9 @@ A website template built using Cosmic's React components, [Blocks](https://block
 
 ## Features
 
-✨ NEW: 👤 User management powered by the user management Block
+✨ NEW: 👤 User management powered by the User Management Block
 
-✨ NEW: ✉️ Contact form and email messaging powered by Resend
+✨ NEW: ✉️ Contact form and email messaging powered by the Contact Form Block
 
 🛒 Product management and checkout using Stripe
 
