@@ -62,8 +62,15 @@ It will look like this:
 COSMIC_BUCKET_SLUG=change_to_your_bucket_slug
 COSMIC_READ_KEY=change_to_your_bucket_read_key
 COSMIC_WRITE_KEY=change_to_your_bucket_write_key
+
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=change_to_your_stripe_public_key
 STRIPE_SECRET_KEY=change_to_your_stripe_secret_key
+
+RESEND_API_KEY=change_to_your_resend_api_key
+NEXT_PUBLIC_APP_URL=change_to_your_app_url
+NEXT_PUBLIC_APP_NAME="Change to your app name"
+SUPPORT_EMAIL=change_to_your_support_email
+CONTACT_EMAIL=change_to_your_contact_email
 ```
 
 4. Run the template.
