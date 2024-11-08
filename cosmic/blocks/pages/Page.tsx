@@ -45,7 +45,7 @@ export async function Page({
                       variant: "default",
                     })
                   )}
-                  href="https://www.cosmicjs.com"
+                  href="/signup"
                 >
                   Get started free
                 </Link>
@@ -56,7 +56,7 @@ export async function Page({
                       variant: "secondary",
                     })
                   )}
-                  href="https://www.cosmicjs.com/contact"
+                  href="/contact"
                 >
                   Contact us
                 </Link>
