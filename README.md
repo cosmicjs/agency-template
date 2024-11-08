@@ -14,7 +14,7 @@ A website template built using Cosmic's React components, [Blocks](https://block
 
 ✨ NEW: 👤 User management powered by the User Management Block
 
-✨ NEW: ✉️ Contact form and email messaging powered by the Contact Form Block
+✨ NEW: ✉️ Contact form powered by the Contact Form Block
 
 🛒 Product management and checkout using Stripe
 
