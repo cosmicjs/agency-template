@@ -55,7 +55,7 @@ bun install
 cp .env.example .env.local
 ```
 
-It will look like this:
+It will look like this. To use the User Management and Contact Form features you will need to have a [Resend](https://resend.com/) account and add your API key.
 
 ```
 # .env.local
