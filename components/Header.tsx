@@ -15,25 +15,25 @@ export default async function Header() {
     .depth(1);
 
   return (
-    <nav className="space-x-4 sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg w-full z-[9999]">
-      <div className="flex w-full items-center md:container justify-between p-4">
-        <Link href="/">
+    <nav className="sticky top-0 bg-white/20 dark:bg-black/20 backdrop-blur-lg w-full z-[9999]">
+      <div className="flex w-full items-center md:container justify-between p-4 flex-wrap gap-4">
+        <Link href="/" className="flex-shrink-0">
           <img
             src={`${settings.metadata.logo.imgix_url}?w=500&auto=format,compression`}
             alt={settings.metadata.company}
-            className="h-10 m-auto dark:hidden"
+            className="h-10 w-auto dark:hidden"
           />
           <img
             src={`${settings.metadata.dark_logo.imgix_url}?w=500&auto=format,compression`}
             alt={settings.metadata.company}
-            className="h-10 m-auto hidden dark:block"
+            className="h-10 w-auto hidden dark:block"
           />
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap">
           <NavMenu
             query={{ type: "navigation-menus", slug: "header" }}
             hasMobileMenu
-            className="flex"
+            className="flex flex-wrap"
           />
           <CheckOut className="ml-4" productPath={"/services"} />
         </div>
