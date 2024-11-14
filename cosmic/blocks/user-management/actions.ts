@@ -1,10 +1,10 @@
 "use server";
 
+import crypto from "crypto";
+import { cookies } from "next/headers";
 import { cosmic } from "@/cosmic/client";
 import bcrypt from "bcryptjs";
-import { cookies } from "next/headers";
 import { Resend } from "resend";
-import crypto from "crypto";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -143,11 +143,17 @@ export async function login(formData: FormData) {
       image: result.object.metadata.avatar?.imgix_url,
     };
 
-    // Generate token
-    const token = Buffer.from(result.object.id).toString("base64");
+    // Set the user_id cookie
+    (await cookies()).set("user_id", result.object.id, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+    });
 
-    return { token, user };
+    return { user };
   } catch (error) {
+    console.error("Login error:", error);
     return { error: "Invalid email or password" };
   }
 }
@@ -173,14 +179,14 @@ export async function getUserData(userId: string) {
 
     return { data: object, error: null };
   } catch (error) {
+    console.error("Error fetching user data:", error);
     return { data: null, error: "Failed to fetch user data" };
   }
 }
 
 export async function getUserFromCookie() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const userId = cookieStore.get("user_id");
-
   if (!userId) {
     return null;
   }
@@ -279,7 +285,7 @@ export async function updateUserProfile(userId: string, formData: FormData) {
       });
     }
 
-    let updates: {
+    const updates: {
       title: string;
       metadata: any;
       thumbnail?: string;
@@ -455,4 +461,15 @@ export async function resetPassword(token: string, formData: FormData) {
       error: "Failed to reset password. Please try again.",
     };
   }
+}
+
+export async function getAuthUser() {
+  "use server";
+  return await getUserFromCookie();
+}
+
+export async function logoutUser() {
+  "use server";
+  (await cookies()).delete("user_id");
+  return { success: true };
 }
