@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
 import { Button } from "@/cosmic/elements/Button";
 import { Input } from "@/cosmic/elements/Input";
 import { Label } from "@/cosmic/elements/Label";
+import { Loader2 } from "lucide-react";
 
 interface AuthFormProps {
   type: "login" | "signup";
@@ -16,12 +16,14 @@ interface AuthFormProps {
 
 export default function AuthForm({ type, onSubmit }: AuthFormProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
   const { login: authLogin } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setError("");
 
     try {
       const formData = new FormData(e.currentTarget);
@@ -30,27 +32,26 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         const result = await onSubmit(formData);
 
         if (result.error) {
-          throw new Error(result.error);
+          setError(result.error);
+          return;
         }
 
-        if (type === "login" && result.token && result.user) {
-          authLogin(result.token, result.user);
-          setTimeout(() => {
-            router.push("/dashboard");
-            router.refresh();
-          }, 100);
+        if (type === "login" && result.user) {
+          authLogin(result.user);
+          router.push("/dashboard");
+          router.refresh();
         }
       }
     } catch (err: any) {
-      console.error(err.message || "An error occurred");
+      setError(err.message || "An error occurred");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 space-y-6">
-      <h1 className="text-2xl font-bold text-center">
+    <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-md space-y-6">
+      <h1 className="text-center text-2xl font-bold">
         {type === "login" ? "Login" : "Sign Up"}
       </h1>
 
@@ -103,14 +104,14 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
           placeholder="Enter your password"
         />
         {type === "signup" ? (
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="mt-1 text-sm text-gray-500">
             Password must be at least 8 characters long and contain both letters
             and numbers
           </p>
         ) : (
           <Link
             href="/forgot-password"
-            className="text-orange-600 text-sm mt-1 inline-block"
+            className="mt-1 inline-block text-sm text-orange-600"
           >
             Forgot your password?
           </Link>
@@ -119,7 +120,7 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
 
       <Button type="submit" disabled={isLoading} className="w-full">
         {isLoading ? (
-          <Loader2 className="w-5 h-5 animate-spin" />
+          <Loader2 className="size-5 animate-spin" />
         ) : type === "login" ? (
           "Login"
         ) : (
@@ -127,11 +128,11 @@ export default function AuthForm({ type, onSubmit }: AuthFormProps) {
         )}
       </Button>
 
-      <div className="text-sm flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2 text-sm">
         {type === "login" ? (
           <>
             <div className="flex items-center gap-2">
-              Don't have an account?
+              Don&apos;t have an account?
               <Link href="/signup" className="text-orange-600">
                 Sign up
               </Link>

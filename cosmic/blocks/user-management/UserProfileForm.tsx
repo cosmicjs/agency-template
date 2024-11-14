@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
 import { useAuth } from "@/cosmic/blocks/user-management/AuthContext";
-import Image from "next/image";
 import { Button } from "@/cosmic/elements/Button";
 import { updateUserProfile } from "./actions";
 import { Loader2 } from "lucide-react";
@@ -31,7 +31,7 @@ function SubmitButton() {
   return (
     <Button className="w-full" type="submit" disabled={pending}>
       {pending ? (
-        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
       ) : (
         "Update Profile"
       )}
@@ -51,8 +51,7 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
       const result = await updateUserProfile(user.id, formData);
 
       if (result.success) {
-        // Update local storage with new user data
-        login(localStorage.getItem("token") || "", {
+        login({
           id: result.data.id,
           name: result.data.title,
           email: result.data.metadata.email,
@@ -61,7 +60,7 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
 
         setMessage("Profile updated successfully!");
       } else {
-        setMessage("Error updating profile");
+        setMessage(result.error || "Error updating profile");
       }
     } catch (error) {
       setMessage("Error updating profile");
@@ -87,20 +86,20 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
   return (
     <form action={handleSubmit} className="w-full max-w-md space-y-6">
       <div className="flex flex-col items-center gap-4">
-        <div className="relative w-32 h-32">
-          <Image
+        <div className="relative h-32 w-32">
+          <img
             src={
               avatarPreview ||
-              "https://imgix.cosmicjs.com/fe57f880-b0a3-11ee-9844-f9a09795e2a3-Visual_dark.png?w=300&h=300"
+              "https://imgix.cosmicjs.com/fe57f880-b0a3-11ee-9844-f9a09795e2a3-Visual_dark.png?w=300&h=300&fit=crop"
             }
             alt="Profile avatar"
-            fill
-            className={`rounded-full object-cover ${isAvatarUploading ? "opacity-50" : ""}`}
-            priority
+            className={`rounded-full object-cover w-full h-full ${
+              isAvatarUploading ? "opacity-50" : ""
+            }`}
           />
           {isAvatarUploading && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+              <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-white"></div>
             </div>
           )}
         </div>
@@ -115,7 +114,7 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
           />
           <label
             htmlFor="avatar"
-            className="cursor-pointer px-4 py-2 text-sm bg-zinc-100 dark:bg-zinc-800 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            className="cursor-pointer rounded-md bg-zinc-100 px-4 py-2 text-sm transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700"
           >
             Change Avatar
           </label>
@@ -154,13 +153,15 @@ export function UserProfileForm({ user }: UserProfileFormProps) {
           required
         />
         {!user.metadata.email_verified && (
-          <p className="text-sm text-amber-600 mt-1">Email not verified</p>
+          <p className="mt-1 text-sm text-amber-600">Email not verified</p>
         )}
       </div>
 
       {message && (
         <div
-          className={`text-center ${message.startsWith("Error") ? "text-red-500" : "text-green-500"}`}
+          className={`text-center ${
+            message.startsWith("Error") ? "text-red-500" : "text-green-500"
+          }`}
         >
           {message}
         </div>
