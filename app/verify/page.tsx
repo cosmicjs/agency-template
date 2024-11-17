@@ -6,7 +6,9 @@ import { Loader2 } from "lucide-react";
 export default function VerifyPage() {
   return (
     <Suspense
-      fallback={<Loader2 className="text-orange-600  w-8 h-8 animate-spin" />}
+      fallback={
+        <Loader2 className="text-orange-600 mx-auto w-8 h-8 animate-spin" />
+      }
     >
       <VerifyClient />
     </Suspense>
