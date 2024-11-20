@@ -9,6 +9,7 @@ import { CartContext } from "@/cosmic/blocks/ecommerce/CartProvider";
 import { ProductType } from "@/cosmic/blocks/ecommerce/AddToCart";
 import Link from "next/link";
 import { cn } from "@/cosmic/utils";
+import { createCheckoutSession } from "@/app/actions/checkout";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || ""
@@ -91,25 +92,18 @@ export function CheckOut({
   }
   async function handleSubmit() {
     setSubmitting(true);
-    const stripe_product_ids = cart.map((product: any) => {
-      return product.metadata.stripe_product_id;
-    });
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      body: JSON.stringify({
+    try {
+      const stripe_product_ids = cart.map((product: any) => {
+        return product.metadata.stripe_product_id;
+      });
+      const result = await createCheckoutSession(
         stripe_product_ids,
-        redirect_url: window.location.href.split("?")[0],
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-    if (!res.ok) {
+        window.location.href.split("?")[0]
+      );
+      if (result.url) window.location = result.url;
+    } catch (err: any) {
+      setError(err.message);
       setSubmitting(false);
-      setError(data.raw.message);
-    } else {
-      if (data.url) window.location = data.url;
     }
   }
   return (
