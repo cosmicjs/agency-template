@@ -3,6 +3,17 @@ import { cosmic } from "@/cosmic/client";
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
 
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const { objects: projects } = await cosmic.objects.find({
+    type: "projects",
+  });
+  return projects.map((project: { slug: string }) => ({
+    slug: project.slug,
+  }));
+}
+
 export default async function SingleProjectsPage({
   params,
 }: {
